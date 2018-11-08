@@ -3,7 +3,7 @@ package interfaz.tablas;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import modelo.CorredorDorsal;
+import modelo.Corredor;
 
 /**
  *
@@ -11,11 +11,11 @@ import modelo.CorredorDorsal;
  */
 public class TableModelCorredores extends AbstractTableModel {
 
-    private final List<CorredorDorsal> listaCorredores;
+    private final List<Corredor> listaCorredores;
     private final String[] columnas = {"Nombre y apellidos", "DNI", "Fecha"
         + " de nacimiento", "Dirección", "Teléfono"};
 
-    public TableModelCorredores(List<CorredorDorsal> listaCorredores) {
+    public TableModelCorredores(List<Corredor> listaCorredores) {
         this.listaCorredores = listaCorredores;
     }
 

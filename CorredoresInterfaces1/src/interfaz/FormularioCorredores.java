@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import logica.LogicaNegocio;
-import modelo.CorredorDorsal;
+import modelo.Corredor;
 import org.netbeans.validation.api.builtin.stringvalidation.MayusculaValidator;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
@@ -23,7 +23,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
     private LogicaNegocio logicaNegocio;
-    private CorredorDorsal corredorModificar = null;
+    private Corredor corredorModificar = null;
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private String nombre = "";
     private String dni = "";
@@ -70,7 +70,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
     //gracias al valor de personaModificar. Si es null será un alta, si tiene un valor
     //será una modificación.
     public FormularioCorredores(TablaCorredores aThis, boolean modal,
-            CorredorDorsal corredorModificar) {
+            Corredor corredorModificar) {
         super(aThis, modal);
         this.corredorModificar = corredorModificar;
         initComponents();
@@ -327,7 +327,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
 
     }
     private void jButtonValidarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarCorredoresActionPerformed
-        CorredorDorsal p;
+        Corredor p;
         nombre = jTextFieldNombreApellidos.getText();
         dni = jTextFieldDni.getText();
         fechaNacimiento = (Date) jSpinnerFechaNacimiento.getValue();
@@ -337,7 +337,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
         if (corredorModificar == null) {
             try {
                 
-                p = new CorredorDorsal(nombre, dni, fechaNacimiento, direccion, telefono);
+                p = new Corredor(nombre, dni, fechaNacimiento, direccion, telefono);
                 LogicaNegocio.getInstance().anadirCorredorLista(p);
 
                 //método para mostrar simplemente un mensaje

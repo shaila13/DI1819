@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @author Shaila
  */
-public class CorredorDorsal implements Comparable<CorredorDorsal> {
+public class Corredor implements Comparable<Corredor> {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private String nombre;
@@ -18,7 +18,7 @@ public class CorredorDorsal implements Comparable<CorredorDorsal> {
     private int telefono;
    
 
-    public CorredorDorsal() {
+    public Corredor() {
     }
 
     /*
@@ -26,7 +26,7 @@ public class CorredorDorsal implements Comparable<CorredorDorsal> {
     
     Ir al constructor:
     
-        public CorredorDorsal(String nombre, String dni, Date fechaNacimiento, 
+        public Corredor(String nombre, String dni, Date fechaNacimiento, 
             String direccion, int telefono) {
         this.nombre = nombre;
         if (dni == null) 
@@ -37,7 +37,7 @@ public class CorredorDorsal implements Comparable<CorredorDorsal> {
         this.telefono = telefono;
     }
      */
-    public CorredorDorsal(String nombre, String dni, Date fechaNacimiento,
+    public Corredor(String nombre, String dni, Date fechaNacimiento,
             String direccion, int telefono) {
         this.nombre = nombre;
         if (dni == null) {
@@ -108,7 +108,7 @@ public class CorredorDorsal implements Comparable<CorredorDorsal> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CorredorDorsal other = (CorredorDorsal) obj;
+        final Corredor other = (Corredor) obj;
         if (!Objects.equals(this.dni, other.dni)) {
             return false;
         }
@@ -120,13 +120,13 @@ public class CorredorDorsal implements Comparable<CorredorDorsal> {
      */
     @Override
     public String toString() {
-        return "Corredor: " + nombre + ", DNI: " + dni
+        return nombre + ", DNI: " + dni
                 + ", Fecha de nacimiento: " + fecha.format(fechaNacimiento)
                 + ", Dirección: " + direccion + ", Teléfono: " + telefono;
     }
 
     @Override
-    public int compareTo(CorredorDorsal t) {
+    public int compareTo(Corredor t) {
         return this.dni.compareTo(t.dni);
     }
     //Clases Anónimas

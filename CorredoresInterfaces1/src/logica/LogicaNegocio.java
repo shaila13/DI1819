@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 import modelo.Carrera;
-import modelo.CorredorDorsal;
+import modelo.Corredor;
 import modelo.Participantes;
 
 /**
@@ -32,7 +32,7 @@ public class LogicaNegocio {
     /*Poner el constructor privado, fuera de esta clase no se puede hacer un 
     new fuera de aquí.*/
 
-    private List<CorredorDorsal> listaCorredores;
+    private List<Corredor> listaCorredores;
     private List<Carrera> listaCarreras;
     private List<Participantes> listaParticipantes;
     private List<Carrera> listaCarrerasIniciar;
@@ -69,7 +69,7 @@ public class LogicaNegocio {
     }
 
     //hay que meter el objeto
-    public List<CorredorDorsal> getListaCorredores() {
+    public List<Corredor> getListaCorredores() {
         return listaCorredores;
     }
 
@@ -106,7 +106,7 @@ public class LogicaNegocio {
      *
      * @param corredor
      */
-    public void borrarCorredor(CorredorDorsal corredor) {
+    public void borrarCorredor(Corredor corredor) {
         if (listaCorredores.contains(corredor)) {
             listaCorredores.remove(corredor);
         }
@@ -153,7 +153,7 @@ public class LogicaNegocio {
      * @param corredor
      * @throws ParseException
      */
-    public void anadirCorredorLista(CorredorDorsal corredor) throws ParseException {
+    public void anadirCorredorLista(Corredor corredor) throws ParseException {
         if (!listaCorredores.contains(corredor)) {
             listaCorredores.add(corredor);
         }
@@ -186,9 +186,9 @@ public class LogicaNegocio {
      */
     public void verListaCorredores() {
         // Declaramos el Iterador e imprimimos los Elementos del ArrayList
-        Iterator<CorredorDorsal> nombreIterator = listaCorredores.iterator();
+        Iterator<Corredor> nombreIterator = listaCorredores.iterator();
         while (nombreIterator.hasNext()) {
-            CorredorDorsal elemento = nombreIterator.next();
+            Corredor elemento = nombreIterator.next();
             System.out.print(elemento + "\n");
         }
     }
@@ -209,7 +209,7 @@ public class LogicaNegocio {
      * Método para grabar los corredores en un CSV.
      */
     public void grabarCSVCorredores() {
-        CorredorDorsal corredor;
+        Corredor corredor;
         FileWriter fw = null;
         String linea;
         try {
@@ -218,7 +218,7 @@ public class LogicaNegocio {
             BufferedWriter fsalida = new BufferedWriter(fw);
             //leemos el primer registro
 
-            for (CorredorDorsal elemento : listaCorredores) {
+            for (Corredor elemento : listaCorredores) {
                 String fnacimiento = fecha.format(elemento.getFechaNacimiento());
                 fsalida.write(elemento.getNombre() + "," + elemento.getDni()
                         + "," + fnacimiento + "," + elemento.getDireccion()
@@ -237,7 +237,7 @@ public class LogicaNegocio {
      * Método para cargar los corredores de un CSV.
      */
     public void cargarCSVCorredores() throws ParseException {
-        CorredorDorsal p;
+        Corredor p;
         FileWriter fw = null;
         File file = new File("Corredores.csv");
         Iterator it = listaCorredores.iterator();
@@ -257,7 +257,7 @@ public class LogicaNegocio {
                         Date fechaNacimiento = fecha.parse(srt.nextToken().trim());
                         String direccion = srt.nextToken().trim();
                         int telefono = Integer.parseInt(srt.nextToken().trim());
-                        p = new CorredorDorsal(nombre, dni, fechaNacimiento,
+                        p = new Corredor(nombre, dni, fechaNacimiento,
                                 direccion, telefono);
                         listaCorredores.add(p);
                     }

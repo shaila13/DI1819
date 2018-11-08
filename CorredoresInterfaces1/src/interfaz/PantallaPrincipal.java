@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import interfaz.TablaCarreras;
 import interfaz.TablaCorredores;
-import interfaz.tablas.DialogConfiguracion;
 import java.io.File;
 import javax.swing.ImageIcon;
 import logica.LogicaNegocio;

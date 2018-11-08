@@ -3,10 +3,11 @@ package interfaz;
 import interfaz.tablas.TableModelCorredores;
 import java.io.File;
 import java.text.ParseException;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
-import modelo.CorredorDorsal;
+import modelo.Corredor;
 import modelo.Participantes;
 import org.openide.util.Exceptions;
 
@@ -122,7 +123,7 @@ public class TablaCorredores extends javax.swing.JDialog {
         jPanelTablaCorredoresLayout.setHorizontalGroup(
             jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
@@ -164,16 +165,16 @@ public class TablaCorredores extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(jPanelTablaCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanelTablaCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -197,7 +198,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            CorredorDorsal corredorModificar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
+            Corredor corredorModificar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
             FormularioCorredores dialogoModificar = new FormularioCorredores(this,
                     true, corredorModificar);
             dialogoModificar.setLocationRelativeTo(null);
@@ -208,7 +209,7 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         int seleccionado = jTableCorredores.getSelectedRow();
-        CorredorDorsal corredorBorrar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
+        Corredor corredorBorrar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
 
         int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
                 "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
@@ -230,25 +231,29 @@ public class TablaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 
     private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
-        int contador = 1;
+        int contador = 0;
         int seleccionado = jTableCorredores.getSelectedRow();
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                CorredorDorsal corredor = LogicaNegocio.getInstance().
+                Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
                 contador++;
                 int dorsal = contador;
-                int tiempoCarrera = 0;
-
+                int tiempoCarrera = 60;
+                String nombre = corredor.getNombre();
+                String dni = corredor.getDni();
+                Date nacimiento = corredor.getFechaNacimiento();
+                String direccion = corredor.getDireccion();
+                int telefono = corredor.getTelefono();
                 Participantes participante = new Participantes(dorsal, tiempoCarrera,
-                        corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
-                        corredor.getDireccion(), corredor.getTelefono());
+                        nombre, dni, nacimiento,direccion, telefono);
                 LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
                 IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
                         true, participante);
+
                 dialogoIniciarCarrera.setLocationRelativeTo(null);
                 dialogoIniciarCarrera.setVisible(true);
             } catch (ParseException ex) {

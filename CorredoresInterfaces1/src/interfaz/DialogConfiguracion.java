@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz.tablas;
+package interfaz;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
@@ -117,9 +117,6 @@ public class DialogConfiguracion extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptarTema;
-    private javax.swing.JButton jButtonSalirCarrera;
-    private javax.swing.JButton jButtonSalirCarrera1;
-    private javax.swing.JButton jButtonSalirCarrera2;
     private javax.swing.JButton jButtonSalirDelTodo;
     private javax.swing.JComboBox<String> jComboBoxLAndF;
     // End of variables declaration//GEN-END:variables

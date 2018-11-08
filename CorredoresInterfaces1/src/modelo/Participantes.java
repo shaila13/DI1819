@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author Shaila
  */
-public class Participantes extends CorredorDorsal {
+public class Participantes extends Corredor {
 
     private int dorsal;
     private int tiempoCarrera;
@@ -41,8 +41,8 @@ public class Participantes extends CorredorDorsal {
 
     @Override
     public String toString() {
-        return super.toString() + "Dorsal: " + dorsal + ", tiempo de carrera: " 
-                + tiempoCarrera;
+        return "Dorsal: " + dorsal + ", tiempo de carrera: " 
+                +tiempoCarrera+", "+super.toString();
     }
 
 }

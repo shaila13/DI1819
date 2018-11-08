@@ -13,7 +13,7 @@ public class TableModelParticipantes extends AbstractTableModel {
     private final List<Participantes> listaParticipantes;
 
     private final String[] columnas = {"Dorsal", "Tiempo", "Nombre y apellidos",
-        "DNI", "Fecha", "Nacimiento", "Dirección", "Teléfono"};
+        "DNI", "Fecha de nacimiento", "Dirección", "Teléfono"};
 
     public TableModelParticipantes(List<Participantes> lp) {
         this.listaParticipantes = lp;
@@ -53,9 +53,9 @@ public class TableModelParticipantes extends AbstractTableModel {
             case 4:
                 return listaParticipantes.get(rowIndex).getDni();
             case 5:
-                return listaParticipantes.get(rowIndex).getDireccion();
-            case 6:
                 return listaParticipantes.get(rowIndex).getFechaNacimiento();
+            case 6:
+                return listaParticipantes.get(rowIndex).getDireccion();
             case 7:
                 return listaParticipantes.get(rowIndex).getTelefono();
         }
