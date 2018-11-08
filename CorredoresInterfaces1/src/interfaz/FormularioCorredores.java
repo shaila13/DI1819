@@ -97,8 +97,8 @@ public class FormularioCorredores extends javax.swing.JDialog {
 
         jTextFieldNombreApellidos.setText(corredorModificar.getNombre());
         jTextFieldDni.setText(corredorModificar.getDni());
-        jTextFieldDireccion.setText(corredorModificar.getDireccion());
         jSpinnerFechaNacimiento.setValue(corredorModificar.getFechaNacimiento());
+        jTextFieldDireccion.setText(corredorModificar.getDireccion());
         jTextFieldTelefono.setText(Integer.toString(corredorModificar.getTelefono()));
 
     }
@@ -323,6 +323,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
         jSpinnerFechaNacimiento.setValue(new Date());
         jTextFieldDireccion.setText("");
         jTextFieldTelefono.setText("");
+        
 
     }
     private void jButtonValidarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarCorredoresActionPerformed
@@ -335,6 +336,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
         //Checkeamos si es un alta o una modificación
         if (corredorModificar == null) {
             try {
+                
                 p = new CorredorDorsal(nombre, dni, fechaNacimiento, direccion, telefono);
                 LogicaNegocio.getInstance().anadirCorredorLista(p);
 
@@ -346,6 +348,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
             }
         } else {
             try {
+                
                 corredorModificar.setNombre(nombre);
                 corredorModificar.setDni(dni);
                 corredorModificar.setFechaNacimiento(fechaNacimiento);

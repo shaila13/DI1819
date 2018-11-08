@@ -1,9 +1,14 @@
 package interfaz;
 
 import interfaz.tablas.TableModelCorredores;
+import java.io.File;
+import java.text.ParseException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.CorredorDorsal;
+import modelo.Participantes;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -12,6 +17,8 @@ import modelo.CorredorDorsal;
 public class TablaCorredores extends javax.swing.JDialog {
 
     private LogicaNegocio logicaNegocio;
+    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
+            + File.separator + "corredor.png";
 
     /**
      * Creates new form TablaCorredores
@@ -21,6 +28,10 @@ public class TablaCorredores extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
+        jButtonAnadirCorredorAcarrera.setText("<html><p>AÑADIR</p>"
+                + "<p>CORREDOR</p><p>A CARRERA</p></html>");
+        //Establecer el logo del a aplicación
+        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCorredores();
     }
 
@@ -41,6 +52,7 @@ public class TablaCorredores extends javax.swing.JDialog {
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonGrabarCSVCorredores = new javax.swing.JButton();
+        jButtonAnadirCorredorAcarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,25 +109,36 @@ public class TablaCorredores extends javax.swing.JDialog {
             }
         });
 
+        jButtonAnadirCorredorAcarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonAnadirCorredorAcarrera.setText("Añadir corredor a carrera");
+        jButtonAnadirCorredorAcarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnadirCorredorAcarreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelTablaCorredoresLayout = new javax.swing.GroupLayout(jPanelTablaCorredores);
         jPanelTablaCorredores.setLayout(jPanelTablaCorredoresLayout);
         jPanelTablaCorredoresLayout.setHorizontalGroup(
             jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
-                            .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
+                        .addComponent(jButtonAnadirCorredorAcarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
+                                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTablaCorredoresLayout.setVerticalGroup(
             jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,14 +148,15 @@ public class TablaCorredores extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(jButtonAnadirCorredorAcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,7 +180,7 @@ public class TablaCorredores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
@@ -168,17 +192,17 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         int seleccionado = jTableCorredores.getSelectedRow();
-        if (seleccionado==-1) {
+        if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
-                "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
-            
-        }else{
-        CorredorDorsal corredorModificar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
-        FormularioCorredores dialogoModificar = new FormularioCorredores(this,
-                true, corredorModificar);
-        dialogoModificar.setLocationRelativeTo(null);
-        dialogoModificar.setVisible(true);
-        rellenarTablaCorredores();
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            CorredorDorsal corredorModificar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
+            FormularioCorredores dialogoModificar = new FormularioCorredores(this,
+                    true, corredorModificar);
+            dialogoModificar.setLocationRelativeTo(null);
+            dialogoModificar.setVisible(true);
+            rellenarTablaCorredores();
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -205,6 +229,34 @@ public class TablaCorredores extends javax.swing.JDialog {
         LogicaNegocio.getInstance().grabarCSVCorredores();
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 
+    private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
+        int contador = 1;
+        int seleccionado = jTableCorredores.getSelectedRow();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                CorredorDorsal corredor = LogicaNegocio.getInstance().
+                        getListaCorredores().get(seleccionado);
+                contador++;
+                int dorsal = contador;
+                int tiempoCarrera = 0;
+
+                Participantes participante = new Participantes(dorsal, tiempoCarrera,
+                        corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
+                        corredor.getDireccion(), corredor.getTelefono());
+                LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
+                IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
+                        true, participante);
+                dialogoIniciarCarrera.setLocationRelativeTo(null);
+                dialogoIniciarCarrera.setVisible(true);
+            } catch (ParseException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
+
 //Utilizando un AbstractTableModel
     private void rellenarTablaCorredores() {
         jTableCorredores.setModel(new TableModelCorredores(
@@ -213,6 +265,7 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
+    private javax.swing.JButton jButtonAnadirCorredorAcarrera;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGrabarCSVCorredores;
     private javax.swing.JButton jButtonModificar;

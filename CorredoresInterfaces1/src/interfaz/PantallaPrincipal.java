@@ -1,4 +1,4 @@
-package logica;
+package interfaz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +9,7 @@ import interfaz.TablaCorredores;
 import interfaz.tablas.DialogConfiguracion;
 import java.io.File;
 import javax.swing.ImageIcon;
+import logica.LogicaNegocio;
 import logica.LogicaNegocio;
 
 /**

@@ -13,7 +13,7 @@ public class TableModelCorredores extends AbstractTableModel {
 
     private final List<CorredorDorsal> listaCorredores;
     private final String[] columnas = {"Nombre y apellidos", "DNI", "Fecha"
-        + "Nacimiento", "Dirección", "Teléfono"};
+        + " de nacimiento", "Dirección", "Teléfono"};
 
     public TableModelCorredores(List<CorredorDorsal> listaCorredores) {
         this.listaCorredores = listaCorredores;
@@ -49,9 +49,9 @@ public class TableModelCorredores extends AbstractTableModel {
             case 1:
                 return listaCorredores.get(rowIndex).getDni();
             case 2:
-                return listaCorredores.get(rowIndex).getDireccion();
-            case 3:
                 return listaCorredores.get(rowIndex).getFechaNacimiento();
+            case 3:
+                return listaCorredores.get(rowIndex).getDireccion();
             case 4:
                 return listaCorredores.get(rowIndex).getTelefono();
         }

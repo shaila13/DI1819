@@ -1,10 +1,12 @@
 package interfaz;
 
 import interfaz.tablas.TableModelCarrerasConParticipantes;
+import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
 import javax.swing.ImageIcon;
 import logica.LogicaNegocio;
 import modelo.Carrera;
+import modelo.Participantes;
 
 /**
  *
@@ -13,17 +15,37 @@ import modelo.Carrera;
 public class IniciarCarrera extends javax.swing.JDialog {
 
     private Carrera carreraIniciar;
-    private static final String RUTA_LOGO = ".." + File.separator + "imgs" + 
-            File.separator + "corredor.png";
+    private Participantes participante;
+    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
+            + File.separator + "corredor.png";
 
     public IniciarCarrera(TablaCarreras aThis, boolean modal, Carrera carreraIniciar) {
         super(aThis, modal);
         this.carreraIniciar = carreraIniciar;
         initComponents();
-        setTitle("REGISTRO CARRERA CON CORREDORES.");
+        setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        jButtonSeleccionarCorredor.setText("<html><p>SELECCIONAR</p>"
+                + "<p>CORREDOR</p></html>");
+        jButtonEliminarCorredor.setText("<html><p>ELIMINAR</p>"
+                + "<p>CORREDOR</p></html>");
         rellenarTablaCarrerasConParticipantes();
+    }
+
+    public IniciarCarrera(TablaCorredores aThis, boolean modal, Participantes p) {
+        super(aThis, modal);
+        this.participante = p;
+        initComponents();
+        setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
+        //Establecer el logo del a aplicación
+        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        jButtonSeleccionarCorredor.setText("<html><p>SELECCIONAR</p>"
+                + "<p>CORREDOR</p></html>");
+        jButtonEliminarCorredor.setText("<html><p>ELIMINAR</p>"
+                + "<p>CORREDOR</p></html>");
+        rellenarTablaCarrerasConParticipantes();
+        rellenarTablaCorredoresConParticipantes();
     }
 
     /**
@@ -53,6 +75,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jLabelTituloTablaCarreras.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabelTituloTablaCarreras.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelTituloTablaCarreras.text")); // NOI18N
 
+        jTableCarreraInciada.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableCarreraInciada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,6 +92,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jLabelCorredoresConDorsal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabelCorredoresConDorsal.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelCorredoresConDorsal.text")); // NOI18N
 
+        jTableCorredoresConDorsal.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableCorredoresConDorsal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -228,7 +252,12 @@ public class IniciarCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGrabarCarreraIniciadaActionPerformed
 
     private void jButtonSeleccionarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCorredorActionPerformed
-        // TODO add your handling code here:
+
+        TablaCorredores confirmacionValidar
+                = new TablaCorredores(new javax.swing.JFrame(), true);
+        confirmacionValidar.setVisible(true);
+
+
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtonCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronometroActionPerformed
@@ -239,6 +268,11 @@ public class IniciarCarrera extends javax.swing.JDialog {
     private void rellenarTablaCarrerasConParticipantes() {
         jTableCarreraInciada.setModel(new TableModelCarrerasConParticipantes(
                 LogicaNegocio.getInstance().getListaCarrerasIniciar()));
+    }
+
+    private void rellenarTablaCorredoresConParticipantes() {
+        jTableCorredoresConDorsal.setModel(new TableModelParticipantes(
+                LogicaNegocio.getInstance().getListaParticipantes()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCronometro;
@@ -254,4 +288,5 @@ public class IniciarCarrera extends javax.swing.JDialog {
     private javax.swing.JTable jTableCarreraInciada;
     private javax.swing.JTable jTableCorredoresConDorsal;
     // End of variables declaration//GEN-END:variables
+
 }
