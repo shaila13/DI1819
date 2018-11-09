@@ -1,12 +1,13 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Shaila
  */
-public class Participantes extends Corredor {
+public class Participantes extends Corredor implements Serializable  {
 
     private int dorsal;
     private int tiempoCarrera;

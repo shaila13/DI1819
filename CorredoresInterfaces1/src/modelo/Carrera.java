@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.HashMap;
  *
  * @author Shaila
  */
-public class Carrera implements Comparable<Carrera> {
+public class Carrera implements Serializable, Comparable<Carrera> {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private String nombreCarrera = "";

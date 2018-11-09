@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.Objects;
  *
  * @author Shaila
  */
-public class Corredor implements Comparable<Corredor> {
+public class Corredor implements Serializable, Comparable<Corredor> {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private String nombre;

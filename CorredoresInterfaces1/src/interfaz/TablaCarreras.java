@@ -27,6 +27,8 @@ public class TablaCarreras extends javax.swing.JDialog {
         setTitle("TABLA CARRERAS.");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+       jButtonIniciarCarrera.setText("<html><p>INICIAR</p>"
+        + "<p>CARRERA</p></html>");
         rellenarTablaCarreras();
     }
 
@@ -46,8 +48,7 @@ public class TablaCarreras extends javax.swing.JDialog {
         jButtonAlta = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
-        jButtonGrabarCSVCarreras = new javax.swing.JButton();
-        jButtonInciarCarrera = new javax.swing.JButton();
+        jButtonIniciarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,19 +99,10 @@ public class TablaCarreras extends javax.swing.JDialog {
             }
         });
 
-        jButtonGrabarCSVCarreras.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonGrabarCSVCarreras.setText("Grabar CSV");
-        jButtonGrabarCSVCarreras.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIniciarCarrera.setText("Iniciar Carrera");
+        jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGrabarCSVCarrerasActionPerformed(evt);
-            }
-        });
-
-        jButtonInciarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonInciarCarrera.setText("Iniciar Carrera");
-        jButtonInciarCarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInciarCarreraActionPerformed(evt);
+                jButtonIniciarCarreraActionPerformed(evt);
             }
         });
 
@@ -121,11 +113,9 @@ public class TablaCarreras extends javax.swing.JDialog {
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonInciarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonGrabarCSVCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelTablaCarrerasLayout.createSequentialGroup()
+                        .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAlta, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -141,19 +131,20 @@ public class TablaCarreras extends javax.swing.JDialog {
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(70, 70, 70)
+                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonGrabarCSVCarreras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,16 +152,16 @@ public class TablaCarreras extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jPanelTablaCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jPanelTablaCarreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -226,18 +217,12 @@ public class TablaCarreras extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jButtonGrabarCSVCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCSVCarrerasActionPerformed
-
-        LogicaNegocio.getInstance().grabarCSVCarreras();
-
-    }//GEN-LAST:event_jButtonGrabarCSVCarrerasActionPerformed
-
-    private void jButtonInciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInciarCarreraActionPerformed
+    private void jButtonIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarCarreraActionPerformed
 
         int seleccionado = jTableCarreras.getSelectedRow();
         if (seleccionado == -1) {
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
-                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
                     getListaCarreras().get(seleccionado);
@@ -246,9 +231,8 @@ public class TablaCarreras extends javax.swing.JDialog {
             LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
             dialogoIniciarCarrera.setLocationRelativeTo(null);
             dialogoIniciarCarrera.setVisible(true);
-
         }
-    }//GEN-LAST:event_jButtonInciarCarreraActionPerformed
+    }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
 
 //Utilizando un AbstractTableModel
     private void rellenarTablaCarreras() {
@@ -259,8 +243,7 @@ public class TablaCarreras extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonBorrar;
-    private javax.swing.JButton jButtonGrabarCSVCarreras;
-    private javax.swing.JButton jButtonInciarCarrera;
+    private javax.swing.JButton jButtonIniciarCarrera;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JPanel jPanelTablaCarreras;

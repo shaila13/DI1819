@@ -105,7 +105,9 @@ public class DialogConfiguracion extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxLAndFActionPerformed
 
     private void jButtonAceptarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarTemaActionPerformed
-        // TODO add your handling code here:
+        
+        this.dispose();
+        
     }//GEN-LAST:event_jButtonAceptarTemaActionPerformed
 
     private void jButtonSalirDelTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirDelTodoActionPerformed
