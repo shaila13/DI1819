@@ -3,7 +3,6 @@ package interfaz;
 import interfaz.tablas.TableModelCorredores;
 import java.io.File;
 import java.text.ParseException;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
@@ -226,36 +225,43 @@ public class TablaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonGrabarCSVCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCSVCorredoresActionPerformed
-
         LogicaNegocio.getInstance().grabarCSVCorredores();
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 
     private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
-        int contador = 0;
+
         int seleccionado = jTableCorredores.getSelectedRow();
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                int dorsal = LogicaNegocio.getInstance().getListaParticipantes().size();
                 Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
-                contador++;
-                int dorsal = contador;
-                int tiempoCarrera = 60;
-                String nombre = corredor.getNombre();
-                String dni = corredor.getDni();
-                Date nacimiento = corredor.getFechaNacimiento();
-                String direccion = corredor.getDireccion();
-                int telefono = corredor.getTelefono();
-                Participantes participante = new Participantes(dorsal, tiempoCarrera,
-                        nombre, dni, nacimiento,direccion, telefono);
-                LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
-                IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
-                        true, participante);
+                int contadorMaximoParticipantes = LogicaNegocio.getInstance().
+                        getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
+                if (dorsal < contadorMaximoParticipantes) {
+                    dorsal++;
+                    int tiempoCarrera = 60;
+                    Participantes participante = new Participantes(dorsal, tiempoCarrera,
+                            corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
+                            corredor.getDireccion(), corredor.getTelefono());
+                    LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
+                    if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
+                        IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
+                                true, participante);
+                        dialogoIniciarCarrera.setLocationRelativeTo(null);
+                        dialogoIniciarCarrera.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El participante ya ha sido añadido en la carrera.",
+                                "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
+                    }
 
-                dialogoIniciarCarrera.setLocationRelativeTo(null);
-                dialogoIniciarCarrera.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
+                            "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (ParseException ex) {
                 Exceptions.printStackTrace(ex);
             }

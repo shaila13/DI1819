@@ -3,10 +3,17 @@ package interfaz;
 import interfaz.tablas.TableModelCarrerasConParticipantes;
 import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Carrera;
 import modelo.Participantes;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -16,12 +23,14 @@ public class IniciarCarrera extends javax.swing.JDialog {
 
     private Carrera carreraIniciar;
     private Participantes participante;
+    private List<Participantes> listaParticipantes;
+    private List<Carrera> listaCarrerasIniciar;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
 
-    public IniciarCarrera(TablaCarreras aThis, boolean modal, Carrera carreraIniciar) {
+    public IniciarCarrera(TablaCarreras aThis, boolean modal, Carrera c) {
         super(aThis, modal);
-        this.carreraIniciar = carreraIniciar;
+        carreraIniciar = c;
         initComponents();
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         //Establecer el logo del a aplicación
@@ -35,7 +44,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
 
     public IniciarCarrera(TablaCorredores aThis, boolean modal, Participantes p) {
         super(aThis, modal);
-        this.participante = p;
+        participante = p;
         initComponents();
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         //Establecer el logo del a aplicación
@@ -45,7 +54,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jButtonEliminarCorredor.setText("<html><p>ELIMINAR</p>"
                 + "<p>CORREDOR</p></html>");
         rellenarTablaCarrerasConParticipantes();
-        rellenarTablaCorredoresConParticipantes();
+        rellenarTablaConParticipantes();
     }
 
     /**
@@ -58,12 +67,12 @@ public class IniciarCarrera extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelTituloTablaCarreras = new javax.swing.JLabel();
+        jLabelTituloCarreras = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCarreraInciada = new javax.swing.JTable();
-        jLabelCorredoresConDorsal = new javax.swing.JLabel();
+        jLabeTituloParticipantes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCorredoresConDorsal = new javax.swing.JTable();
+        jTableParticipantes = new javax.swing.JTable();
         jButtonSalir = new javax.swing.JButton();
         jButtonEliminarCorredor = new javax.swing.JButton();
         jButtonGrabarCarreraIniciada = new javax.swing.JButton();
@@ -72,8 +81,8 @@ public class IniciarCarrera extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelTituloTablaCarreras.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabelTituloTablaCarreras.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelTituloTablaCarreras.text")); // NOI18N
+        jLabelTituloCarreras.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabelTituloCarreras.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelTituloCarreras.text")); // NOI18N
 
         jTableCarreraInciada.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableCarreraInciada.setModel(new javax.swing.table.DefaultTableModel(
@@ -89,11 +98,11 @@ public class IniciarCarrera extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableCarreraInciada);
 
-        jLabelCorredoresConDorsal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabelCorredoresConDorsal.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelCorredoresConDorsal.text")); // NOI18N
+        jLabeTituloParticipantes.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabeTituloParticipantes.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabeTituloParticipantes.text")); // NOI18N
 
-        jTableCorredoresConDorsal.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jTableCorredoresConDorsal.setModel(new javax.swing.table.DefaultTableModel(
+        jTableParticipantes.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jTableParticipantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -104,7 +113,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTableCorredoresConDorsal);
+        jScrollPane2.setViewportView(jTableParticipantes);
 
         jButtonSalir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonSalir.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jButtonSalir.text")); // NOI18N
@@ -167,8 +176,8 @@ public class IniciarCarrera extends javax.swing.JDialog {
                             .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCorredoresConDorsal)
-                            .addComponent(jLabelTituloTablaCarreras))
+                            .addComponent(jLabeTituloParticipantes)
+                            .addComponent(jLabelTituloCarreras))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -176,11 +185,11 @@ public class IniciarCarrera extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTituloTablaCarreras)
+                .addComponent(jLabelTituloCarreras)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jLabelCorredoresConDorsal)
+                .addComponent(jLabeTituloParticipantes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -189,8 +198,8 @@ public class IniciarCarrera extends javax.swing.JDialog {
                         .addComponent(jButtonCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonGrabarCarreraIniciada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -226,34 +235,52 @@ public class IniciarCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCorredorActionPerformed
+        int seleccionado = jTableParticipantes.getSelectedRow();
+        Participantes participantesBorrar = LogicaNegocio.getInstance().
+                getListaParticipantes().get(seleccionado);
 
+        int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
+                "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (confirmación == JOptionPane.YES_OPTION) {
+            LogicaNegocio.getInstance().borrarParticipante(participantesBorrar);
+            JOptionPane.showMessageDialog(this, "Se ha borrado el participante.",
+                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
+        } else if (confirmación == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "No se ha borrado el participante.",
+                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
+        }
+        rellenarTablaConParticipantes();
     }//GEN-LAST:event_jButtonEliminarCorredorActionPerformed
     /**
      * Método para generar archivo de Objetos
      */
     private void jButtonGrabarCarreraIniciadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCarreraIniciadaActionPerformed
-
-        /*try {
-        String fichero = "ficheroObjetosListaClientes.dat";
-        ObjectOutputStream oos = null;
+        String fichero = "";
         try {
-        oos = new ObjectOutputStream(new FileOutputStream(fichero));
-        
-        Iterator it = listaClientes.keySet().iterator();
-        while (it.hasNext()) {
-        String key = (String) it.next();
-        System.out.println("Clave: " + key + " -> Valor: "
-        + listaClientes.get(key));
-        oos.writeObject(listaClientes.get(key));
-        }
-        
+            fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
+                    getFechaCarrera().getYear() + ".dat";
+            ObjectOutputStream oos = null;
+
+            oos = new ObjectOutputStream(new FileOutputStream(fichero));
+            oos.writeObject("-------CARRERA-------");
+            Iterator<Carrera> carreraIterator = listaCarrerasIniciar.iterator();
+            while (carreraIterator.hasNext()) {
+                Carrera carrera = carreraIterator.next();
+                oos.writeObject(carrera);
+
+            }
+            oos.writeObject("\n");
+            oos.writeObject("-------CORREDOR-------");
+            Iterator<Participantes> participantesIterator = listaParticipantes.iterator();
+            while (participantesIterator.hasNext()) {
+                Participantes participante = participantesIterator.next();
+                oos.writeObject(participante);
+
+            }
         } catch (IOException ex) {
-        System.out.println(ex.getMessage());
+            Exceptions.printStackTrace(ex);
         }
-        oos.close();
-        } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-        }*/
+
 
     }//GEN-LAST:event_jButtonGrabarCarreraIniciadaActionPerformed
 
@@ -274,8 +301,8 @@ public class IniciarCarrera extends javax.swing.JDialog {
                 LogicaNegocio.getInstance().getListaCarrerasIniciar()));
     }
 
-    private void rellenarTablaCorredoresConParticipantes() {
-        jTableCorredoresConDorsal.setModel(new TableModelParticipantes(
+    private void rellenarTablaConParticipantes() {
+        jTableParticipantes.setModel(new TableModelParticipantes(
                 LogicaNegocio.getInstance().getListaParticipantes()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -284,13 +311,13 @@ public class IniciarCarrera extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGrabarCarreraIniciada;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSeleccionarCorredor;
-    private javax.swing.JLabel jLabelCorredoresConDorsal;
-    private javax.swing.JLabel jLabelTituloTablaCarreras;
+    private javax.swing.JLabel jLabeTituloParticipantes;
+    private javax.swing.JLabel jLabelTituloCarreras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCarreraInciada;
-    private javax.swing.JTable jTableCorredoresConDorsal;
+    private javax.swing.JTable jTableParticipantes;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -66,8 +66,8 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelCorredoresConDorsal" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelTituloTablaCarreras" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabeTituloParticipantes" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelTituloCarreras" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -80,11 +80,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelTituloTablaCarreras" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTituloCarreras" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="jLabelCorredoresConDorsal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabeTituloParticipantes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
@@ -94,9 +94,9 @@
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jButtonSeleccionarCorredor" pref="69" max="32767" attributes="0"/>
-                              <Component id="jButtonGrabarCarreraIniciada" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonSeleccionarCorredor" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="jButtonGrabarCarreraIniciada" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
@@ -115,13 +115,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelTituloTablaCarreras">
+        <Component class="javax.swing.JLabel" name="jLabelTituloCarreras">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="interfaz/Bundle.properties" key="IniciarCarrera.jLabelTituloTablaCarreras.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="interfaz/Bundle.properties" key="IniciarCarrera.jLabelTituloCarreras.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
@@ -149,13 +149,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabelCorredoresConDorsal">
+        <Component class="javax.swing.JLabel" name="jLabeTituloParticipantes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="interfaz/Bundle.properties" key="IniciarCarrera.jLabelCorredoresConDorsal.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="interfaz/Bundle.properties" key="IniciarCarrera.jLabeTituloParticipantes.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
@@ -166,7 +166,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableCorredoresConDorsal">
+            <Component class="javax.swing.JTable" name="jTableParticipantes">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="13" style="0"/>

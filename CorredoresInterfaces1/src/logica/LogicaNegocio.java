@@ -36,6 +36,7 @@ public class LogicaNegocio {
     private List<Carrera> listaCarreras;
     private List<Participantes> listaParticipantes;
     private List<Carrera> listaCarrerasIniciar;
+    private boolean resultado = false;
 
     private LogicaNegocio() {
         listaCorredores = new ArrayList<>();
@@ -140,11 +141,14 @@ public class LogicaNegocio {
      * @param participante
      * @throws ParseException
      */
-    public void anadirCorredorListaCarreraIniciada(Participantes participante) 
+    public boolean anadirCorredorListaCarreraIniciada(Participantes participante)
             throws ParseException {
+
         if (!listaParticipantes.contains(participante)) {
             listaParticipantes.add(participante);
+            resultado = true;
         }
+        return resultado;
     }
 
     /**
@@ -170,6 +174,7 @@ public class LogicaNegocio {
         }
 
     }
+
     /**
      * Método para añadir una carrera a la lista de carreras inciadas.
      *
@@ -181,6 +186,7 @@ public class LogicaNegocio {
         }
 
     }
+
     /**
      * Método para ver la lista de corredores.
      */

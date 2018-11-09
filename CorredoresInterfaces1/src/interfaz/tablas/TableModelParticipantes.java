@@ -48,15 +48,15 @@ public class TableModelParticipantes extends AbstractTableModel {
                 return listaParticipantes.get(rowIndex).getDorsal();
             case 1:
                 return listaParticipantes.get(rowIndex).getTiempoCarrera();
-            case 3:
+            case 2:
                 return listaParticipantes.get(rowIndex).getNombre();
-            case 4:
+            case 3:
                 return listaParticipantes.get(rowIndex).getDni();
-            case 5:
+            case 4:
                 return listaParticipantes.get(rowIndex).getFechaNacimiento();
-            case 6:
+            case 5:
                 return listaParticipantes.get(rowIndex).getDireccion();
-            case 7:
+            case 6:
                 return listaParticipantes.get(rowIndex).getTelefono();
         }
         return null;
