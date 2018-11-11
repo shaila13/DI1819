@@ -28,8 +28,8 @@ public class TablaCorredores extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
-        jButtonAnadirCorredorAcarrera.setText("<html><p>AÑADIR</p>"
-                + "<p>CORREDOR</p><p>A CARRERA</p></html>");
+        jButtonAnadirCorredorAcarrera.setText("<html><p>Añadir </p>"
+                + "<p>Corredor </p><p>a carrera</p></html>");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCorredores();
@@ -266,6 +266,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                 Exceptions.printStackTrace(ex);
             }
         }
+        dispose();
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
 //Utilizando un AbstractTableModel

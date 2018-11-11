@@ -3,17 +3,12 @@ package interfaz;
 import interfaz.tablas.TableModelCarrerasConParticipantes;
 import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Carrera;
 import modelo.Participantes;
-import org.openide.util.Exceptions;
 
 /**
  *
@@ -35,11 +30,6 @@ public class IniciarCarrera extends javax.swing.JDialog {
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
-        jButtonSeleccionarCorredor.setText("<html><p>SELECCIONAR</p>"
-                + "<p>CORREDOR</p></html>");
-        jButtonEliminarCorredor.setText("<html><p>ELIMINAR</p>"
-                + "<p>CORREDOR</p></html>");
-
         rellenarTablaCarrerasConParticipantes();
     }
 
@@ -50,10 +40,6 @@ public class IniciarCarrera extends javax.swing.JDialog {
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
-        jButtonSeleccionarCorredor.setText("<html><p>SELECCIONAR</p>"
-                + "<p>CORREDOR</p></html>");
-        jButtonEliminarCorredor.setText("<html><p>ELIMINAR</p>"
-                + "<p>CORREDOR</p></html>");
         rellenarTablaCarrerasConParticipantes();
         rellenarTablaConParticipantes();
     }
@@ -169,8 +155,8 @@ public class IniciarCarrera extends javax.swing.JDialog {
                         .addComponent(jButtonCronometro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonGrabarCarreraIniciada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,33 +237,22 @@ public class IniciarCarrera extends javax.swing.JDialog {
      * Método para generar archivo de Objetos
      */
     private void jButtonGrabarCarreraIniciadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCarreraIniciadaActionPerformed
-        String fichero = "";
-        try {
-            fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
-                    getFechaCarrera().getYear() + ".dat";
-            ObjectOutputStream oos = null;
-
-            oos = new ObjectOutputStream(new FileOutputStream(fichero));
-            oos.writeObject("-------CARRERA-------");
-            Iterator<Carrera> carreraIterator = listaCarrerasIniciar.iterator();
-            while (carreraIterator.hasNext()) {
-                Carrera carrera = carreraIterator.next();
-                oos.writeObject(carrera);
-
-            }
-            oos.writeObject("\n");
-            oos.writeObject("-------CORREDOR-------");
-            Iterator<Participantes> participantesIterator = listaParticipantes.iterator();
-            while (participantesIterator.hasNext()) {
-                Participantes participante = participantesIterator.next();
-                oos.writeObject(participante);
-
-            }
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+        if (LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
+            JOptionPane.showMessageDialog(this, "No ha añadido ningún corredor.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         }
+        LogicaNegocio.getInstance().grabarCarreraConCorredores();
+        if (LogicaNegocio.getInstance().grabarCarreraConCorredores()) {
+            JOptionPane.showMessageDialog(this, "Se ha grabado correctamente la "
+                    + "carrera con los participantes.",
+                    "¡¡GRABAR BBDD!!", JOptionPane.ERROR_MESSAGE);
 
-
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ha grabado la carrera con "
+                    + "los participantes.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+        }
+       //dispose();
     }//GEN-LAST:event_jButtonGrabarCarreraIniciadaActionPerformed
 
     private void jButtonSeleccionarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCorredorActionPerformed
@@ -285,6 +260,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         TablaCorredores confirmacionValidar
                 = new TablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
+        
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtonCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronometroActionPerformed

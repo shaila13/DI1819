@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.StringTokenizer;
 import modelo.Carrera;
 import modelo.Corredor;
 import modelo.Participantes;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -276,76 +279,33 @@ public class LogicaNegocio {
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-
         }
     }
 
-    /**
-     * Método para grabar las carreras en un CSV.
-     */
-    public void grabarCSVCarreras() {
-        Carrera carrera;
-        FileWriter fw = null;
-        String linea;
-
+    public boolean grabarCarreraConCorredores() {
+        String fichero;
         try {
-            //si no pongo true cuando grabe solo graba el primero
-            fw = new FileWriter("Carreras.csv", true);
-            BufferedWriter fsalida = new BufferedWriter(fw);
-            //leemos el primer registro
-
-            for (Carrera elemento : listaCarreras) {
-                String fCarrera = fecha.format(elemento.getFechaCarrera());
-                fsalida.write(elemento.getNombreCarrera() + ","
-                        + elemento.getLugarCarrera() + "," + fCarrera + ","
-                        + elemento.getNumeroMaxCorredores() + "\n");
+            fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
+                    getFechaCarrera().getYear() + ".dat";
+            ObjectOutputStream oos = null;
+            oos = new ObjectOutputStream(new FileOutputStream(fichero));
+            oos.writeObject("-------CARRERA-------");
+            Iterator<Carrera> carreraIterator = listaCarrerasIniciar.iterator();
+            while (carreraIterator.hasNext()) {
+                Carrera carrera = carreraIterator.next();
+                oos.writeObject(carrera.toString());
             }
-            fsalida.close();
+            oos.writeObject("\n");
+            oos.writeObject("-------CORREDOR-------");
+            Iterator<Participantes> participantesIterator = listaParticipantes.iterator();
+            while (participantesIterator.hasNext()) {
+                Participantes participante = participantesIterator.next();
+                oos.writeObject(participante.toString());
+
+            }
         } catch (IOException ex) {
-            ex.printStackTrace();
-
+            Exceptions.printStackTrace(ex);
         }
-
+        return true;
     }
-
-    /**
-     * Método para cargar las carreras de un CSV.
-     */
-    public void cargarCSVCarrerass() throws ParseException {
-        Carrera c;
-        FileWriter fw = null;
-        File file = new File("Carreras.csv");
-        Iterator it = listaCorredores.iterator();
-        if (file.exists()) {
-            String linea;
-            try {
-
-                BufferedReader br = new BufferedReader(new FileReader("Carreras.csv"));
-                linea = br.readLine(); //lee la primera linea
-
-                while (linea != null) {
-                    StringTokenizer srt = new StringTokenizer(linea, ",");
-                    while (srt.hasMoreTokens()) {
-
-                        String nombreCarrera = srt.nextToken().trim();
-                        String lugarCarrera = srt.nextToken().trim();
-                        Date fechaCarrera = fecha.parse(srt.nextToken().trim());
-                        int numeroMaxCorredores = Integer.parseInt(srt.nextToken().trim());
-                        c = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera,
-                                numeroMaxCorredores);
-                        listaCarreras.add(c);
-                    }
-                    linea = br.readLine();
-                }
-                br.close();
-
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        }
-    }
-
 }

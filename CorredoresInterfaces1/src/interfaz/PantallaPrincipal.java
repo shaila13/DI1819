@@ -9,7 +9,6 @@ import interfaz.TablaCorredores;
 import java.io.File;
 import javax.swing.ImageIcon;
 import logica.LogicaNegocio;
-import logica.LogicaNegocio;
 
 /**
  * Los combos se rellenan siempre en constructor porque no funciona, hacer una
@@ -34,7 +33,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //Establecer el título de la aplicación
         setTitle("APLICACIÓN GESTIÓN CARRERAS.");
         LogicaNegocio.getInstance().cargarCSVCorredores();
-        LogicaNegocio.getInstance().cargarCSVCarrerass();
         //Establecer una imagen en una label
         jLabelIcono.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 

@@ -27,8 +27,6 @@ public class TablaCarreras extends javax.swing.JDialog {
         setTitle("TABLA CARRERAS.");
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
-       jButtonIniciarCarrera.setText("<html><p>INICIAR</p>"
-        + "<p>CARRERA</p></html>");
         rellenarTablaCarreras();
     }
 
@@ -68,7 +66,7 @@ public class TablaCarreras extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTableCarreras);
 
         jButtonModificar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonModificar.setText("Modificar");
+        jButtonModificar.setText("Modificar Carrera");
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarActionPerformed(evt);
@@ -99,6 +97,7 @@ public class TablaCarreras extends javax.swing.JDialog {
             }
         });
 
+        jButtonIniciarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonIniciarCarrera.setText("Iniciar Carrera");
         jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,40 +110,36 @@ public class TablaCarreras extends javax.swing.JDialog {
         jPanelTablaCarrerasLayout.setHorizontalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
+                        .addComponent(jButtonModificar)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonAlta, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModificar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanelTablaCarrerasLayout.setVerticalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(71, 71, 71)
+                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,8 +216,8 @@ public class TablaCarreras extends javax.swing.JDialog {
 
         int seleccionado = jTableCarreras.getSelectedRow();
         if (seleccionado == -1) {
-        JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
-        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
                     getListaCarreras().get(seleccionado);
@@ -231,7 +226,9 @@ public class TablaCarreras extends javax.swing.JDialog {
             LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
             dialogoIniciarCarrera.setLocationRelativeTo(null);
             dialogoIniciarCarrera.setVisible(true);
+
         }
+        
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
 
 //Utilizando un AbstractTableModel
