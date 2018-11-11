@@ -28,7 +28,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal() throws ParseException {
         initComponents();
-
+        //this.setExtendedState(this.MAXIMIZED_BOTH); //MAXIMIZAR FORMULARIO
         setLocationRelativeTo(null);
         //Establecer el título de la aplicación
         setTitle("APLICACIÓN GESTIÓN CARRERAS.");
@@ -55,24 +55,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPantallaPrincipal = new javax.swing.JPanel();
-        jButtonSalirDelTodo = new javax.swing.JButton();
         jButtonModificarCorredores = new javax.swing.JButton();
         jButtonModificarCarrera = new javax.swing.JButton();
-        jLabelCarreras = new javax.swing.JLabel();
-        jLabelCorredores = new javax.swing.JLabel();
         jLabelIcono = new javax.swing.JLabel();
-        jButtonConfiguracion = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuConfiguracion = new javax.swing.JMenu();
+        jMenuItemConfiguracion = new javax.swing.JMenuItem();
+        jMenuHistorialCarreras = new javax.swing.JMenu();
+        jMenuItemGenerarPDF = new javax.swing.JMenuItem();
+        jMenuItemVerCarrerasAntiguas = new javax.swing.JMenuItem();
+        jMenuSalir = new javax.swing.JMenu();
+        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButtonSalirDelTodo.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonSalirDelTodo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonSalirDelTodo.setText("Salir");
-        jButtonSalirDelTodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirDelTodoActionPerformed(evt);
-            }
-        });
 
         jButtonModificarCorredores.setBackground(new java.awt.Color(204, 204, 255));
         jButtonModificarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -92,70 +87,73 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabelCarreras.setFont(new java.awt.Font("Dialog", 3, 20)); // NOI18N
-        jLabelCarreras.setText("CARRERAS");
-
-        jLabelCorredores.setFont(new java.awt.Font("Dialog", 3, 20)); // NOI18N
-        jLabelCorredores.setText("CORREDORES");
-
-        jButtonConfiguracion.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonConfiguracion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonConfiguracion.setText("Configuración");
-        jButtonConfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfiguracionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelPantallaPrincipalLayout = new javax.swing.GroupLayout(jPanelPantallaPrincipal);
         jPanelPantallaPrincipal.setLayout(jPanelPantallaPrincipalLayout);
         jPanelPantallaPrincipalLayout.setHorizontalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(jButtonConfiguracion)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSalirDelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCorredores)
-                            .addComponent(jLabelCarreras))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addGap(20, 20, 20)
+                .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
+            .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPantallaPrincipalLayout.setVerticalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCorredores)
-                    .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabelCarreras))
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSalirDelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(53, Short.MAX_VALUE))))
+                .addGap(20, 20, 20)
+                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        jMenuConfiguracion.setText("Configuracion");
+
+        jMenuItemConfiguracion.setText("Configuracion");
+        jMenuItemConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConfiguracionActionPerformed(evt);
+            }
+        });
+        jMenuConfiguracion.add(jMenuItemConfiguracion);
+
+        jMenuBar1.add(jMenuConfiguracion);
+
+        jMenuHistorialCarreras.setText("Historial Carreras");
+
+        jMenuItemGenerarPDF.setText("Generar PDF");
+        jMenuHistorialCarreras.add(jMenuItemGenerarPDF);
+
+        jMenuItemVerCarrerasAntiguas.setText("Carreras Antiguas");
+        jMenuHistorialCarreras.add(jMenuItemVerCarrerasAntiguas);
+
+        jMenuBar1.add(jMenuHistorialCarreras);
+
+        jMenuSalir.setText("Salir");
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItemSalirAplicacion.setText("Salir Aplicacion");
+        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirAplicacionActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItemSalirAplicacion);
+
+        jMenuBar1.add(jMenuSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,17 +169,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanelPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**/
-    private void jButtonSalirDelTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirDelTodoActionPerformed
-        //setVisible(false);        
-        this.dispose();
-        System.exit(0);//Este usarlo para salir porque el dispose me deja una pantalla.
-    }//GEN-LAST:event_jButtonSalirDelTodoActionPerformed
 
     private void jButtonModificarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCorredoresActionPerformed
         TablaCorredores confirmacionValidar
@@ -195,14 +187,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         confirmacionValidar.setVisible(true);
     }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
 
-    private void jButtonConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracionActionPerformed
+    private void jMenuItemConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionActionPerformed
 
         DialogConfiguracion dialogoConfiguracion = new DialogConfiguracion(this, true);
         dialogoConfiguracion.setLocationRelativeTo(null);
         dialogoConfiguracion.setVisible(true);
 
 
-    }//GEN-LAST:event_jButtonConfiguracionActionPerformed
+    }//GEN-LAST:event_jMenuItemConfiguracionActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+
+    }//GEN-LAST:event_jMenuSalirActionPerformed
+
+    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
+        //setVisible(false);        
+        this.dispose();
+        System.exit(0);//Este usarlo para salir porque el dispose me deja una pantalla.
+    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,13 +246,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonConfiguracion;
     private javax.swing.JButton jButtonModificarCarrera;
     private javax.swing.JButton jButtonModificarCorredores;
-    private javax.swing.JButton jButtonSalirDelTodo;
-    private javax.swing.JLabel jLabelCarreras;
-    private javax.swing.JLabel jLabelCorredores;
     private javax.swing.JLabel jLabelIcono;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuConfiguracion;
+    private javax.swing.JMenu jMenuHistorialCarreras;
+    private javax.swing.JMenuItem jMenuItemConfiguracion;
+    private javax.swing.JMenuItem jMenuItemGenerarPDF;
+    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
+    private javax.swing.JMenuItem jMenuItemVerCarrerasAntiguas;
+    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelPantallaPrincipal;
     // End of variables declaration//GEN-END:variables
 }

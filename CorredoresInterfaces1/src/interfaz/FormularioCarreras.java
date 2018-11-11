@@ -33,7 +33,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
     /**
      * Creates new form FormularioCarreras
      */
-    
     //Constructor para el alta
     public FormularioCarreras(TablaCarreras aThis, boolean modal, LogicaNegocio logicaNegocio) {
         super(aThis, modal);
@@ -88,7 +87,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
         jTextFieldNombreCarrera.setText(carreraModificar.getNombreCarrera());
         jComboBoxCiudad.setActionCommand(carreraModificar.getLugarCarrera());
         jComboBoxNumeroMaximoParticipantes.setSelectedIndex(
-                carreraModificar.getNumeroMaxCorredores()+1);
+                carreraModificar.getNumeroMaxCorredores() + 1);
         jSpinnerFechaCarrera.setValue(carreraModificar.getFechaCarrera());
 
     }
@@ -113,10 +112,12 @@ public class FormularioCarreras extends javax.swing.JDialog {
         jComboBoxCiudad = new javax.swing.JComboBox<>();
         jComboBoxNumeroMaximoParticipantes = new javax.swing.JComboBox<>();
         jPanelBotonesCarrera = new javax.swing.JPanel();
-        jButtonSalirCarrera = new javax.swing.JButton();
         jButtonValidarCarrera = new javax.swing.JButton();
         jButtonLimpiarCarrera = new javax.swing.JButton();
         validationPanel = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuSalir = new javax.swing.JMenu();
+        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -212,15 +213,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jButtonSalirCarrera.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonSalirCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonSalirCarrera.setText("Salir");
-        jButtonSalirCarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirCarreraActionPerformed(evt);
-            }
-        });
-
         jButtonValidarCarrera.setBackground(new java.awt.Color(204, 204, 255));
         jButtonValidarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonValidarCarrera.setText("Aceptar");
@@ -244,15 +236,12 @@ public class FormularioCarreras extends javax.swing.JDialog {
         jPanelBotonesCarreraLayout.setHorizontalGroup(
             jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesCarreraLayout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonSalirCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelBotonesCarreraLayout.createSequentialGroup()
-                        .addComponent(jButtonLimpiarCarrera)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonValidarCarrera)))
+                .addComponent(jButtonLimpiarCarrera)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonValidarCarrera)
                 .addContainerGap())
         );
         jPanelBotonesCarreraLayout.setVerticalGroup(
@@ -264,12 +253,29 @@ public class FormularioCarreras extends javax.swing.JDialog {
                         .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonLimpiarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonValidarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSalirCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(validationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(FormularioCarreras.class, "DialogConfiguracion.jMenuSalir.text")); // NOI18N
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(FormularioCarreras.class, "DialogConfiguracion.jMenuItemSalirAplicacion.text")); // NOI18N
+        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirAplicacionActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItemSalirAplicacion);
+
+        jMenuBar1.add(jMenuSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,22 +285,22 @@ public class FormularioCarreras extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTituloCarrera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanelTituloCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -303,10 +309,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
     private void jTextFieldNombreCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreCarreraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNombreCarreraActionPerformed
-
-    private void jButtonSalirCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirCarreraActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButtonSalirCarreraActionPerformed
 
     private void jButtonValidarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarCarreraActionPerformed
         Carrera m;
@@ -334,7 +336,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Carrera modificada con éxito.",
                     "Validación.", JOptionPane.INFORMATION_MESSAGE);
         }
-
+        this.dispose();
     }//GEN-LAST:event_jButtonValidarCarreraActionPerformed
 
     private void jButtonLimpiarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCarreraActionPerformed
@@ -361,9 +363,18 @@ public class FormularioCarreras extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCiudadActionPerformed
 
+    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
+        //setVisible(false);
+        this.dispose();
+
+    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+
+    }//GEN-LAST:event_jMenuSalirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLimpiarCarrera;
-    private javax.swing.JButton jButtonSalirCarrera;
     private javax.swing.JButton jButtonValidarCarrera;
     private javax.swing.JComboBox<String> jComboBoxCiudad;
     private javax.swing.JComboBox<String> jComboBoxNumeroMaximoParticipantes;
@@ -371,6 +382,9 @@ public class FormularioCarreras extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelLugarCarrera;
     private javax.swing.JLabel jLabelNombreCarrera;
     private javax.swing.JLabel jLabelNumeroMaxParticipantes;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
+    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelBotonesCarrera;
     private javax.swing.JPanel jPanelDatosCarrera;
     private javax.swing.JPanel jPanelTituloCarrera;

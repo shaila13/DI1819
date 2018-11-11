@@ -47,12 +47,14 @@ public class TablaCorredores extends javax.swing.JDialog {
         jPanelTablaCorredores = new javax.swing.JPanel();
         jScrollPaneTabla = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
-        jButtonSalir = new javax.swing.JButton();
         jButtonAlta = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonGrabarCSVCorredores = new javax.swing.JButton();
         jButtonAnadirCorredorAcarrera = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuSalir = new javax.swing.JMenu();
+        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,14 +70,6 @@ public class TablaCorredores extends javax.swing.JDialog {
             }
         ));
         jScrollPaneTabla.setViewportView(jTableCorredores);
-
-        jButtonSalir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
-            }
-        });
 
         jButtonAlta.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonAlta.setText("Alta corredor");
@@ -128,16 +122,16 @@ public class TablaCorredores extends javax.swing.JDialog {
                     .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
                         .addComponent(jButtonAnadirCorredorAcarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
-                                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTablaCorredoresLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTablaCorredoresLayout.setVerticalGroup(
@@ -145,19 +139,36 @@ public class TablaCorredores extends javax.swing.JDialog {
             .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jButtonAnadirCorredorAcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGrabarCSVCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
+
+        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(TablaCorredores.class, "IniciarCarrera.jMenuSalir.text")); // NOI18N
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(TablaCorredores.class, "IniciarCarrera.jMenuItemSalirAplicacion.text")); // NOI18N
+        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirAplicacionActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItemSalirAplicacion);
+
+        jMenuBar1.add(jMenuSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,10 +189,6 @@ public class TablaCorredores extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         FormularioCorredores dialogoAlta = new FormularioCorredores(this, true, logicaNegocio);
@@ -269,6 +276,16 @@ public class TablaCorredores extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
+    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
+        //setVisible(false);
+        this.dispose();
+
+    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+
+    }//GEN-LAST:event_jMenuSalirActionPerformed
+
 //Utilizando un AbstractTableModel
     private void rellenarTablaCorredores() {
         jTableCorredores.setModel(new TableModelCorredores(
@@ -281,7 +298,9 @@ public class TablaCorredores extends javax.swing.JDialog {
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGrabarCSVCorredores;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
+    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelTablaCorredores;
     private javax.swing.JScrollPane jScrollPaneTabla;
     private javax.swing.JTable jTableCorredores;

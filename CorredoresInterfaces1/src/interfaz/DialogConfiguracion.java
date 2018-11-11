@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaz;
 
 import javax.swing.DefaultComboBoxModel;
@@ -40,7 +36,10 @@ public class DialogConfiguracion extends javax.swing.JDialog {
 
         jComboBoxLAndF = new javax.swing.JComboBox<>();
         jButtonAceptarTema = new javax.swing.JButton();
-        jButtonSalirDelTodo = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuSalir = new javax.swing.JMenu();
+        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,14 +56,33 @@ public class DialogConfiguracion extends javax.swing.JDialog {
             }
         });
 
-        jButtonSalirDelTodo.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonSalirDelTodo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonSalirDelTodo.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jButtonSalirDelTodo.text")); // NOI18N
-        jButtonSalirDelTodo.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jButtonCancelar.text")); // NOI18N
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirDelTodoActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
+
+        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jMenuSalir.text")); // NOI18N
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jMenuItemSalirAplicacion.text")); // NOI18N
+        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirAplicacionActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItemSalirAplicacion);
+
+        jMenuBar1.add(jMenuSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,8 +93,8 @@ public class DialogConfiguracion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAceptarTema)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSalirDelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonCancelar))
                     .addComponent(jComboBoxLAndF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -85,11 +103,15 @@ public class DialogConfiguracion extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jComboBoxLAndF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAceptarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSalirDelTodo, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jButtonAceptarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -105,21 +127,33 @@ public class DialogConfiguracion extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxLAndFActionPerformed
 
     private void jButtonAceptarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarTemaActionPerformed
-        
+
         this.dispose();
-        
+
     }//GEN-LAST:event_jButtonAceptarTemaActionPerformed
 
-    private void jButtonSalirDelTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirDelTodoActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
 
         this.dispose();
 
-    }//GEN-LAST:event_jButtonSalirDelTodoActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
+        //setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+
+    }//GEN-LAST:event_jMenuSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptarTema;
-    private javax.swing.JButton jButtonSalirDelTodo;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxLAndF;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
+    private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables
 }
