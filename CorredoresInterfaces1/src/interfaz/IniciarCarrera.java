@@ -141,9 +141,9 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -224,20 +224,26 @@ public class IniciarCarrera extends javax.swing.JDialog {
 
     private void jButtonEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCorredorActionPerformed
         int seleccionado = jTableParticipantes.getSelectedRow();
-        Participantes participantesBorrar = LogicaNegocio.getInstance().
-                getListaParticipantes().get(seleccionado);
 
-        int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
-                "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
-        if (confirmación == JOptionPane.YES_OPTION) {
-            LogicaNegocio.getInstance().borrarParticipante(participantesBorrar);
-            JOptionPane.showMessageDialog(this, "Se ha borrado el participante.",
-                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
-        } else if (confirmación == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, "No se ha borrado el participante.",
-                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Participantes participantesBorrar = LogicaNegocio.getInstance().
+                    getListaParticipantes().get(seleccionado);
+
+            int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
+                    "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (confirmación == JOptionPane.YES_OPTION) {
+                LogicaNegocio.getInstance().borrarParticipante(participantesBorrar);
+                JOptionPane.showMessageDialog(this, "Se ha borrado el participante.",
+                        "Borrar.", JOptionPane.INFORMATION_MESSAGE);
+            } else if (confirmación == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "No se ha borrado el participante.",
+                        "Borrar.", JOptionPane.INFORMATION_MESSAGE);
+            }
+            rellenarTablaConParticipantes();
         }
-        rellenarTablaConParticipantes();
     }//GEN-LAST:event_jButtonEliminarCorredorActionPerformed
     /**
      * Método para generar archivo de Objetos
@@ -266,7 +272,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         TablaCorredores confirmacionValidar
                 = new TablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtonCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronometroActionPerformed

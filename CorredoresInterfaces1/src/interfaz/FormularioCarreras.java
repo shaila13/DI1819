@@ -101,7 +101,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelTituloCarrera = new javax.swing.JPanel();
         jPanelDatosCarrera = new javax.swing.JPanel();
         jLabelNombreCarrera = new javax.swing.JLabel();
         jLabelFechaCarrera = new javax.swing.JLabel();
@@ -120,17 +119,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanelTituloCarreraLayout = new javax.swing.GroupLayout(jPanelTituloCarrera);
-        jPanelTituloCarrera.setLayout(jPanelTituloCarreraLayout);
-        jPanelTituloCarreraLayout.setHorizontalGroup(
-            jPanelTituloCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanelTituloCarreraLayout.setVerticalGroup(
-            jPanelTituloCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
 
         jLabelNombreCarrera.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelNombreCarrera.setText("Nombre Carrera");
@@ -176,7 +164,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
         jPanelDatosCarreraLayout.setHorizontalGroup(
             jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosCarreraLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelNombreCarrera)
                     .addComponent(jLabelNumeroMaxParticipantes)
@@ -188,12 +176,12 @@ public class FormularioCarreras extends javax.swing.JDialog {
                     .addComponent(jComboBoxCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNombreCarrera))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanelDatosCarreraLayout.setVerticalGroup(
             jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosCarreraLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDatosCarreraLayout.createSequentialGroup()
                         .addComponent(jTextFieldNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +198,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
                             .addComponent(jComboBoxNumeroMaximoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNumeroMaxParticipantes)))
                     .addComponent(jLabelNombreCarrera))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jButtonValidarCarrera.setBackground(new java.awt.Color(204, 204, 255));
@@ -282,21 +270,16 @@ public class FormularioCarreras extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTituloCarrera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jPanelTituloCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +370,6 @@ public class FormularioCarreras extends javax.swing.JDialog {
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelBotonesCarrera;
     private javax.swing.JPanel jPanelDatosCarrera;
-    private javax.swing.JPanel jPanelTituloCarrera;
     private javax.swing.JSpinner jSpinnerFechaCarrera;
     private javax.swing.JTextField jTextFieldNombreCarrera;
     private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel;
