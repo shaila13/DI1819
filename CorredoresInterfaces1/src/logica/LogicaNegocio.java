@@ -27,6 +27,7 @@ import org.openide.util.Exceptions;
  */
 public class LogicaNegocio {
 
+    //Atributos
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static LogicaNegocio INSTANCE;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
@@ -41,12 +42,16 @@ public class LogicaNegocio {
     private List<Carrera> listaCarrerasIniciar;
     private boolean resultado = false;
 
+    /**
+     * Cosntructor que inicializa arraysList.
+     */
     private LogicaNegocio() {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();
         listaCarrerasIniciar = new ArrayList<>();
     }
+//Getters y Setters
 
     public List<Carrera> getListaCarrerasIniciar() {
         return listaCarrerasIniciar;

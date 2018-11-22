@@ -1,9 +1,8 @@
 package temporizador;
 
-import java.awt.Color;
+
 import java.io.File;
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -19,15 +18,17 @@ public class Temporizador extends JLabel implements Serializable {
 
     //Atributos
     private int segundos;
-    private String textoFin = "¡¡¡ FFF III NNN !!!";
-    private Color colorFin;
+
+    /*private String textoFin = "¡¡¡ FFF III NNN !!!";
+    private Color colorFin;*/
+    private TextoFinContador textoYcolor;
     private boolean decimales;
     private File imagenFin = new File("imgs" + File.separator + "icon.gif");//es una ruta tipo file
     private double segundosDecimales;
     private List<CuentaAtrasFinalizada> listeners = new ArrayList<>();
 
     /**
-     * Cosntructor sin parámetros.
+     * Constructor sin parámetros.
      */
     public Temporizador() {
 
@@ -46,22 +47,6 @@ public class Temporizador extends JLabel implements Serializable {
         this.segundos = segundos;
     }
 
-    public String getTextoFin() {
-        return textoFin;
-    }
-
-    public void setTextoFin(String textoFin) {
-        this.textoFin = textoFin;
-    }
-
-    public Color getColorFin() {
-        return colorFin;
-    }
-
-    public void setColorFin(Color colorFin) {
-        this.colorFin = colorFin;
-    }
-
     public boolean isDecimales() {
         return decimales;
     }
@@ -70,16 +55,15 @@ public class Temporizador extends JLabel implements Serializable {
         this.decimales = decimales;
     }
 
-    public File getImagenFin() {
-        return imagenFin;
+    public TextoFinContador getTextoYcolor() {
+        return textoYcolor;
     }
 
-    public void setImagenFin(File imagenFin) {
-        this.imagenFin = imagenFin;
+    public void setTextoYcolor(TextoFinContador textoYcolor) {
+        this.textoYcolor = textoYcolor;
     }
 
     public void start() {
-
         setText(Integer.toString(segundos));
         segundosDecimales = segundos;
 
@@ -94,19 +78,21 @@ public class Temporizador extends JLabel implements Serializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (segundos > 0 && segundosDecimales > 0) {
+                if (segundosDecimales > 0.0F && segundos > 0) {
                     if (decimales == true) {
                         String strDouble = String.format("%.1f", segundosDecimales);
                         segundosDecimales -= 0.1;
                         setText(strDouble);
                     } else {
-
                         setText(Integer.toString(segundos--));
                     }
                 } else {
-                    setText(textoFin);//propiedad "añadir un texto"
-                    setForeground(colorFin);//propiedad "añadir color"
-                    setIcon(new ImageIcon(imagenFin.getAbsolutePath()));//añadir imagen
+                    setText(textoYcolor.getTextoIntroducido());//propiedad "añadir un texto"
+                    setForeground(textoYcolor.getColorTexto());//propiedad "añadir color"
+
+                    if (imagenFin.getAbsolutePath() != null && imagenFin.exists()) {
+                        setIcon(new ImageIcon(imagenFin.getAbsolutePath()));//añadir imagen
+                    }
                     cancel();
                     if (listeners != null) {
                         for (CuentaAtrasFinalizada l : listeners) {

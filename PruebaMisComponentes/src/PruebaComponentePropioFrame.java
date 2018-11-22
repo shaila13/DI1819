@@ -1,19 +1,17 @@
 
-package interfaces;
 
 /**
  *
  * @author Shaila
  */
-public class TemporizadorJFrame extends javax.swing.JFrame {
+public class PruebaComponentePropioFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form TemporizadorJFrame
+     * Creates new form PruebaComponentePropioFrame
      */
-    public TemporizadorJFrame() {
+    public PruebaComponentePropioFrame() {
         initComponents();
         temporizador1.start();
-
     }
 
     /**
@@ -25,40 +23,29 @@ public class TemporizadorJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        temporizador2 = new temporizador.Temporizador();
-        jLabelTitulo = new javax.swing.JLabel();
         temporizador1 = new temporizador.Temporizador();
-
-        temporizador2.setText("temporizador2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTitulo.setText("TEMPORIZADOR");
-
-        temporizador1.setText("temporizador1");
         temporizador1.setDecimales(true);
-        temporizador1.setImagenFin(new java.io.File("C:\\Users\\Shaila\\Documents\\1 DAM\\2 DAM\\DI\\DI1819\\DI1819\\Temporizador\\src\\imgs\\icon.gif"));
         temporizador1.setSegundos(1);
+        temporizador1.setText("temporizador2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTitulo))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(125, 125, 125)
+                .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabelTitulo)
-                .addGap(41, 41, 41)
+                .addGap(95, 95, 95)
                 .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,27 +68,25 @@ public class TemporizadorJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TemporizadorJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaComponentePropioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TemporizadorJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaComponentePropioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TemporizadorJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaComponentePropioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TemporizadorJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaComponentePropioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TemporizadorJFrame().setVisible(true);
+                new PruebaComponentePropioFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelTitulo;
     private temporizador.Temporizador temporizador1;
-    private temporizador.Temporizador temporizador2;
     // End of variables declaration//GEN-END:variables
 }
