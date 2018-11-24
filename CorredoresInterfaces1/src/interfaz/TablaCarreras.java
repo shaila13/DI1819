@@ -92,7 +92,7 @@ public class TablaCarreras extends javax.swing.JDialog {
         });
 
         jButtonIniciarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonIniciarCarrera.setText("Iniciar Carrera");
+        jButtonIniciarCarrera.setText("Gestión Carrera");
         jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIniciarCarreraActionPerformed(evt);
@@ -227,7 +227,7 @@ public class TablaCarreras extends javax.swing.JDialog {
         } else {
             Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
                     getListaCarreras().get(seleccionado);
-            IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
+            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
                     true, carreraIniciarCarrera);
             LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
             dialogoIniciarCarrera.setLocationRelativeTo(null);

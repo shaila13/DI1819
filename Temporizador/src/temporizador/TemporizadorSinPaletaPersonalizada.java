@@ -15,7 +15,7 @@ import javax.swing.JLabel;
  *
  * @author Annie
  */
-public class Temporizador extends JLabel implements Serializable {
+public class TemporizadorSinPaletaPersonalizada extends JLabel implements Serializable {
 
     //Atributos
     private int segundos;
@@ -29,7 +29,7 @@ public class Temporizador extends JLabel implements Serializable {
     /**
      * Cosntructor sin parámetros.
      */
-    public Temporizador() {
+    public TemporizadorSinPaletaPersonalizada() {
 
     }
 
@@ -94,25 +94,26 @@ public class Temporizador extends JLabel implements Serializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (segundos > 0 && segundosDecimales > 0) {
+                if (segundos > 0 && segundosDecimales > 0.0) {
                     if (decimales == true) {
                         String strDouble = String.format("%.1f", segundosDecimales);
                         segundosDecimales -= 0.1;
                         setText(strDouble);
                     } else {
-
                         setText(Integer.toString(segundos--));
                     }
                 } else {
                     setText(textoFin);//propiedad "añadir un texto"
                     setForeground(colorFin);//propiedad "añadir color"
                     setIcon(new ImageIcon(imagenFin.getAbsolutePath()));//añadir imagen
-                    cancel();
+                    
                     if (listeners != null) {
                         for (CuentaAtrasFinalizada l : listeners) {
                             l.ejecutar();
                         }
                     }
+                    //No se donde va
+                    cancel();
                 }
 
             }

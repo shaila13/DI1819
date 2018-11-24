@@ -14,7 +14,7 @@ import modelo.Participantes;
  *
  * @author Shaila
  */
-public class IniciarCarrera extends javax.swing.JDialog {
+public class GestionarCarrera extends javax.swing.JDialog {
 
     private Carrera carreraIniciar;
     private Participantes participante;
@@ -23,7 +23,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
 
-    public IniciarCarrera(TablaCarreras aThis, boolean modal, Carrera c) {
+    public GestionarCarrera(TablaCarreras aThis, boolean modal, Carrera c) {
         super(aThis, modal);
         carreraIniciar = c;
         initComponents();
@@ -33,7 +33,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         rellenarTablaCarrerasConParticipantes();
     }
 
-    public IniciarCarrera(TablaCorredores aThis, boolean modal, Participantes p) {
+    public GestionarCarrera(TablaCorredores aThis, boolean modal, Participantes p) {
         super(aThis, modal);
         participante = p;
         initComponents();
@@ -71,7 +71,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelTituloCarreras.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabelTituloCarreras.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabelTituloCarreras.text")); // NOI18N
+        jLabelTituloCarreras.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jLabelTituloCarreras.text")); // NOI18N
 
         jTableCarreraInciada.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableCarreraInciada.setModel(new javax.swing.table.DefaultTableModel(
@@ -88,7 +88,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTableCarreraInciada);
 
         jLabeTituloParticipantes.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabeTituloParticipantes.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jLabeTituloParticipantes.text")); // NOI18N
+        jLabeTituloParticipantes.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jLabeTituloParticipantes.text")); // NOI18N
 
         jTableParticipantes.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableParticipantes.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,7 +105,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         jScrollPane2.setViewportView(jTableParticipantes);
 
         jButtonEliminarCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonEliminarCorredor.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jButtonEliminarCorredor.text")); // NOI18N
+        jButtonEliminarCorredor.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jButtonEliminarCorredor.text")); // NOI18N
         jButtonEliminarCorredor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEliminarCorredorActionPerformed(evt);
@@ -113,7 +113,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         });
 
         jButtonGrabarCarreraIniciada.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonGrabarCarreraIniciada.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jButtonGrabarCarreraIniciada.text")); // NOI18N
+        jButtonGrabarCarreraIniciada.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jButtonGrabarCarreraIniciada.text")); // NOI18N
         jButtonGrabarCarreraIniciada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGrabarCarreraIniciadaActionPerformed(evt);
@@ -121,7 +121,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         });
 
         jButtonSeleccionarCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonSeleccionarCorredor.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jButtonSeleccionarCorredor.text")); // NOI18N
+        jButtonSeleccionarCorredor.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jButtonSeleccionarCorredor.text")); // NOI18N
         jButtonSeleccionarCorredor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSeleccionarCorredorActionPerformed(evt);
@@ -129,7 +129,7 @@ public class IniciarCarrera extends javax.swing.JDialog {
         });
 
         jButtonCronometro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonCronometro.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jButtonCronometro.text")); // NOI18N
+        jButtonCronometro.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jButtonCronometro.text")); // NOI18N
         jButtonCronometro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCronometroActionPerformed(evt);
@@ -183,14 +183,14 @@ public class IniciarCarrera extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
-        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jMenuSalir.text")); // NOI18N
+        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jMenuSalir.text")); // NOI18N
         jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuSalirActionPerformed(evt);
             }
         });
 
-        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(IniciarCarrera.class, "IniciarCarrera.jMenuItemSalirAplicacion.text")); // NOI18N
+        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(GestionarCarrera.class, "GestionarCarrera.jMenuItemSalirAplicacion.text")); // NOI18N
         jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSalirAplicacionActionPerformed(evt);
@@ -253,11 +253,12 @@ public class IniciarCarrera extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha añadido ningún corredor.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         }
+        //Borrar esta linea duplicada
         LogicaNegocio.getInstance().grabarCarreraConCorredores();
         if (LogicaNegocio.getInstance().grabarCarreraConCorredores()) {
             JOptionPane.showMessageDialog(this, "Se ha grabado correctamente la "
                     + "carrera con los participantes.",
-                    "¡¡GRABAR BBDD!!", JOptionPane.ERROR_MESSAGE);
+                    "¡¡GRABAR BBDD!!", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
             JOptionPane.showMessageDialog(this, "No se ha grabado la carrera con "

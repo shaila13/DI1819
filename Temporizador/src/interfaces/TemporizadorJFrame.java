@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package interfaces;
 
 /**
@@ -13,7 +17,6 @@ public class TemporizadorJFrame extends javax.swing.JFrame {
     public TemporizadorJFrame() {
         initComponents();
         temporizador1.start();
-
     }
 
     /**
@@ -25,40 +28,29 @@ public class TemporizadorJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        temporizador2 = new temporizador.Temporizador();
-        jLabelTitulo = new javax.swing.JLabel();
         temporizador1 = new temporizador.Temporizador();
-
-        temporizador2.setText("temporizador2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTitulo.setText("TEMPORIZADOR");
-
-        temporizador1.setText("temporizador1");
-        temporizador1.setDecimales(true);
-        temporizador1.setImagenFin(new java.io.File("C:\\Users\\Shaila\\Documents\\1 DAM\\2 DAM\\DI\\DI1819\\DI1819\\Temporizador\\src\\imgs\\icon.gif"));
-        temporizador1.setSegundos(1);
+        temporizador1.setSegundos(5);
+        temporizador1.setText("Temporizador con paleta personalizada");
+        temporizador1.setTextoYcolor(new temporizador.TextoFinContador("FINNNNNNN",new java.awt.Color(-16776961)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTitulo))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabelTitulo)
-                .addGap(41, 41, 41)
+                .addGap(88, 88, 88)
                 .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,8 +92,6 @@ public class TemporizadorJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelTitulo;
     private temporizador.Temporizador temporizador1;
-    private temporizador.Temporizador temporizador2;
     // End of variables declaration//GEN-END:variables
 }

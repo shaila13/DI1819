@@ -256,7 +256,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                             corredor.getDireccion(), corredor.getTelefono());
                     LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
                     if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
-                        IniciarCarrera dialogoIniciarCarrera = new IniciarCarrera(this,
+                        GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
                                 true, participante);
                         dialogoIniciarCarrera.setLocationRelativeTo(null);
                         dialogoIniciarCarrera.setVisible(true);
@@ -273,7 +273,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                 Exceptions.printStackTrace(ex);
             }
         }
-        dispose();
+        //dispose();
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
     private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
