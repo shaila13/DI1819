@@ -16,6 +16,8 @@ import org.openide.util.Exceptions;
  */
 public class TablaCorredores extends javax.swing.JDialog {
 
+    private int dorsal = 0;
+    private int tiempoCarrera = 0;
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -243,14 +245,21 @@ public class TablaCorredores extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                int dorsal = LogicaNegocio.getInstance().getListaParticipantes().size();
+                //MAL
+                int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
                 Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
                 int contadorMaximoParticipantes = LogicaNegocio.getInstance().
                         getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
-                if (dorsal < contadorMaximoParticipantes) {
-                    dorsal++;
-                    int tiempoCarrera = 60;
+                if (contador < contadorMaximoParticipantes) {
+                    contador++;
+                    //MIRA AQUÍ SINO FUNCIONA
+                    if (LogicaNegocio.getInstance().isBorrarCorredor()) {
+                        dorsal = LogicaNegocio.getInstance().getDorsalCorredorBorrado();
+                        dorsal++;
+                    } else {
+                        dorsal++;
+                    }
                     Participantes participante = new Participantes(dorsal, tiempoCarrera,
                             corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
                             corredor.getDireccion(), corredor.getTelefono());

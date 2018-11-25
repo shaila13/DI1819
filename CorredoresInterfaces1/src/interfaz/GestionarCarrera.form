@@ -87,10 +87,7 @@
                               <Component id="jButtonEliminarCorredor" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButtonCronometro" max="32767" attributes="0"/>
-                              <Component id="jButtonGrabarCarreraIniciada" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jButtoncRONOMETRO" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -116,14 +113,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonSeleccionarCorredor" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                      <Component id="jButtonGrabarCarreraIniciada" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButtonSeleccionarCorredor" min="-2" pref="69" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonEliminarCorredor" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                      <Component id="jButtonCronometro" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtoncRONOMETRO" max="32767" attributes="0"/>
+                      <Component id="jButtonEliminarCorredor" pref="69" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -212,19 +206,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEliminarCorredorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonGrabarCarreraIniciada">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="interfaz/Bundle.properties" key="GestionarCarrera.jButtonGrabarCarreraIniciada.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGrabarCarreraIniciadaActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="jButtonSeleccionarCorredor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -238,17 +219,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSeleccionarCorredorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCronometro">
+        <Component class="javax.swing.JButton" name="jButtoncRONOMETRO">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
+              <Font name="Dialog" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="interfaz/Bundle.properties" key="GestionarCarrera.jButtonCronometro.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="interfaz/Bundle.properties" key="GestionarCarrera.jButtoncRONOMETRO.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCronometroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtoncRONOMETROActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

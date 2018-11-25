@@ -1,36 +1,42 @@
 package modelo;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.awt.TextField;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTextField;
 
 /**
  *
  * @author Shaila
  */
-public class EspiaJTextField extends JTextField implements Serializable {
-
+public class EspiaJTextField extends TextField implements Serializable {
 
     //Atributos
+    private String palabraEncontrada;
     private List<String> palabrasEspeciales = new ArrayList<>();
-    private List<Espia> listeners = new ArrayList<>();
-    private String ficheroLog = "ficheroLog.txt";
-
-    private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
+    private List<EncuentraPalabrasEspia> listeners = new ArrayList<>();
+    private String ficheroLog = "";
+    private GrabarFichero grabarFichero = new GrabarFichero();
 
     /**
      * Cosntructor sin parámetros.
      */
-    public EspiaJTextField() {
+    public EspiaJTextField() throws IOException {
+        palabraEncontrada = getText();
+        if (palabrasEspeciales.contains(palabraEncontrada)) {
+            //String ruta, String nombreArchivo, String palabra
+            grabarFichero.grabarFichero(ficheroLog, "ficheroLog.txt", palabraEncontrada);
+            System.out.println("ficheroLog " + palabraEncontrada);
+            if (listeners != null) {
+                for (EncuentraPalabrasEspia l : listeners) {
+                    l.escuchadorPalabras(palabraEncontrada);
+                }
+            }
 
+        }
     }
 
-//Getters y Setters generados por defecto.
     /**
      * Método cuya finalidad es añadir una nueva palabra al componente para
      * buscar.
@@ -40,30 +46,26 @@ public class EspiaJTextField extends JTextField implements Serializable {
     public boolean aniadirPalabra(String palabra) {
         if (!palabrasEspeciales.contains(palabra)) {
             palabrasEspeciales.add(palabra);
-            return true;
         }
-        return false;
+        return true;
+    }
+//Getters y Setters generados por defecto.
+
+    public String getPalabraEncontrada() {
+
+        return palabraEncontrada;
     }
 
-    public void start() throws IOException {
-        File informacion = new File(ficheroLog);
+    public void setPalabraEncontrada(String palabraEncontrada) {
+        this.palabraEncontrada = palabraEncontrada;
+    }
 
-        if (true) {
+    public String getFicheroLog() {
+        return ficheroLog;
+    }
 
-            int contador = 0;
-
-            String archivo_destino = informacion.getAbsolutePath();
-            FileWriter escritura = new FileWriter(archivo_destino);
-
-            try {
-                escritura.write(palabraEncontrada);
-                escritura.write("\n");
-                escritura.write("\n");
-            } catch (IOException e) {
-            }
-
-            escritura.close();
-        }
+    public void setFicheroLog(String ficheroLog) {
+        this.ficheroLog = ficheroLog;
     }
 
 }

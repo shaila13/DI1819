@@ -35,7 +35,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         LogicaNegocio.getInstance().cargarCSVCorredores();
         //Establecer una imagen en una label
         jLabelIcono.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
-
+        jButtonModificarCorredores.setText("<html><p>BBDD </p>"
+                + "<p>CORREDORES</p></html>");
         jButtonModificarCarrera.setText("<html><p>ALTA/MODIFICACIÓN</p>"
                 + "<p>CARRERAS</p></html>");
         //Establecer el logo del a aplicación
@@ -69,7 +70,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jButtonModificarCorredores.setBackground(new java.awt.Color(204, 204, 255));
         jButtonModificarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonModificarCorredores.setText("BASE DATOS CORREDORES");
+        jButtonModificarCorredores.setText("BBDD CORREDORES");
         jButtonModificarCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarCorredoresActionPerformed(evt);
@@ -94,11 +95,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(50, 50, 50)
                 .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addComponent(jButtonModificarCorredores)
+                .addGap(50, 50, 50))
         );
         jPanelPantallaPrincipalLayout.setVerticalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +200,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuSalirActionPerformed
 
     private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
-        //setVisible(false);        
+        //setVisible(false);  
+        LogicaNegocio.getInstance().grabarCarreraConCorredores();
         this.dispose();
         System.exit(0);//Este usarlo para salir porque el dispose me deja una pantalla.
     }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed

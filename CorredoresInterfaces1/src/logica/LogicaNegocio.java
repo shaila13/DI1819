@@ -41,6 +41,8 @@ public class LogicaNegocio {
     private List<Participantes> listaParticipantes;
     private List<Carrera> listaCarrerasIniciar;
     private boolean resultado = false;
+    private int dorsalCorredorBorrado;
+    private boolean borrarCorredor = false;
 
     /**
      * Cosntructor que inicializa arraysList.
@@ -52,6 +54,22 @@ public class LogicaNegocio {
         listaCarrerasIniciar = new ArrayList<>();
     }
 //Getters y Setters
+
+    public boolean isBorrarCorredor() {
+        return borrarCorredor;
+    }
+
+    public void setBorrarCorredor(boolean borrarCorredor) {
+        this.borrarCorredor = borrarCorredor;
+    }
+
+    public void setDorsalCorredorBorrado(int dorsalCorredorBorrado) {
+        this.dorsalCorredorBorrado = dorsalCorredorBorrado;
+    }
+
+    public int getDorsalCorredorBorrado() {
+        return dorsalCorredorBorrado;
+    }
 
     public List<Carrera> getListaCarrerasIniciar() {
         return listaCarrerasIniciar;
