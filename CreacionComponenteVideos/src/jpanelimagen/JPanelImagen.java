@@ -80,8 +80,7 @@ public class JPanelImagen extends JPanel implements Serializable {
     public void setImagenFondo(ImagenFondo imagenFondo) {
         this.imagenFondo = imagenFondo;
         repaint();
-    }
-    
+    }  
 
     @Override
     protected void paintComponent(Graphics g) {
