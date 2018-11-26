@@ -37,7 +37,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
         participante = p;
         initComponents();
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
-        //Establecer el logo del a aplicación
+        //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCarrerasConParticipantes();
         rellenarTablaConParticipantes();
@@ -160,9 +160,9 @@ public class GestionarCarrera extends javax.swing.JDialog {
                 .addComponent(jLabeTituloParticipantes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
@@ -208,8 +208,6 @@ public class GestionarCarrera extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-
 
     private void jButtonEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCorredorActionPerformed
         int seleccionado = jTableParticipantes.getSelectedRow();
@@ -220,11 +218,11 @@ public class GestionarCarrera extends javax.swing.JDialog {
         } else {
             Participantes participantesBorrar = LogicaNegocio.getInstance().
                     getListaParticipantes().get(seleccionado);
-            //SI NO FUNCIONA MIRAR AQUÍ
-           LogicaNegocio.getInstance().setDorsalCorredorBorrado(LogicaNegocio.getInstance().
-                    getListaParticipantes().get(seleccionado).getDorsal()); 
-           LogicaNegocio.getInstance().setBorrarCorredor(true);
-                   int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
+            LogicaNegocio.getInstance().setDorsalCorredorBorrado(LogicaNegocio.getInstance().
+                    getListaParticipantes().get(seleccionado).getDorsal());
+            LogicaNegocio.getInstance().setBorrarCorredor(true);
+            int confirmación = JOptionPane.showConfirmDialog(this,
+                    "¿Quiere borrar el registro?",
                     "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
             if (confirmación == JOptionPane.YES_OPTION) {
                 LogicaNegocio.getInstance().borrarParticipante(participantesBorrar);
@@ -255,7 +253,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jMenuSalirActionPerformed
 
     private void jButtoncRONOMETROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncRONOMETROActionPerformed
-        System.out.println("Inciar corredor");
+
         CronometroCarrera iniciarCarrera = new CronometroCarrera(new javax.swing.JFrame(), true);
         iniciarCarrera.setLocationRelativeTo(null);
         iniciarCarrera.setVisible(true);

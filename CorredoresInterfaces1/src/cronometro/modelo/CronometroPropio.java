@@ -27,9 +27,7 @@ public class CronometroPropio extends JLabel implements Serializable {
 
     }
 
-    public void addCuentaAtrasFinalizadaListener(CronometroListener listener) {
-        this.listeners.add(listener);
-    }
+
 
     public Timer getTimer() {
         return timer;
@@ -128,5 +126,13 @@ public class CronometroPropio extends JLabel implements Serializable {
             }
         }, 0, 1000);
 
+    }
+
+    public boolean addCuentaAtrasFinalizadaListener(CronometroListener listener) {
+     return this.listeners.add(listener);
+    }
+    
+    public void ejecutarListeners(){
+        
     }
 }

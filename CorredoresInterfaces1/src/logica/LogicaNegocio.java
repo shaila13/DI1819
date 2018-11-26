@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,20 +17,26 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 import modelo.Carrera;
 import modelo.Corredor;
 import modelo.Participantes;
 import org.openide.util.Exceptions;
 
 /**
+ * Puse hoy lunes 26/11/2018 private transient palabra señalada para que no
+ * grabe Serializable
  *
  * @author Shaila
  */
-public class LogicaNegocio {
+public class LogicaNegocio implements Serializable {
 
     //Atributos
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static LogicaNegocio INSTANCE;
+    private Timer time;
+    private long tiempoActualizacionAutomatica = 0;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
     va a haber varias listas de corredores.*/
     //segunda manera
@@ -53,8 +60,8 @@ public class LogicaNegocio {
         listaParticipantes = new ArrayList<>();
         listaCarrerasIniciar = new ArrayList<>();
     }
+    
 //Getters y Setters
-
     public boolean isBorrarCorredor() {
         return borrarCorredor;
     }
@@ -244,6 +251,8 @@ public class LogicaNegocio {
         Corredor corredor;
         FileWriter fw = null;
         String linea;
+        
+        //Poner si ya existe que me lo sobrescriba
         try {
             //si no pongo true cuando grabe solo graba el primero
             fw = new FileWriter("Corredores.csv", true);
@@ -305,6 +314,11 @@ public class LogicaNegocio {
         }
     }
 
+    /**
+     * Método para grabar la carrera con los participantes.
+     *
+     * @return boolean con el resultado de la operación.
+     */
     public boolean grabarCarreraConCorredores() {
         String fichero;
         try {
@@ -331,4 +345,40 @@ public class LogicaNegocio {
         }
         return true;
     }
+
+    /**
+     * Método para iniciar el guardado automático de la aplicación.
+     *
+     * @param automaticSave tiempo en minutos para ejecutar el timer de
+     * autoguardado.
+     */
+    public void iniciarGuardadoAutomatico(int automaticSave) {
+
+        if (automaticSave == 0) {
+            tiempoActualizacionAutomatica = 5 * 60 * 1000;
+        }
+        tiempoActualizacionAutomatica = automaticSave * 60 * 1000;
+        if (time == null) {
+            time = new Timer();
+
+            time.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    grabarCarreraConCorredores();
+                }
+            }, tiempoActualizacionAutomatica);
+        } else if (time != null) {
+            time.cancel();
+            time = new Timer();
+            time.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    grabarCarreraConCorredores();
+                }
+            }, tiempoActualizacionAutomatica);
+
+        }
+
+    }
+
 }

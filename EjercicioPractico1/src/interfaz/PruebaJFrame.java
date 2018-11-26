@@ -11,6 +11,10 @@ package interfaz;
  */
 public class PruebaJFrame extends javax.swing.JFrame {
 
+    private String textoMorse;
+    private String cadenaTextoMorse;
+    private boolean finalizar;
+
     /**
      * Creates new form PruebaJFrame
      */
@@ -30,6 +34,7 @@ public class PruebaJFrame extends javax.swing.JFrame {
 
         jLabelIntroducirCaracteres = new javax.swing.JLabel();
         componenteTexto1 = new modelo.ComponenteTexto();
+        jButtonFinalizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +43,13 @@ public class PruebaJFrame extends javax.swing.JFrame {
         componenteTexto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 componenteTexto1ActionPerformed(evt);
+            }
+        });
+
+        jButtonFinalizar.setText("FINALIZAR");
+        jButtonFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinalizarActionPerformed(evt);
             }
         });
 
@@ -51,6 +63,10 @@ public class PruebaJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(componenteTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(jButtonFinalizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,17 +75,41 @@ public class PruebaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(componenteTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIntroducirCaracteres))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(139, 139, 139)
+                .addComponent(jButtonFinalizar)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void componenteTexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componenteTexto1ActionPerformed
-       
-        
-        
+
+
     }//GEN-LAST:event_componenteTexto1ActionPerformed
+
+    private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
+        finalizar = true;
+    }//GEN-LAST:event_jButtonFinalizarActionPerformed
+    public void comprobarCodigoMorse() {
+        switch (textoMorse) {
+            case "cortalarga":
+                cadenaTextoMorse = "A";
+                break;
+            case "largacorta":
+                cadenaTextoMorse = "N";
+                break;
+            case "cortacorta":
+                cadenaTextoMorse = "I";
+                break;
+            case "largalarga":
+                cadenaTextoMorse = "M";
+                break;
+            default:
+                throw new AssertionError();
+        }
+        javax.swing.JOptionPane.showMessageDialog(this, "Se ha escrito " + cadenaTextoMorse);
+    }
 
     /**
      * @param args the command line arguments
@@ -108,6 +148,7 @@ public class PruebaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private modelo.ComponenteTexto componenteTexto1;
+    private javax.swing.JButton jButtonFinalizar;
     private javax.swing.JLabel jLabelIntroducirCaracteres;
     // End of variables declaration//GEN-END:variables
 }

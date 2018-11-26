@@ -6,8 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import interfaz.TablaCarreras;
 import interfaz.TablaCorredores;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 
 /**
@@ -19,7 +22,8 @@ import logica.LogicaNegocio;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
-    private static final String RUTA_LOGO = ".." + File.separator + "imgs" + File.separator + "corredor.png";
+    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
+            + File.separator + "corredor.png";
 
     //ojo con crearlo en veinte sitios
     //private LogicaNegocio logicaNegocio;
@@ -42,6 +46,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                super.windowClosing(we);
+                //Meter aquí la logica grabar datos
+                LogicaNegocio.getInstance().grabarCarreraConCorredores();
+                //LogicaNegocio.getInstance().grabarCSVCorredores();
+            }
+
+        });
+
     }
 
     /**
@@ -60,11 +75,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuConfiguracion = new javax.swing.JMenu();
         jMenuItemConfiguracion = new javax.swing.JMenuItem();
+        jCheckBoxMenuItemGrabadoAutomatico = new javax.swing.JCheckBoxMenuItem();
         jMenuHistorialCarreras = new javax.swing.JMenu();
         jMenuItemGenerarPDF = new javax.swing.JMenuItem();
         jMenuItemVerCarrerasAntiguas = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +140,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuConfiguracion.add(jMenuItemConfiguracion);
 
+        jCheckBoxMenuItemGrabadoAutomatico.setSelected(true);
+        jCheckBoxMenuItemGrabadoAutomatico.setText("Grabado automático");
+        jCheckBoxMenuItemGrabadoAutomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItemGrabadoAutomaticoActionPerformed(evt);
+            }
+        });
+        jMenuConfiguracion.add(jCheckBoxMenuItemGrabadoAutomatico);
+
         jMenuBar1.add(jMenuConfiguracion);
 
         jMenuHistorialCarreras.setText("Historial Carreras");
@@ -150,6 +176,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuSalir.add(jMenuItemSalirAplicacion);
 
+        jMenuItemAyuda.setText("Ayuda");
+        jMenuSalir.add(jMenuItemAyuda);
+
         jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -168,7 +197,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanelPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,10 +230,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
         //setVisible(false);  
-        LogicaNegocio.getInstance().grabarCarreraConCorredores();
         this.dispose();
         System.exit(0);//Este usarlo para salir porque el dispose me deja una pantalla.
     }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
+
+    private void jCheckBoxMenuItemGrabadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemGrabadoAutomaticoActionPerformed
+
+        if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
+            String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo autoguardado (minutos): ");
+            LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
+        }
+
+    }//GEN-LAST:event_jCheckBoxMenuItemGrabadoAutomaticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,10 +285,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonModificarCarrera;
     private javax.swing.JButton jButtonModificarCorredores;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemGrabadoAutomatico;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
     private javax.swing.JMenu jMenuHistorialCarreras;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemGenerarPDF;
     private javax.swing.JMenuItem jMenuItemSalirAplicacion;

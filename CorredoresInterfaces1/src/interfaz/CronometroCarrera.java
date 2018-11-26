@@ -1,5 +1,7 @@
 package interfaz;
 
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 
@@ -9,7 +11,10 @@ import logica.LogicaNegocio;
  */
 public class CronometroCarrera extends javax.swing.JDialog {
 
+    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
+            + File.separator + "corredor.png";
     private String tiempoParcial, tiempoGlobal;
+    private int dorsalParticipante = 0;
 
     /**
      * Creates new form CronometroCarrera
@@ -17,6 +22,8 @@ public class CronometroCarrera extends javax.swing.JDialog {
     public CronometroCarrera(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Establecer el logo de la aplicación
+        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
     }
 
     /**
@@ -131,10 +138,9 @@ public class CronometroCarrera extends javax.swing.JDialog {
     private void btnGuardarTiempoCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTiempoCorredorActionPerformed
         //guardar el tiempo al corredor
         tiempoParcial = cronometroPropio.getText();
+        System.out.println("tiempoParcial " + tiempoParcial);
         btnStart.setEnabled(true);
         btnGuardarTiempoCorredor.setEnabled(false);
-
-        int dorsalParticipante = 0;
 
         while (!LogicaNegocio.getInstance().getListaParticipantes().contains(dorsalParticipante)) {
             //comprobar que esté el dorsal
@@ -142,9 +148,13 @@ public class CronometroCarrera extends javax.swing.JDialog {
             String dorsal = JOptionPane.showInputDialog("Introduzca el dorsal del "
                     + "participante que acaba de llegar: ");
             dorsalParticipante = Integer.parseInt(dorsal);
+            System.out.println("dorsalParticipante " + dorsalParticipante);
+            System.out.println("Dorsal participante: " + LogicaNegocio.getInstance().getListaParticipantes().get(dorsalParticipante));
+
             if (LogicaNegocio.getInstance().getListaParticipantes().contains(dorsalParticipante)) {
                 LogicaNegocio.getInstance().getListaParticipantes().get(dorsalParticipante).
                         setTiempoCarrera(Integer.parseInt(tiempoParcial));
+
             } else {
                 JOptionPane.showMessageDialog(this, "No existe el dorsal.");
             }

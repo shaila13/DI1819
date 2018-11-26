@@ -255,10 +255,12 @@ public class TablaCorredores extends javax.swing.JDialog {
                     contador++;
                     //MIRA AQUÍ SINO FUNCIONA
                     if (LogicaNegocio.getInstance().isBorrarCorredor()) {
-                        dorsal = LogicaNegocio.getInstance().getDorsalCorredorBorrado();
-                        dorsal++;
+                        int numero = LogicaNegocio.getInstance().getListaParticipantes().size();
+                        System.out.println("NUMERO "+numero);
+                        dorsal=LogicaNegocio.getInstance().getListaParticipantes().get(numero-1).getDorsal()+1;
                     } else {
-                        dorsal++;
+                        //Lunes cambié aquí
+                        dorsal=contador;
                     }
                     Participantes participante = new Participantes(dorsal, tiempoCarrera,
                             corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
