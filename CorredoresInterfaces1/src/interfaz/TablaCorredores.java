@@ -3,6 +3,8 @@ package interfaz;
 import interfaz.tablas.TableModelCorredores;
 import java.io.File;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
@@ -16,8 +18,9 @@ import org.openide.util.Exceptions;
  */
 public class TablaCorredores extends javax.swing.JDialog {
 
+    private SimpleDateFormat tiempo = new SimpleDateFormat("hh:mm:ss");
     private int dorsal = 0;
-    private int tiempoCarrera = 0;
+    private int tiempoCarrera;
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -217,7 +220,8 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         int seleccionado = jTableCorredores.getSelectedRow();
-        Corredor corredorBorrar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
+        Corredor corredorBorrar = LogicaNegocio.getInstance().getListaCorredores()
+                .get(seleccionado);
 
         int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
                 "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
@@ -245,7 +249,6 @@ public class TablaCorredores extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                //MAL
                 int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
                 Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
@@ -253,17 +256,20 @@ public class TablaCorredores extends javax.swing.JDialog {
                         getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
                 if (contador < contadorMaximoParticipantes) {
                     contador++;
-                    //MIRA AQUÍ SINO FUNCIONA
+
                     if (LogicaNegocio.getInstance().isBorrarCorredor()) {
-                        int numero = LogicaNegocio.getInstance().getListaParticipantes().size();
-                        System.out.println("NUMERO "+numero);
-                        dorsal=LogicaNegocio.getInstance().getListaParticipantes().get(numero-1).getDorsal()+1;
+                        int numero = LogicaNegocio.getInstance().getListaParticipantes()
+                                .size();
+                        System.out.println("NUMERO " + numero);
+                        dorsal = LogicaNegocio.getInstance().getListaParticipantes()
+                                .get(numero - 1).getDorsal() + 1;
                     } else {
                         //Lunes cambié aquí
-                        dorsal=contador;
+                        dorsal = contador;
                     }
                     Participantes participante = new Participantes(dorsal, tiempoCarrera,
-                            corredor.getNombre(), corredor.getDni(), corredor.getFechaNacimiento(),
+                            corredor.getNombre(), corredor.getDni(), corredor.
+                                    getFechaNacimiento(),
                             corredor.getDireccion(), corredor.getTelefono());
                     LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
                     if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {

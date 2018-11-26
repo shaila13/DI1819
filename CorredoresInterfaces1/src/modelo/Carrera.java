@@ -18,7 +18,6 @@ public class Carrera implements Serializable, Comparable<Carrera> {
     private int numeroMaxCorredores;
     private int tiempoTotal;
 
-    private HashMap<Integer, Corredor> tiemposCarreras = new HashMap<Integer, Corredor>();
 
     public Carrera() {
     }
