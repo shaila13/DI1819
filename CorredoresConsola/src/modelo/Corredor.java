@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
  *
  * @author Shaila
  */
-public class Corredor implements Comparable<Corredor>{
+public class Corredor implements Comparable<Corredor>, Serializable{
 
     private String nombre;
     private String dni = "";

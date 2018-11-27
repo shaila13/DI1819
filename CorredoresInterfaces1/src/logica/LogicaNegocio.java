@@ -25,8 +25,7 @@ import modelo.Participantes;
 import org.openide.util.Exceptions;
 
 /**
- * Puse hoy lunes 26/11/2018 private transient palabra señalada para que no
- * grabe Serializable
+ * private transient palabra señalada para que no grabe Serializable
  *
  * @author Shaila
  */
@@ -35,7 +34,7 @@ public class LogicaNegocio implements Serializable {
     //Atributos
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static LogicaNegocio INSTANCE;
-    private Timer time;
+    private transient Timer time;
     private long tiempoActualizacionAutomatica = 0;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
     va a haber varias listas de corredores.*/
@@ -60,7 +59,7 @@ public class LogicaNegocio implements Serializable {
         listaParticipantes = new ArrayList<>();
         listaCarrerasIniciar = new ArrayList<>();
     }
-    
+
 //Getters y Setters
     public boolean isBorrarCorredor() {
         return borrarCorredor;
@@ -251,7 +250,7 @@ public class LogicaNegocio implements Serializable {
         Corredor corredor;
         FileWriter fw = null;
         String linea;
-        
+
         //Poner si ya existe que me lo sobrescriba
         try {
             //si no pongo true cuando grabe solo graba el primero
@@ -319,26 +318,26 @@ public class LogicaNegocio implements Serializable {
      *
      * @return boolean con el resultado de la operación.
      */
-    public boolean grabarCarreraConCorredores() {
+    public boolean grabarCarreraConParticipantes() {
         String fichero;
         try {
+            //Cambiar el índice seleccionado
             fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
                     getFechaCarrera().getYear() + ".dat";
             ObjectOutputStream oos = null;
             oos = new ObjectOutputStream(new FileOutputStream(fichero));
-            oos.writeObject("-------CARRERA-------");
+            oos.writeObject("\n-------CARRERA-------");
             Iterator<Carrera> carreraIterator = listaCarrerasIniciar.iterator();
             while (carreraIterator.hasNext()) {
                 Carrera carrera = carreraIterator.next();
                 oos.writeObject(carrera.toString());
             }
-            oos.writeObject("\n");
-            oos.writeObject("-------CORREDOR-------");
+            oos.writeObject("\n-------CORREDORES-------");
             Iterator<Participantes> participantesIterator = listaParticipantes.iterator();
             while (participantesIterator.hasNext()) {
                 Participantes participante = participantesIterator.next();
                 oos.writeObject(participante.toString());
-
+                oos.writeObject("\n");
             }
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
@@ -364,7 +363,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarCarreraConCorredores();
+                    grabarCarreraConParticipantes();
                 }
             }, tiempoActualizacionAutomatica);
         } else if (time != null) {
@@ -373,7 +372,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarCarreraConCorredores();
+                    grabarCarreraConParticipantes();
                 }
             }, tiempoActualizacionAutomatica);
 

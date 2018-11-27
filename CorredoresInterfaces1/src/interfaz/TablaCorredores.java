@@ -3,8 +3,6 @@ package interfaz;
 import interfaz.tablas.TableModelCorredores;
 import java.io.File;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
@@ -18,9 +16,9 @@ import org.openide.util.Exceptions;
  */
 public class TablaCorredores extends javax.swing.JDialog {
 
-    private SimpleDateFormat tiempo = new SimpleDateFormat("hh:mm:ss");
+    
     private int dorsal = 0;
-    private int tiempoCarrera;
+    private String tiempoCarrera;
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -142,9 +140,9 @@ public class TablaCorredores extends javax.swing.JDialog {
         jPanelTablaCorredoresLayout.setVerticalGroup(
             jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCorredoresLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelTablaCorredoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jButtonAnadirCorredorAcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,7 +207,8 @@ public class TablaCorredores extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            Corredor corredorModificar = LogicaNegocio.getInstance().getListaCorredores().get(seleccionado);
+            Corredor corredorModificar = LogicaNegocio.getInstance().getListaCorredores().
+                    get(seleccionado);
             FormularioCorredores dialogoModificar = new FormularioCorredores(this,
                     true, corredorModificar);
             dialogoModificar.setLocationRelativeTo(null);
@@ -260,13 +259,14 @@ public class TablaCorredores extends javax.swing.JDialog {
                     if (LogicaNegocio.getInstance().isBorrarCorredor()) {
                         int numero = LogicaNegocio.getInstance().getListaParticipantes()
                                 .size();
-                        System.out.println("NUMERO " + numero);
+
                         dorsal = LogicaNegocio.getInstance().getListaParticipantes()
                                 .get(numero - 1).getDorsal() + 1;
                     } else {
-                        //Lunes cambié aquí
                         dorsal = contador;
                     }
+                    
+                    //PITA AQUI
                     Participantes participante = new Participantes(dorsal, tiempoCarrera,
                             corredor.getNombre(), corredor.getDni(), corredor.
                                     getFechaNacimiento(),

@@ -51,7 +51,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             public void windowClosing(WindowEvent we) {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
-                LogicaNegocio.getInstance().grabarCarreraConCorredores();
+                LogicaNegocio.getInstance().grabarCarreraConParticipantes();
                 //LogicaNegocio.getInstance().grabarCSVCorredores();
             }
 

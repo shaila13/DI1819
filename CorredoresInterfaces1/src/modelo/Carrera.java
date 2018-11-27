@@ -3,7 +3,6 @@ package modelo;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  *
@@ -16,17 +15,17 @@ public class Carrera implements Serializable, Comparable<Carrera> {
     private Date fechaCarrera;
     private String lugarCarrera;
     private int numeroMaxCorredores;
-    private int tiempoTotal;
+    private String tiempoTotal;
 
 
     public Carrera() {
     }
 
-    public int getTiempoTotal() {
+    public String getTiempoTotal() {
         return tiempoTotal;
     }
 
-    public void setTiempoTotal(int tiempoTotal) {
+    public void setTiempoTotal(String tiempoTotal) {
         this.tiempoTotal = tiempoTotal;
     }
 
