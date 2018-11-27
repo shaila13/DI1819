@@ -152,10 +152,10 @@ public class CronometroCarrera extends javax.swing.JDialog {
                     == dorsalParticipante) {
                 LogicaNegocio.getInstance().getListaParticipantes().get(i).
                         setTiempoCarrera(tiempoParcial);
+                JOptionPane.showMessageDialog(this, "Ha llegado el corredor con dorsal: "
+                        + dorsalParticipante + "tiempo de carrera: " + tiempoParcial);
             }
         }
-
-
     }//GEN-LAST:event_btnGuardarTiempoCorredorActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
@@ -164,7 +164,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         btnStart.setText("Iniciar");
         btnGuardarTiempoCorredor.setEnabled(false);
         btnStop.setEnabled(false);
-        //guardar el tiempo a la carrera
+
         tiempoGlobal = cronometroPropio.getText();
         cronometroPropio.setH(0);
         cronometroPropio.setM(0);
@@ -177,7 +177,6 @@ public class CronometroCarrera extends javax.swing.JDialog {
         //CAMBIÉ EL TIEMPO AQUÍ
         LogicaNegocio.getInstance().getListaCarrerasIniciar().get(0).
                 setTiempoTotal(tiempoGlobal);
-
         dispose();
     }//GEN-LAST:event_btnStopActionPerformed
 

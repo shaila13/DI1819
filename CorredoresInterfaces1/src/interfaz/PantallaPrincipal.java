@@ -140,7 +140,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuConfiguracion.add(jMenuItemConfiguracion);
 
-        jCheckBoxMenuItemGrabadoAutomatico.setSelected(true);
         jCheckBoxMenuItemGrabadoAutomatico.setText("Grabado automático");
         jCheckBoxMenuItemGrabadoAutomatico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,8 +219,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         DialogConfiguracion dialogoConfiguracion = new DialogConfiguracion(this, true);
         dialogoConfiguracion.setLocationRelativeTo(null);
         dialogoConfiguracion.setVisible(true);
-
-
     }//GEN-LAST:event_jMenuItemConfiguracionActionPerformed
 
     private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
@@ -238,6 +235,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
             String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo autoguardado (minutos): ");
+            LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
+        }else{
+            String automaticSave="0";
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
         }
 

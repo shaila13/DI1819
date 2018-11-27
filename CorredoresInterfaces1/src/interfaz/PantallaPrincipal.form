@@ -19,7 +19,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemGrabadoAutomatico">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Grabado autom&#xe1;tico"/>
               </Properties>
               <Events>

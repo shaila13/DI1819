@@ -17,7 +17,6 @@ public class Carrera implements Serializable, Comparable<Carrera> {
     private int numeroMaxCorredores;
     private String tiempoTotal;
 
-
     public Carrera() {
     }
 
@@ -71,17 +70,16 @@ public class Carrera implements Serializable, Comparable<Carrera> {
     }
 
     @Override
+    public int compareTo(Carrera t) {
+        return this.nombreCarrera.compareTo(t.nombreCarrera);
+    }
+
+    @Override
     public String toString() {
         return "Carrera: " + nombreCarrera + ", fecha: "
                 + fecha.format(fechaCarrera)
                 + ", lugar: " + lugarCarrera + ", número Max Corredores:"
-                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal ;
-    
-
-
-    @Override
-    public int compareTo(Carrera t) {
-        return this.nombreCarrera.compareTo(t.nombreCarrera);
+                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal;
     }
 
 }
