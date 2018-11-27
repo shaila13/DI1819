@@ -75,8 +75,9 @@ public class Carrera implements Serializable, Comparable<Carrera> {
         return "Carrera: " + nombreCarrera + ", fecha: "
                 + fecha.format(fechaCarrera)
                 + ", lugar: " + lugarCarrera + ", número Max Corredores:"
-                + numeroMaxCorredores;
-    }
+                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal ;
+    
+
 
     @Override
     public int compareTo(Carrera t) {
