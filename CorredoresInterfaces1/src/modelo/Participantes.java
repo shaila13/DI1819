@@ -10,18 +10,18 @@ import java.util.Date;
 public class Participantes extends Corredor implements Serializable  {
 
     private int dorsal;
-    private String tiempoCarrera;
+    private String tiempoParticipante;
 
     public Participantes(int dorsal, String tiempoCarrera) {
         this.dorsal = dorsal;
-        this.tiempoCarrera = tiempoCarrera;
+        this.tiempoParticipante = tiempoCarrera;
     }
 
     public Participantes(int dorsal, String tiempoCarrera, String nombre, String 
             dni, Date fechaNacimiento, String direccion, int telefono) {
         super(nombre, dni, fechaNacimiento, direccion, telefono);
         this.dorsal = dorsal;
-        this.tiempoCarrera = tiempoCarrera;
+        this.tiempoParticipante = tiempoCarrera;
     }
 
     public int getDorsal() {
@@ -33,11 +33,11 @@ public class Participantes extends Corredor implements Serializable  {
     }
 
     public String getTiempoCarrera() {
-        return tiempoCarrera;
+        return tiempoParticipante;
     }
 
     public void setTiempoCarrera(String tiempoCarrera) {
-        this.tiempoCarrera = tiempoCarrera;
+        this.tiempoParticipante = tiempoCarrera;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Participantes extends Corredor implements Serializable  {
     @Override
     public String toString() {
         return "Dorsal: " + dorsal + ", tiempo de carrera: " 
-                +tiempoCarrera+", "+super.toString();
+                +tiempoParticipante+", "+super.toString();
     }
 
 

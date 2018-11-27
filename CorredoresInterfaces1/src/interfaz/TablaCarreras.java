@@ -227,6 +227,7 @@ public class TablaCarreras extends javax.swing.JDialog {
         } else {
             Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
                     getListaCarreras().get(seleccionado);
+            carreraIniciarCarrera.setTiempoTotal("00:00:00");
             GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
                     true, carreraIniciarCarrera);
             LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);

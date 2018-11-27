@@ -257,6 +257,10 @@ public class GestionarCarrera extends javax.swing.JDialog {
         CronometroCarrera iniciarCarrera = new CronometroCarrera(new javax.swing.JFrame(), true);
         iniciarCarrera.setLocationRelativeTo(null);
         iniciarCarrera.setVisible(true);
+        
+        //RELLENAR TABLA CON PARTICIPANTES Y CARRERAS
+        rellenarTablaCarrerasConParticipantes();
+        rellenarTablaConParticipantes();
     }//GEN-LAST:event_jButtoncRONOMETROActionPerformed
 
     //Utilizando un AbstractTableModel

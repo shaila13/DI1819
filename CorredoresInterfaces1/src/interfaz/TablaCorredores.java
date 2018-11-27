@@ -18,7 +18,7 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     
     private int dorsal = 0;
-    private String tiempoCarrera;
+    private String tiempoCorredora="00:00:00";
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -251,6 +251,8 @@ public class TablaCorredores extends javax.swing.JDialog {
                 int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
                 Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
+               
+                //CAMBIAR EL INDICE
                 int contadorMaximoParticipantes = LogicaNegocio.getInstance().
                         getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
                 if (contador < contadorMaximoParticipantes) {
@@ -267,7 +269,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                     }
                     
                     //PITA AQUI
-                    Participantes participante = new Participantes(dorsal, tiempoCarrera,
+                    Participantes participante = new Participantes(dorsal, tiempoCorredora,
                             corredor.getNombre(), corredor.getDni(), corredor.
                                     getFechaNacimiento(),
                             corredor.getDireccion(), corredor.getTelefono());

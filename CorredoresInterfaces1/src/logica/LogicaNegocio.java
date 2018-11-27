@@ -321,7 +321,7 @@ public class LogicaNegocio implements Serializable {
     public boolean grabarCarreraConParticipantes() {
         String fichero;
         try {
-            //Cambiar el índice seleccionado
+            //CAMBIAR ÍNDICE CARRERA PARA QUE SEA EL SELECCIONADO
             fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
                     getFechaCarrera().getYear() + ".dat";
             ObjectOutputStream oos = null;

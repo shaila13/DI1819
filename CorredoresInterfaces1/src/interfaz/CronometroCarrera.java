@@ -15,6 +15,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
             + File.separator + "corredor.png";
     private String tiempoParcial, tiempoGlobal;
     private int dorsalParticipante = 0;
+    private boolean encontrado = false;
 
     /**
      * Creates new form CronometroCarrera
@@ -141,20 +142,19 @@ public class CronometroCarrera extends javax.swing.JDialog {
         btnStart.setEnabled(true);
         btnGuardarTiempoCorredor.setEnabled(false);
 
+        //AQUÍ VOY A TENER QUE METER LA INTERFACE
         String dorsal = JOptionPane.showInputDialog("Introduzca el dorsal del "
                 + "participante que acaba de llegar: ");
         dorsalParticipante = Integer.parseInt(dorsal);
-        //MIRAR ESTO
-        //Me coge la posicion no el dorsal
         for (int i = 0; i < LogicaNegocio.getInstance().getListaParticipantes().size(); i++) {
             LogicaNegocio.getInstance().getListaParticipantes().get(i);
-            if (LogicaNegocio.getInstance().getListaParticipantes().get(i).getDorsal() == dorsalParticipante) {
+            if (LogicaNegocio.getInstance().getListaParticipantes().get(i).getDorsal()
+                    == dorsalParticipante) {
                 LogicaNegocio.getInstance().getListaParticipantes().get(i).
                         setTiempoCarrera(tiempoParcial);
-                System.out.println("Participante: " + LogicaNegocio.getInstance().getListaParticipantes().get(i));
             }
-
         }
+
 
     }//GEN-LAST:event_btnGuardarTiempoCorredorActionPerformed
 
@@ -177,6 +177,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         //CAMBIÉ EL TIEMPO AQUÍ
         LogicaNegocio.getInstance().getListaCarrerasIniciar().get(0).
                 setTiempoTotal(tiempoGlobal);
+
         dispose();
     }//GEN-LAST:event_btnStopActionPerformed
 
