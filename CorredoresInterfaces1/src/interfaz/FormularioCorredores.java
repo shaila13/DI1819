@@ -128,8 +128,6 @@ public class FormularioCorredores extends javax.swing.JDialog {
         jButtonLimpiar = new javax.swing.JButton();
         validationPanel = new org.netbeans.validation.api.ui.swing.ValidationPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuSalir = new javax.swing.JMenu();
-        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -254,24 +252,6 @@ public class FormularioCorredores extends javax.swing.JDialog {
                 jButtonLimpiarActionPerformed(evt);
             }
         });
-
-        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(FormularioCorredores.class, "DialogConfiguracion.jMenuSalir.text")); // NOI18N
-        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSalirActionPerformed(evt);
-            }
-        });
-
-        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(FormularioCorredores.class, "DialogConfiguracion.jMenuItemSalirAplicacion.text")); // NOI18N
-        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSalirAplicacionActionPerformed(evt);
-            }
-        });
-        jMenuSalir.add(jMenuItemSalirAplicacion);
-
-        jMenuBar1.add(jMenuSalir);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -294,7 +274,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,16 +366,6 @@ public class FormularioCorredores extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefonoActionPerformed
 
-    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
-        //setVisible(false);
-        this.dispose();
-
-    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
-
-    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
-
-    }//GEN-LAST:event_jMenuSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonValidarCorredores;
@@ -406,8 +376,6 @@ public class FormularioCorredores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JSpinner jSpinnerFechaNacimiento;
     private javax.swing.JTextField jTextFieldDireccion;

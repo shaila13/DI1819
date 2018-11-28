@@ -179,6 +179,8 @@ public class LogicaNegocio implements Serializable {
         if (!listaParticipantes.contains(participante)) {
             listaParticipantes.add(participante);
             resultado = true;
+        }else{
+            resultado = false;
         }
         return resultado;
     }
@@ -346,7 +348,8 @@ public class LogicaNegocio implements Serializable {
     }
 
     /**
-     * Método para iniciar el guardado automático de la aplicación.
+     * Método para iniciar el guardado automático de los valores de la
+     * aplicación, si no se selecciona, se pone por defecto 5 minutos.
      *
      * @param automaticSave tiempo en minutos para ejecutar el timer de
      * autoguardado.
@@ -359,7 +362,6 @@ public class LogicaNegocio implements Serializable {
         tiempoActualizacionAutomatica = automaticSave * 60 * 1000;
         if (time == null) {
             time = new Timer();
-
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {

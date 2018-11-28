@@ -141,7 +141,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         tiempoParcial = cronometroPropio.getText();
         btnStart.setEnabled(true);
         btnGuardarTiempoCorredor.setEnabled(false);
-
+        //PONER TRUE PARA QUE SE SEPA QUE HA LLEGADO A LA META Y NO PODER REPETIR EL DORSAL
         //AQUÍ VOY A TENER QUE METER LA INTERFACE
         String dorsal = JOptionPane.showInputDialog("Introduzca el dorsal del "
                 + "participante que acaba de llegar: ");
@@ -153,7 +153,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
                 LogicaNegocio.getInstance().getListaParticipantes().get(i).
                         setTiempoCarrera(tiempoParcial);
                 JOptionPane.showMessageDialog(this, "Ha llegado el corredor con dorsal: "
-                        + dorsalParticipante + "tiempo de carrera: " + tiempoParcial);
+                        + dorsalParticipante + ", tiempo de carrera: " + tiempoParcial);
             }
         }
     }//GEN-LAST:event_btnGuardarTiempoCorredorActionPerformed

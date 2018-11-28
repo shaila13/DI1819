@@ -51,10 +51,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             public void windowClosing(WindowEvent we) {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
-                LogicaNegocio.getInstance().grabarCarreraConParticipantes();
-                //LogicaNegocio.getInstance().grabarCSVCorredores();
+                if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
+                    LogicaNegocio.getInstance().grabarCarreraConParticipantes();
+                }
             }
-
         });
 
     }
@@ -68,6 +68,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanelPantallaPrincipal = new javax.swing.JPanel();
         jButtonModificarCorredores = new javax.swing.JButton();
         jButtonModificarCarrera = new javax.swing.JButton();
@@ -82,6 +83,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
         jMenuItemAyuda = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,7 +117,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(jButtonModificarCorredores)
                 .addGap(50, 50, 50))
         );
@@ -176,6 +179,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuSalir.add(jMenuItemSalirAplicacion);
 
         jMenuItemAyuda.setText("Ayuda");
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
         jMenuSalir.add(jMenuItemAyuda);
 
         jMenuBar1.add(jMenuSalir);
@@ -236,12 +244,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
             String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo autoguardado (minutos): ");
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
-        }else{
-            String automaticSave="0";
+        } else {
+            String automaticSave = "0";
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
         }
 
     }//GEN-LAST:event_jCheckBoxMenuItemGrabadoAutomaticoActionPerformed
+    /**
+     * Crea un dialogo de mensaje con la ayuda de la aplicación.
+     *
+     * @param evt
+     */
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+
+        String mensaje = "Aplicación para gestionar una carrera con participantes. "
+                + "\nPara agregar o modificar un corredor a la base de datos pulse "
+                + "\nen el botón BBDD CORREDORES."
+                + "\nPara crear una carrera y gestionarla pulse en "
+                + "\nALTA/MODIFICACIÓN CARRERAS, "
+                + "\nposteriormente, cree la carrera que se va a realizar "
+                + "\ny pulse gestionar carrera para agregar los participantes "
+                + "\na la misma e iniciar la carrera para guardar los tiempos "
+                + "\ny los dorsales de los corredores. ";
+        String titulo = "Ayuda Gestión de Carreras.";
+        JOptionPane.showMessageDialog(null, mensaje, titulo, 1);
+
+
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,16 +286,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -275,8 +312,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             public void run() {
                 try {
                     new PantallaPrincipal().setVisible(true);
+
                 } catch (ParseException ex) {
-                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -290,6 +329,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
     private javax.swing.JMenu jMenuHistorialCarreras;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemGenerarPDF;

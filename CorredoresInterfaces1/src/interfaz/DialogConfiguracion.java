@@ -37,9 +37,6 @@ public class DialogConfiguracion extends javax.swing.JDialog {
         jComboBoxLAndF = new javax.swing.JComboBox<>();
         jButtonAceptarTema = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuSalir = new javax.swing.JMenu();
-        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,25 +62,6 @@ public class DialogConfiguracion extends javax.swing.JDialog {
             }
         });
 
-        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jMenuSalir.text")); // NOI18N
-        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSalirActionPerformed(evt);
-            }
-        });
-
-        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jMenuItemSalirAplicacion.text")); // NOI18N
-        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSalirAplicacionActionPerformed(evt);
-            }
-        });
-        jMenuSalir.add(jMenuItemSalirAplicacion);
-
-        jMenuBar1.add(jMenuSalir);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +85,7 @@ public class DialogConfiguracion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(0, 27, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jButtonAceptarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -138,22 +116,10 @@ public class DialogConfiguracion extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
-        //setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
-
-    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
-
-    }//GEN-LAST:event_jMenuSalirActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptarTema;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxLAndF;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables
 }

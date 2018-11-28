@@ -36,6 +36,8 @@ public class TablaCorredores extends javax.swing.JDialog {
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCorredores();
+        
+        
     }
 
     /**
@@ -56,8 +58,6 @@ public class TablaCorredores extends javax.swing.JDialog {
         jButtonGrabarCSVCorredores = new javax.swing.JButton();
         jButtonAnadirCorredorAcarrera = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuSalir = new javax.swing.JMenu();
-        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -154,23 +154,6 @@ public class TablaCorredores extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
-        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(TablaCorredores.class, "IniciarCarrera.jMenuSalir.text")); // NOI18N
-        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSalirActionPerformed(evt);
-            }
-        });
-
-        jMenuItemSalirAplicacion.setText(org.openide.util.NbBundle.getMessage(TablaCorredores.class, "IniciarCarrera.jMenuItemSalirAplicacion.text")); // NOI18N
-        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSalirAplicacionActionPerformed(evt);
-            }
-        });
-        jMenuSalir.add(jMenuItemSalirAplicacion);
-
-        jMenuBar1.add(jMenuSalir);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,7 +168,7 @@ public class TablaCorredores extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jPanelTablaCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -233,7 +216,6 @@ public class TablaCorredores extends javax.swing.JDialog {
                     "Borrar.", JOptionPane.INFORMATION_MESSAGE);
         }
         rellenarTablaCorredores();
-
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonGrabarCSVCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCSVCorredoresActionPerformed
@@ -279,6 +261,8 @@ public class TablaCorredores extends javax.swing.JDialog {
                                 true, participante);
                         dialogoIniciarCarrera.setLocationRelativeTo(null);
                         dialogoIniciarCarrera.setVisible(true);
+                        //this.dispose();
+                        //super.dispose();
                     } else {
                         JOptionPane.showMessageDialog(this, "El participante ya ha sido añadido en la carrera.",
                                 "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
@@ -287,23 +271,14 @@ public class TablaCorredores extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
                             "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
+                    this.dispose();
                 }
             } catch (ParseException ex) {
                 Exceptions.printStackTrace(ex);
             }
         }
-        //dispose();
+        
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
-
-    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
-        //setVisible(false);
-        this.dispose();
-
-    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
-
-    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
-
-    }//GEN-LAST:event_jMenuSalirActionPerformed
 
 //Utilizando un AbstractTableModel
     private void rellenarTablaCorredores() {
@@ -318,8 +293,6 @@ public class TablaCorredores extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGrabarCSVCorredores;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelTablaCorredores;
     private javax.swing.JScrollPane jScrollPaneTabla;
     private javax.swing.JTable jTableCorredores;

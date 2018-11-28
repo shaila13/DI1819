@@ -47,8 +47,6 @@ public class TablaCarreras extends javax.swing.JDialog {
         jButtonBorrar = new javax.swing.JButton();
         jButtonIniciarCarrera = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuSalir = new javax.swing.JMenu();
-        jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -130,25 +128,8 @@ public class TablaCarreras extends javax.swing.JDialog {
                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
-
-        jMenuSalir.setText("Salir");
-        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSalirActionPerformed(evt);
-            }
-        });
-
-        jMenuItemSalirAplicacion.setText("Salir");
-        jMenuItemSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSalirAplicacionActionPerformed(evt);
-            }
-        });
-        jMenuSalir.add(jMenuItemSalirAplicacion);
-
-        jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -225,27 +206,25 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
-                    getListaCarreras().get(seleccionado);
-            carreraIniciarCarrera.setTiempoTotal("00:00:00");
-            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
-                    true, carreraIniciarCarrera);
-            LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
-            dialogoIniciarCarrera.setLocationRelativeTo(null);
-            dialogoIniciarCarrera.setVisible(true);
+            if (LogicaNegocio.getInstance().
+                    getListaCarrerasIniciar().size() == 0) {
 
+                Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
+                        getListaCarreras().get(seleccionado);
+                carreraIniciarCarrera.setTiempoTotal("00:00:00");
+                GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
+                        true, carreraIniciarCarrera);
+                LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
+                dialogoIniciarCarrera.setLocationRelativeTo(null);
+                dialogoIniciarCarrera.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "No puede iniciar más de una carrera a la vez.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+            }
+            super.dispose();
         }
-        
+
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
-
-    private void jMenuItemSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirAplicacionActionPerformed
-        //setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItemSalirAplicacionActionPerformed
-
-    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
-
-    }//GEN-LAST:event_jMenuSalirActionPerformed
 
 //Utilizando un AbstractTableModel
     private void rellenarTablaCarreras() {
@@ -259,8 +238,6 @@ public class TablaCarreras extends javax.swing.JDialog {
     private javax.swing.JButton jButtonIniciarCarrera;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelTablaCarreras;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCarreras;
