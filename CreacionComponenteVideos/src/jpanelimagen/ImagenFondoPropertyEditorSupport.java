@@ -44,6 +44,7 @@ public class ImagenFondoPropertyEditorSupport extends PropertyEditorSupport {
     public String getJavaInitializationString() {
         ImagenFondo imagenFondo = imagenFondoPanel.getSelectedValue();
         String rutaImagenFondo = imagenFondo.getRutaImagen().getAbsolutePath();
+        rutaImagenFondo = rutaImagenFondo.replace("\\", "\\\\");
         return "new jpanelimagen.ImagenFondo("+"new java.io.File(\""+rutaImagenFondo+"\"),"+imagenFondo.getOpacidad()+"f)";
         
     }

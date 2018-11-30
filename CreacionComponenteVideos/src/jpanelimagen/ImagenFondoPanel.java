@@ -36,7 +36,6 @@ public class ImagenFondoPanel extends javax.swing.JPanel {
         jButtonIntroducirRuta = new javax.swing.JButton();
         jLabelOpacidad = new javax.swing.JLabel();
         jSliderOpacidad = new javax.swing.JSlider();
-        jLabelMedio = new javax.swing.JLabel();
 
         jLabelRutaImagen.setText("IMAGEN:");
 
@@ -51,7 +50,11 @@ public class ImagenFondoPanel extends javax.swing.JPanel {
 
         jLabelOpacidad.setText("OPACIDAD:");
 
-        jLabelMedio.setText("50");
+        jSliderOpacidad.setMajorTickSpacing(10);
+        jSliderOpacidad.setMinorTickSpacing(5);
+        jSliderOpacidad.setPaintLabels(true);
+        jSliderOpacidad.setPaintTicks(true);
+        jSliderOpacidad.setSnapToTicks(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -69,11 +72,7 @@ public class ImagenFondoPanel extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(jButtonIntroducirRuta))
                     .addComponent(jSliderOpacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelMedio)
-                .addGap(212, 212, 212))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,13 +82,13 @@ public class ImagenFondoPanel extends javax.swing.JPanel {
                     .addComponent(jLabelRutaImagen)
                     .addComponent(jTextFieldRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonIntroducirRuta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelMedio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelOpacidad)
-                    .addComponent(jSliderOpacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelOpacidad)
+                        .addGap(0, 79, Short.MAX_VALUE))
+                    .addComponent(jSliderOpacidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,7 +112,6 @@ public class ImagenFondoPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIntroducirRuta;
-    private javax.swing.JLabel jLabelMedio;
     private javax.swing.JLabel jLabelOpacidad;
     private javax.swing.JLabel jLabelRutaImagen;
     private javax.swing.JSlider jSliderOpacidad;

@@ -1,5 +1,7 @@
 package cronometro.modelo;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +20,39 @@ public class CronometroPropio extends JLabel implements Serializable {
     private boolean parar;
     private String tiempo;
     private Timer timer;
-    private List<CronometroListener> listeners = new ArrayList<>();
+    private List<LLegadaCorredor> listeners = new ArrayList<>();
+    private List<LLegadaCorredor> listenerPausar = new ArrayList<>();
 
     /**
-     * Cosntructor sin parámetros.
+     * Constructor sin parámetros.
      */
     public CronometroPropio() {
 
+        //meto aquí el evento de mouseclick
+        /*        this.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent me) {
+        int tiempoLlegada = 0;
+        int dorsal = 0;
+        /*if (LLegadaCorredor != null) {
+        ejecutar(dorsal, tiempoLlegada);
+        } //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    });
+         */
     }
 
-
-
+    /*
+      Hacer un método pausar que lleve todo el código que tengo en la interface y lo llamo desde allí
+           public void pausar(){
+    //pausas
+    fore pausarlistener
+        pausarlistener.ejecutar()
+    //aqui solo llamo al listener
+    
+    }
+     */
     public Timer getTimer() {
         return timer;
     }
@@ -70,11 +94,11 @@ public class CronometroPropio extends JLabel implements Serializable {
         this.tiempo = tiempo;
     }
 
-    public List<CronometroListener> getListeners() {
+    public List<LLegadaCorredor> getListeners() {
         return listeners;
     }
 
-    public void setListeners(List<CronometroListener> listeners) {
+    public void setListeners(List<LLegadaCorredor> listeners) {
         this.listeners = listeners;
     }
 
@@ -105,7 +129,11 @@ public class CronometroPropio extends JLabel implements Serializable {
             @Override
             public void run() {
                 if (parar) {
+                    /*for (LLegadaCorredor l : listeners) {
+                    l.ejecutar();
+                    }*/
                     cancel();
+
                 } else {
                     ++s;
                     if (s == 60) {
@@ -118,21 +146,21 @@ public class CronometroPropio extends JLabel implements Serializable {
                     }
                     actualizarCronometro();
                 }
-                if (listeners != null) {
-                    for (CronometroListener l : listeners) {
-                        l.ejecutar();
-                    }
-                }
+
             }
         }, 0, 1000);
 
     }
 
-    public boolean addCuentaAtrasFinalizadaListener(CronometroListener listener) {
-     return this.listeners.add(listener);
+    public boolean addCuentaAtrasFinalizadaListener(LLegadaCorredor listener) {
+        return this.listeners.add(listener);
     }
-    
-    public void ejecutarListeners(){
-        
+
+    public boolean addPausaListener(LLegadaCorredor listener) {
+        return this.listenerPausar.add(listener);
+    }
+
+    public void ejecutarListeners() {
+
     }
 }

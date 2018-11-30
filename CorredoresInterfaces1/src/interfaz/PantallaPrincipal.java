@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import logica.GestionGuardado;
 import logica.LogicaNegocio;
 
 /**
@@ -53,6 +54,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 //Meter aquí la logica grabar datos
                 if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
                     LogicaNegocio.getInstance().grabarCarreraConParticipantes();
+                    GestionGuardado.salvarCambios();
                 }
             }
         });

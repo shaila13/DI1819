@@ -4,6 +4,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
+import cronometro.modelo.LLegadaCorredor;
 
 /**
  *
@@ -25,6 +26,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         initComponents();
         //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+
     }
 
     /**

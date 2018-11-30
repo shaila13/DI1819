@@ -53,7 +53,7 @@ public class LogicaNegocio implements Serializable {
     /**
      * Cosntructor que inicializa arraysList.
      */
-    private LogicaNegocio() {
+    LogicaNegocio() {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();
@@ -179,7 +179,7 @@ public class LogicaNegocio implements Serializable {
         if (!listaParticipantes.contains(participante)) {
             listaParticipantes.add(participante);
             resultado = true;
-        }else{
+        } else {
             resultado = false;
         }
         return resultado;

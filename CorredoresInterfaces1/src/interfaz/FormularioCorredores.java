@@ -49,6 +49,8 @@ public class FormularioCorredores extends javax.swing.JDialog {
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombreApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING,
                 new MayusculaValidator());
+        
+//CAMBIAR VALIDACION DNI
         group.add(jTextFieldDni, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
@@ -355,7 +357,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNombreApellidosActionPerformed
 
     private void jTextFieldDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDniActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldDniActionPerformed
 
     private void jTextFieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDireccionActionPerformed
