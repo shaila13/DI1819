@@ -251,7 +251,9 @@ public class GestionarCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtoncRONOMETROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncRONOMETROActionPerformed
-
+        if (rootPaneCheckingEnabled) {
+            
+        }
         CronometroCarrera iniciarCarrera = new CronometroCarrera(new javax.swing.JFrame(), true);
         iniciarCarrera.setLocationRelativeTo(null);
         iniciarCarrera.setVisible(true);

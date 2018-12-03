@@ -255,12 +255,11 @@ public class TablaCorredores extends javax.swing.JDialog {
                             dorsal = contador;
                         }
 
-                        //PITA AQUI
                         Participantes participante = new Participantes(dorsal, tiempoCorredora,
                                 corredor.getNombre(), corredor.getDni(), corredor.
                                 getFechaNacimiento(),
                                 corredor.getDireccion(), corredor.getTelefono());
-                        LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
+
                         if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
                             GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
                                     true, participante);

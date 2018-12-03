@@ -11,6 +11,9 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.GestionGuardado;
@@ -28,6 +31,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
+    
+    private  boolean paginaPrincipal =false;
 
     //ojo con crearlo en veinte sitios
     //private LogicaNegocio logicaNegocio;
@@ -84,7 +89,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItemConfiguracion = new javax.swing.JMenuItem();
         jCheckBoxMenuItemGrabadoAutomatico = new javax.swing.JCheckBoxMenuItem();
         jMenuHistorialCarreras = new javax.swing.JMenu();
-        jMenuItemGenerarPDF = new javax.swing.JMenuItem();
         jMenuItemVerCarrerasAntiguas = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
@@ -161,15 +165,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuHistorialCarreras.setText("Historial Carreras");
 
-        jMenuItemGenerarPDF.setText("Generar PDF");
-        jMenuHistorialCarreras.add(jMenuItemGenerarPDF);
-
         jMenuItemVerCarrerasAntiguas.setText("Carreras Antiguas");
+        jMenuItemVerCarrerasAntiguas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemVerCarrerasAntiguasActionPerformed(evt);
+            }
+        });
         jMenuHistorialCarreras.add(jMenuItemVerCarrerasAntiguas);
 
         jMenuBar1.add(jMenuHistorialCarreras);
 
-        jMenuSalir.setText("Salir");
+        jMenuSalir.setText("Ayuda");
         jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuSalirActionPerformed(evt);
@@ -220,6 +226,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         TablaCorredores confirmacionValidar
                 = new TablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
+        paginaPrincipal =true;
     }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
 
     private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
@@ -249,7 +256,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
             String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo autoguardado (minutos): ");
-            LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
+            try
+            {
+                LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
+            }
+            catch (NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(this, "No ha introducido un número.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+                
+            }
+            
         } else {
             String automaticSave = "0";
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
@@ -262,19 +279,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
 
-        String mensaje = "Aplicación para gestionar una carrera con participantes. "
-                + "\nPara agregar o modificar un corredor a la base de datos pulse "
-                + "\nen el botón BBDD CORREDORES."
-                + "\nPara crear una carrera y gestionarla pulse en "
-                + "\nALTA/MODIFICACIÓN CARRERAS, "
-                + "\nposteriormente, cree la carrera que se va a realizar "
-                + "\ny pulse gestionar carrera para agregar los participantes "
-                + "\na la misma e iniciar la carrera para guardar los tiempos "
-                + "\ny los dorsales de los corredores. ";
-        String titulo = "Ayuda Gestión de Carreras.";
-        JOptionPane.showMessageDialog(null, mensaje, titulo, 1);
 
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuItemVerCarrerasAntiguasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerCarrerasAntiguasActionPerformed
+        
+        DialogHistorialCarreras gestionarCarreraFinalizada = new DialogHistorialCarreras(this, true);
+        gestionarCarreraFinalizada.setLocationRelativeTo(null);
+        gestionarCarreraFinalizada.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItemVerCarrerasAntiguasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,29 +344,36 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      * Método que incorpora la ayuda en nuestro proyecto.
      */
     private void ponLaAyuda() {
-        /*        try {
-        //Carga el fichero de ayuda
-        File fichero = new File("help" + File.separator + "help_set.hs");
-        URL hsURL = fichero.toURI().toURL();
-        
-        //Crea el HelpSet y el HelpBroker
-        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
-        HelpBroker hb = helpset.createHelpBroker();
-        
-        /**
-        * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
-        * secundaria.
-         */
- /*
-        hb.enableHelpOnButton(ayudaMenuItem, "ventana_principal", helpset);
-        hb.enableHelpKey(getRootPane(), "ventana_principal", helpset);
-        hb.enableHelpKey(jButton1, "ventana_principal", helpset);
-        hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
-        hb.enableHelpKey(jButton1, "ventana_principal", helpset);
-        hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
-    } catch (MalformedURLException ex) {
-    Exceptions.printStackTrace(ex);
-    }*/
+        try {
+            //Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            //Si metemos la carpeta help en src tenemos que quitar lo anterior y poner
+            /**
+             * URL ayuda = getClass().getResource("ruta"); File
+             * ficheroAyudaEnJar = new File(ayuda.toURI());
+             */
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            /**
+             * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+             * secundaria.
+             */
+            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_principal", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "ventana_principal", helpset);
+            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -365,7 +387,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
-    private javax.swing.JMenuItem jMenuItemGenerarPDF;
     private javax.swing.JMenuItem jMenuItemSalirAplicacion;
     private javax.swing.JMenuItem jMenuItemVerCarrerasAntiguas;
     private javax.swing.JMenu jMenuSalir;
