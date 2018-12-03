@@ -28,14 +28,11 @@ import org.openide.util.Exceptions;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
     
     private  boolean paginaPrincipal =false;
 
-    //ojo con crearlo en veinte sitios
-    //private LogicaNegocio logicaNegocio;
     /**
      * Creates new form PantallaPrincipal
      */
@@ -255,16 +252,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jCheckBoxMenuItemGrabadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemGrabadoAutomaticoActionPerformed
 
         if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
-            String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo autoguardado (minutos): ");
+            String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo "
+                    + "autoguardado (minutos): ");
             try
             {
-                LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
+                LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.
+                        parseInt(automaticSave));
             }
             catch (NumberFormatException e)
             {
                 JOptionPane.showMessageDialog(this, "No ha introducido un número.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
-                
             }
             
         } else {

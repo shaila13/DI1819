@@ -21,6 +21,7 @@ public class TablaCorredores extends javax.swing.JDialog {
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
+    private static boolean ocultarBoton = false;
 
     /**
      * Creates new form TablaCorredores
@@ -28,6 +29,11 @@ public class TablaCorredores extends javax.swing.JDialog {
     public TablaCorredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        if (!ocultarBoton) {
+            jButtonAnadirCorredorAcarrera.setVisible(false);
+        } else {
+            jButtonAnadirCorredorAcarrera.setVisible(true);
+        }
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
         jButtonAnadirCorredorAcarrera.setText("<html><p>Añadir </p>"
@@ -173,7 +179,12 @@ public class TablaCorredores extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public static void mostrarBotonOculto(boolean parametro) {
+        if (parametro) {
+            ocultarBoton = true;
+        }
 
+    }
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         FormularioCorredores dialogoAlta = new FormularioCorredores(this, true, logicaNegocio);
         dialogoAlta.setLocationRelativeTo(null);
@@ -228,7 +239,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                     + " por favor vaya a la pantalla principal y cree una nueva carrera.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            //jButtonAnadirCorredorAcarrera.setEnabled(false);
+
             int seleccionado = jTableCorredores.getSelectedRow();
             if (seleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
@@ -239,18 +250,22 @@ public class TablaCorredores extends javax.swing.JDialog {
                     Corredor corredor = LogicaNegocio.getInstance().
                             getListaCorredores().get(seleccionado);
 
-                    //CAMBIAR EL INDICE
                     int contadorMaximoParticipantes = LogicaNegocio.getInstance().
                             getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
                     if (contador < contadorMaximoParticipantes) {
                         contador++;
 
                         if (LogicaNegocio.getInstance().isBorrarCorredor()) {
-                            int numero = LogicaNegocio.getInstance().getListaParticipantes()
-                                    .size();
+                            if (LogicaNegocio.getInstance().getListaParticipantes()
+                                    .size() == 0) {
+                                dorsal = 1;
+                            } else {
+                                int numero = LogicaNegocio.getInstance().getListaParticipantes()
+                                        .size();
 
-                            dorsal = LogicaNegocio.getInstance().getListaParticipantes()
-                                    .get(numero - 1).getDorsal() + 1;
+                                dorsal = LogicaNegocio.getInstance().getListaParticipantes()
+                                        .get(numero - 1).getDorsal() + 1;
+                            }
                         } else {
                             dorsal = contador;
                         }

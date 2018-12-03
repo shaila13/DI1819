@@ -4,7 +4,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
-import cronometro.modelo.LLegadaCorredor;
+
 
 /**
  *
@@ -42,7 +42,6 @@ public class CronometroCarrera extends javax.swing.JDialog {
         btnStart = new javax.swing.JButton();
         btnGuardarTiempoCorredor = new javax.swing.JButton();
         btnStop = new javax.swing.JButton();
-        jLabelIcono = new javax.swing.JLabel();
         cronometroPropio = new cronometro.modelo.CronometroPropio();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -88,19 +87,14 @@ public class CronometroCarrera extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 528, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnStop)
+                            .addComponent(btnGuardarTiempoCorredor)
+                            .addComponent(btnStart)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnStop))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnGuardarTiempoCorredor, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnStart, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45)))))
+                                .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -108,20 +102,15 @@ public class CronometroCarrera extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnStart)
-                        .addGap(20, 20, 20)
-                        .addComponent(btnGuardarTiempoCorredor)
-                        .addGap(20, 20, 20)
-                        .addComponent(btnStop))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnStart)
+                .addGap(20, 20, 20)
+                .addComponent(btnGuardarTiempoCorredor)
+                .addGap(20, 20, 20)
+                .addComponent(btnStop)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +219,5 @@ public class CronometroCarrera extends javax.swing.JDialog {
     private javax.swing.JButton btnStop;
     private cronometro.modelo.CronometroPropio cronometroPropio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelIcono;
     // End of variables declaration//GEN-END:variables
 }
