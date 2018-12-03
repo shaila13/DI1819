@@ -9,10 +9,13 @@ import interfaz.TablaCorredores;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.GestionGuardado;
 import logica.LogicaNegocio;
+import org.openide.util.Exceptions;
 
 /**
  * Los combos se rellenan siempre en constructor porque no funciona, hacer una
@@ -33,6 +36,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal() throws ParseException {
         initComponents();
+        ponLaAyuda();
         //this.setExtendedState(this.MAXIMIZED_BOTH); //MAXIMIZAR FORMULARIO
         setLocationRelativeTo(null);
         //Establecer el título de la aplicación
@@ -250,7 +254,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             String automaticSave = "0";
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
         }
-
     }//GEN-LAST:event_jCheckBoxMenuItemGrabadoAutomaticoActionPerformed
     /**
      * Crea un dialogo de mensaje con la ayuda de la aplicación.
@@ -270,7 +273,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 + "\ny los dorsales de los corredores. ";
         String titulo = "Ayuda Gestión de Carreras.";
         JOptionPane.showMessageDialog(null, mensaje, titulo, 1);
-
 
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
@@ -323,6 +325,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Método que incorpora la ayuda en nuestro proyecto.
+     */
+    private void ponLaAyuda() {
+        /*        try {
+        //Carga el fichero de ayuda
+        File fichero = new File("help" + File.separator + "help_set.hs");
+        URL hsURL = fichero.toURI().toURL();
+        
+        //Crea el HelpSet y el HelpBroker
+        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+        HelpBroker hb = helpset.createHelpBroker();
+        
+        /**
+        * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+        * secundaria.
+         */
+ /*
+        hb.enableHelpOnButton(ayudaMenuItem, "ventana_principal", helpset);
+        hb.enableHelpKey(getRootPane(), "ventana_principal", helpset);
+        hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+        hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+        hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+        hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+    } catch (MalformedURLException ex) {
+    Exceptions.printStackTrace(ex);
+    }*/
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonModificarCarrera;
     private javax.swing.JButton jButtonModificarCorredores;
@@ -340,4 +371,5 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelPantallaPrincipal;
     // End of variables declaration//GEN-END:variables
+
 }

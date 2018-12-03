@@ -51,9 +51,9 @@ public class LogicaNegocio implements Serializable {
     private boolean borrarCorredor = false;
 
     /**
-     * Cosntructor que inicializa arraysList.
+     * Constructor que inicializa arraysList.
      */
-    LogicaNegocio() {
+    private LogicaNegocio() {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();

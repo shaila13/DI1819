@@ -1,15 +1,16 @@
-
 package org.netbeans.validation.api.builtin.stringvalidation;
 
 import org.netbeans.validation.api.Problems;
 import org.openide.util.NbBundle;
 
 /**
+ * Hacemos una clase nueva que extienda siempre de StringValidator
  *
  * @author Shaila
  */
-public class ValidacionDNI extends StringValidator{
+public class ValidacionDNI extends StringValidator {
 
+    //Implementamos el único método que tiene.
     @Override
     public void validate(Problems problems, String componentName, String nif) {
         //Si el largo del NIF es diferente a 9, acaba el método.

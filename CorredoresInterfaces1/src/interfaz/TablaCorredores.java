@@ -16,9 +16,8 @@ import org.openide.util.Exceptions;
  */
 public class TablaCorredores extends javax.swing.JDialog {
 
-    
     private int dorsal = 0;
-    private String tiempoCorredora="00:00:00";
+    private String tiempoCorredora = "00:00:00";
     private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -36,8 +35,7 @@ public class TablaCorredores extends javax.swing.JDialog {
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCorredores();
-        
-        
+
     }
 
     /**
@@ -224,60 +222,68 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
-        int seleccionado = jTableCorredores.getSelectedRow();
-        if (seleccionado == -1) {
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+        if (LogicaNegocio.getInstance().
+                getListaCarrerasIniciar().get(0).getNumeroMaxCorredores() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay ninguna carrera iniciada, "
+                    + " por favor vaya a la pantalla principal y cree una nueva carrera.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            try {
-                int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
-                Corredor corredor = LogicaNegocio.getInstance().
-                        getListaCorredores().get(seleccionado);
-               
-                //CAMBIAR EL INDICE
-                int contadorMaximoParticipantes = LogicaNegocio.getInstance().
-                        getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
-                if (contador < contadorMaximoParticipantes) {
-                    contador++;
+            //jButtonAnadirCorredorAcarrera.setEnabled(false);
+            int seleccionado = jTableCorredores.getSelectedRow();
+            if (seleccionado == -1) {
+                JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
+                        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
+                    Corredor corredor = LogicaNegocio.getInstance().
+                            getListaCorredores().get(seleccionado);
 
-                    if (LogicaNegocio.getInstance().isBorrarCorredor()) {
-                        int numero = LogicaNegocio.getInstance().getListaParticipantes()
-                                .size();
+                    //CAMBIAR EL INDICE
+                    int contadorMaximoParticipantes = LogicaNegocio.getInstance().
+                            getListaCarrerasIniciar().get(0).getNumeroMaxCorredores();
+                    if (contador < contadorMaximoParticipantes) {
+                        contador++;
 
-                        dorsal = LogicaNegocio.getInstance().getListaParticipantes()
-                                .get(numero - 1).getDorsal() + 1;
+                        if (LogicaNegocio.getInstance().isBorrarCorredor()) {
+                            int numero = LogicaNegocio.getInstance().getListaParticipantes()
+                                    .size();
+
+                            dorsal = LogicaNegocio.getInstance().getListaParticipantes()
+                                    .get(numero - 1).getDorsal() + 1;
+                        } else {
+                            dorsal = contador;
+                        }
+
+                        //PITA AQUI
+                        Participantes participante = new Participantes(dorsal, tiempoCorredora,
+                                corredor.getNombre(), corredor.getDni(), corredor.
+                                getFechaNacimiento(),
+                                corredor.getDireccion(), corredor.getTelefono());
+                        LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
+                        if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
+                            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
+                                    true, participante);
+                            dialogoIniciarCarrera.setLocationRelativeTo(null);
+                            dialogoIniciarCarrera.setVisible(true);
+                            //this.dispose();
+                            //super.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El participante ya ha sido añadido en la carrera.",
+                                    "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
+                        }
+
                     } else {
-                        dorsal = contador;
-                    }
-                    
-                    //PITA AQUI
-                    Participantes participante = new Participantes(dorsal, tiempoCorredora,
-                            corredor.getNombre(), corredor.getDni(), corredor.
-                                    getFechaNacimiento(),
-                            corredor.getDireccion(), corredor.getTelefono());
-                    LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante);
-                    if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
-                        GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
-                                true, participante);
-                        dialogoIniciarCarrera.setLocationRelativeTo(null);
-                        dialogoIniciarCarrera.setVisible(true);
-                        //this.dispose();
-                        //super.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El participante ya ha sido añadido en la carrera.",
+                        JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
                                 "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
+                        this.dispose();
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
-                            "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
-                    this.dispose();
+                } catch (ParseException ex) {
+                    Exceptions.printStackTrace(ex);
                 }
-            } catch (ParseException ex) {
-                Exceptions.printStackTrace(ex);
             }
         }
-        
+
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
 //Utilizando un AbstractTableModel

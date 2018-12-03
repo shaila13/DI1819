@@ -11,6 +11,7 @@ import logica.LogicaNegocio;
 import modelo.Corredor;
 import org.netbeans.validation.api.builtin.stringvalidation.MayusculaValidator;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.builtin.stringvalidation.ValidacionDNI;
 import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
@@ -49,15 +50,18 @@ public class FormularioCorredores extends javax.swing.JDialog {
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombreApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING,
                 new MayusculaValidator());
-        
+
 //CAMBIAR VALIDACION DNI
-        group.add(jTextFieldDni, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTextFieldDni, StringValidators.REQUIRE_NON_EMPTY_STRING, new ValidacionDNI());
         group.add(jTextFieldDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
+
         group.add(jTextFieldTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
 
-        validationPanel.addChangeListener((new ChangeListener() {
+        validationPanel.addChangeListener(
+                (new ChangeListener() {
             @Override
-            public void stateChanged(ChangeEvent ce) {
+            public void stateChanged(ChangeEvent ce
+            ) {
                 if (validationPanel.getProblem() == null) {
                     jButtonValidarCorredores.setEnabled(true);
                 } else {
