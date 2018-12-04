@@ -23,9 +23,8 @@ import org.netbeans.validation.api.ui.ValidationGroup;
 public class FormularioCorredores extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
-    private LogicaNegocio logicaNegocio;
-    private Corredor corredorModificar = null;
-    private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
+    private LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
+    private Corredor corredorModificar = null; 
     private String nombre = "";
     private String dni = "";
     private Date fechaNacimiento;
@@ -55,7 +54,8 @@ public class FormularioCorredores extends javax.swing.JDialog {
         group.add(jTextFieldDni, StringValidators.REQUIRE_NON_EMPTY_STRING, new ValidacionDNI());
         group.add(jTextFieldDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
 
-        group.add(jTextFieldTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
+        group.add(jTextFieldTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING, 
+                StringValidators.REQUIRE_VALID_INTEGER);
 
         validationPanel.addChangeListener(
                 (new ChangeListener() {

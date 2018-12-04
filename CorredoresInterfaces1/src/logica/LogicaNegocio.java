@@ -59,6 +59,13 @@ public class LogicaNegocio implements Serializable {
         listaParticipantes = new ArrayList<>();
         listaCarrerasIniciar = new ArrayList<>();
     }
+     public static LogicaNegocio getInstance() {
+        if (INSTANCE != null) {
+            return INSTANCE;
+        }
+        LogicaNegocio logicaNegocio = new LogicaNegocio();
+        return logicaNegocio;
+    }
 
 //Getters y Setters
     public boolean isBorrarCorredor() {
@@ -115,13 +122,7 @@ public class LogicaNegocio implements Serializable {
      *
      * @return INSTANCE
      */
-    public static LogicaNegocio getInstance() {
-        if (INSTANCE == null) {
-            LogicaNegocio logicaNegocio = new LogicaNegocio();
-            return logicaNegocio;
-        }
-        return INSTANCE;
-    }
+   
 
     /**
      * Método para borrar un participante de la lista de participantes de la

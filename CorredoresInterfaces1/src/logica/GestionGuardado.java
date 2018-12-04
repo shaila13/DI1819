@@ -38,7 +38,9 @@ public class GestionGuardado implements Serializable {
             Exceptions.printStackTrace(ex);
         } finally {
             try {
+                oos.flush();
                 oos.close();
+                
             } catch (IOException ex) {
                 Exceptions.printStackTrace(ex);
             }
@@ -46,7 +48,7 @@ public class GestionGuardado implements Serializable {
     }
 
     public static LogicaNegocio cargarInstancia() {
-        File archivo = new File("LogicaAplicacion.dat");
+        File archivo = new File("LogicaNegocio.dat");
         LogicaNegocio la = null;
         if (archivo.exists())
         {

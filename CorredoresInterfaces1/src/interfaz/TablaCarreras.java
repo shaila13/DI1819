@@ -13,13 +13,13 @@ import modelo.Carrera;
  */
 public class TablaCarreras extends javax.swing.JDialog {
 
-    private LogicaNegocio logicaNegocio;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
 
     /**
      * Creates new form TablaCorredores
      */
+    LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
     public TablaCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -163,7 +163,7 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            Carrera carreraModificar = LogicaNegocio.getInstance().getListaCarreras().get(seleccionado);
+            Carrera carreraModificar = logicaNegocio.getListaCarreras().get(seleccionado);
             FormularioCarreras dialogoModificar = new FormularioCarreras(this,
                     true, carreraModificar);
             dialogoModificar.setLocationRelativeTo(null);
@@ -186,13 +186,13 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            Carrera carreraBorrar = LogicaNegocio.getInstance().getListaCarreras()
+            Carrera carreraBorrar = logicaNegocio.getListaCarreras()
                     .get(seleccionado);
 
             int confirmación = JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?",
                     "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
             if (confirmación == JOptionPane.YES_OPTION) {
-                LogicaNegocio.getInstance().borrarCarrera(carreraBorrar);
+                logicaNegocio.borrarCarrera(carreraBorrar);
                 JOptionPane.showMessageDialog(this, "Se ha borrado la carrera.",
                         "Borrar.", JOptionPane.INFORMATION_MESSAGE);
             } else if (confirmación == JOptionPane.NO_OPTION) {
@@ -210,15 +210,15 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (LogicaNegocio.getInstance().
+            if (logicaNegocio.
                     getListaCarrerasIniciar().size() == 0) {
 
-                Carrera carreraIniciarCarrera = LogicaNegocio.getInstance().
+                Carrera carreraIniciarCarrera = logicaNegocio.
                         getListaCarreras().get(seleccionado);
                 carreraIniciarCarrera.setTiempoTotal("00:00:00");
                 GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
                         true, carreraIniciarCarrera);
-                LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
+                logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
                 dialogoIniciarCarrera.setLocationRelativeTo(null);
                 dialogoIniciarCarrera.setVisible(true);
             } else {
@@ -233,7 +233,7 @@ public class TablaCarreras extends javax.swing.JDialog {
 //Utilizando un AbstractTableModel
     private void rellenarTablaCarreras() {
         jTableCarreras.setModel(new TableModelCarreras(
-                LogicaNegocio.getInstance().getListaCarreras()));
+                logicaNegocio.getListaCarreras()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

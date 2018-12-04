@@ -1,9 +1,6 @@
 
 package interfaz;
 
-import javax.swing.DefaultComboBoxModel;
-
-import javax.swing.UIManager;
 
 /**
  *

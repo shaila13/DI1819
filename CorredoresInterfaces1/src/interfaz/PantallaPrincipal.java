@@ -35,6 +35,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPrincipal
      */
+    LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
+
     public PantallaPrincipal() throws ParseException {
         initComponents();
         ponLaAyuda();
@@ -42,7 +44,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Establecer el título de la aplicación
         setTitle("APLICACIÓN GESTIÓN CARRERAS.");
-        LogicaNegocio.getInstance().cargarCSVCorredores();
+
+        File archivo = new File("LogicaNegocio.dat");
+        if (!archivo.exists()) {
+            logicaNegocio.cargarCSVCorredores();
+        }
         //Establecer una imagen en una label
         jLabelIcono.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
         jButtonModificarCorredores.setText("<html><p>BBDD </p>"
@@ -58,8 +64,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
                 //if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
-                    //LogicaNegocio.getInstance().grabarCarreraConParticipantes();
-                    GestionGuardado.salvarCambios();
+                //LogicaNegocio.getInstance().grabarCarreraConParticipantes();
+                GestionGuardado.salvarCambios();
                 //}
 
             }
@@ -221,14 +227,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jButtonModificarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCorredoresActionPerformed
         TablaCorredores confirmacionValidar
-                = new TablaCorredores(new javax.swing.JFrame(), true);
+                = new TablaCorredores(this, true);
         confirmacionValidar.setVisible(true);
         paginaPrincipal = true;
     }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
 
     private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
         TablaCarreras confirmacionValidar
-                = new TablaCarreras(new javax.swing.JFrame(), true);
+                = new TablaCarreras(this, true);
         confirmacionValidar.setVisible(true);
     }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
 
@@ -282,7 +288,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         DialogHistorialCarreras gestionarCarreraFinalizada = new DialogHistorialCarreras(this, true);
         gestionarCarreraFinalizada.setLocationRelativeTo(null);
         gestionarCarreraFinalizada.setVisible(true);
-       
+
     }//GEN-LAST:event_jMenuItemVerCarrerasAntiguasActionPerformed
 
     /**
