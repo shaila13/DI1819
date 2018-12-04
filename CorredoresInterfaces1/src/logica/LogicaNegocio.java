@@ -33,7 +33,7 @@ public class LogicaNegocio implements Serializable {
 
     //Atributos
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
-    private static LogicaNegocio INSTANCE;
+    private static LogicaNegocio INSTANCE = GestionGuardado.cargarInstancia();
     private transient Timer time;
     private long tiempoActualizacionAutomatica = 0;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
@@ -53,7 +53,7 @@ public class LogicaNegocio implements Serializable {
     /**
      * Constructor que inicializa arraysList.
      */
-    private LogicaNegocio() {
+    LogicaNegocio() {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();
@@ -117,7 +117,8 @@ public class LogicaNegocio implements Serializable {
      */
     public static LogicaNegocio getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new LogicaNegocio();
+            LogicaNegocio logicaNegocio = new LogicaNegocio();
+            return logicaNegocio;
         }
         return INSTANCE;
     }
@@ -252,22 +253,39 @@ public class LogicaNegocio implements Serializable {
         Corredor corredor;
         FileWriter fw = null;
         String linea;
-
+        File fichero = new File("Corredores.csv");
         //Poner si ya existe que me lo sobrescriba
         try {
-            //si no pongo true cuando grabe solo graba el primero
-            fw = new FileWriter("Corredores.csv", true);
-            BufferedWriter fsalida = new BufferedWriter(fw);
-            //leemos el primer registro
+            if (fichero.exists()) {
+                fichero.delete();
+                //si no pongo true cuando grabe solo graba el primero
+                fw = new FileWriter(fichero, true);
+                BufferedWriter fsalida = new BufferedWriter(fw);
+                //leemos el primer registro
 
-            for (Corredor elemento : listaCorredores) {
-                String fnacimiento = fecha.format(elemento.getFechaNacimiento());
-                fsalida.write(elemento.getNombre() + "," + elemento.getDni()
-                        + "," + fnacimiento + "," + elemento.getDireccion()
-                        + "," + elemento.getTelefono() + "\n");
+                for (Corredor elemento : listaCorredores) {
+                    String fnacimiento = fecha.format(elemento.getFechaNacimiento());
+                    fsalida.write(elemento.getNombre() + "," + elemento.getDni()
+                            + "," + fnacimiento + "," + elemento.getDireccion()
+                            + "," + elemento.getTelefono() + "\n");
+                }
+                fsalida.flush();
+                fsalida.close();
+            } else {
+                //si no pongo true cuando grabe solo graba el primero
+                fw = new FileWriter(fichero, true);
+                BufferedWriter fsalida = new BufferedWriter(fw);
+                //leemos el primer registro
+
+                for (Corredor elemento : listaCorredores) {
+                    String fnacimiento = fecha.format(elemento.getFechaNacimiento());
+                    fsalida.write(elemento.getNombre() + "," + elemento.getDni()
+                            + "," + fnacimiento + "," + elemento.getDireccion()
+                            + "," + elemento.getTelefono() + "\n");
+                }
+                fsalida.flush();
+                fsalida.close();
             }
-            fsalida.flush();
-            fsalida.close();
         } catch (IOException ex) {
             ex.printStackTrace();
 

@@ -64,7 +64,7 @@ public class GestionGuardado implements Serializable {
         }
         else
             //Cambié esto 03/12/2018
-            la = LogicaNegocio.getInstance();
+            la = new LogicaNegocio();
         
         return la;
 

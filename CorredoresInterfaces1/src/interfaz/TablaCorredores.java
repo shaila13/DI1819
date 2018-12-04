@@ -235,6 +235,8 @@ public class TablaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonGrabarCSVCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCSVCorredoresActionPerformed
+        
+        
         LogicaNegocio.getInstance().grabarCSVCorredores();
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 

@@ -29,8 +29,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
-    
-    private boolean paginaPrincipal =false;
+
+    private boolean paginaPrincipal = false;
 
     /**
      * Creates new form PantallaPrincipal
@@ -57,10 +57,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             public void windowClosing(WindowEvent we) {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
-                if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
-                    LogicaNegocio.getInstance().grabarCarreraConParticipantes();
+                //if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
+                    //LogicaNegocio.getInstance().grabarCarreraConParticipantes();
                     GestionGuardado.salvarCambios();
-                }
+                //}
+
             }
         });
 
@@ -222,7 +223,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         TablaCorredores confirmacionValidar
                 = new TablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
-        paginaPrincipal =true;
+        paginaPrincipal = true;
     }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
 
     private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
@@ -253,17 +254,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         if (jCheckBoxMenuItemGrabadoAutomatico.getState()) {
             String automaticSave = JOptionPane.showInputDialog("Introduzca tiempo "
                     + "autoguardado (minutos): ");
-            try
-            {
+            try {
                 LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.
                         parseInt(automaticSave));
-            }
-            catch (NumberFormatException e)
-            {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "No ha introducido un número.",
-                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+                        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } else {
             String automaticSave = "0";
             LogicaNegocio.getInstance().iniciarGuardadoAutomatico(Integer.parseInt(automaticSave));
@@ -280,12 +278,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
     private void jMenuItemVerCarrerasAntiguasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerCarrerasAntiguasActionPerformed
-        
+
         DialogHistorialCarreras gestionarCarreraFinalizada = new DialogHistorialCarreras(this, true);
         gestionarCarreraFinalizada.setLocationRelativeTo(null);
         gestionarCarreraFinalizada.setVisible(true);
-        
-        
+       
     }//GEN-LAST:event_jMenuItemVerCarrerasAntiguasActionPerformed
 
     /**
