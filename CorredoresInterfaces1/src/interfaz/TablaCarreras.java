@@ -25,10 +25,14 @@ public class TablaCarreras extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("TABLA CARRERAS.");
+
+
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCarreras();
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,7 +132,7 @@ public class TablaCarreras extends javax.swing.JDialog {
                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         setJMenuBar(jMenuBar1);
@@ -217,9 +221,9 @@ public class TablaCarreras extends javax.swing.JDialog {
                 LogicaNegocio.getInstance().anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
                 dialogoIniciarCarrera.setLocationRelativeTo(null);
                 dialogoIniciarCarrera.setVisible(true);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "No puede iniciar más de una carrera a la vez.",
-                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+                        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
             }
             super.dispose();
         }

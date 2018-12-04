@@ -1,7 +1,6 @@
 package interfaz;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import interfaz.TablaCarreras;
@@ -31,7 +30,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
     
-    private  boolean paginaPrincipal =false;
+    private boolean paginaPrincipal =false;
 
     /**
      * Creates new form PantallaPrincipal
@@ -118,13 +117,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanelPantallaPrincipalLayout.setHorizontalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(170, 170, 170)
                 .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonModificarCorredores)
                 .addGap(50, 50, 50))
         );

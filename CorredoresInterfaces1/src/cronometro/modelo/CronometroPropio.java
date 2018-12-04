@@ -3,8 +3,6 @@ package cronometro.modelo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TimerTask;
 import javax.swing.JLabel;
 import java.util.Timer;
@@ -20,8 +18,7 @@ public class CronometroPropio extends JLabel implements Serializable {
     private boolean parar;
     private String tiempo;
     private Timer timer;
-    private List<LLegadaCorredor> listeners = new ArrayList<>();
-    private List<LLegadaCorredor> listenerPausar = new ArrayList<>();
+    private LLegadaParticipantes llegadaParticipantes;
 
     /**
      * Constructor sin parámetros.
@@ -29,35 +26,25 @@ public class CronometroPropio extends JLabel implements Serializable {
     public CronometroPropio() {
 
         //meto aquí el evento de mouseclick
-        /*        this.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent me) {
-        int tiempoLlegada = 0;
-        int dorsal = 0;
-        /*if (LLegadaCorredor != null) {
-        ejecutar(dorsal, tiempoLlegada);
-        } //To change body of generated methods, choose Tools | Templates.
-        }
-        
-    });
-         */
-    }
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                String llegada = "00:00:00";
+                int dorsal = 0;
+                if (llegadaParticipantes != null) {
+                    llegadaParticipantes.ejecutar(dorsal, llegada);
+                }
+            }
 
-    /*
-      Hacer un método pausar que lleve todo el código que tengo en la interface y lo llamo desde allí
-           public void pausar(){
-    //pausas
-    fore pausarlistener
-        pausarlistener.ejecutar()
-    //aqui solo llamo al listener
-    
+        });
+
     }
-     */
+//Getters y Setters generados por defecto.
+
     public Timer getTimer() {
         return timer;
     }
 
-//Getters y Setters generados por defecto.
     public void setTimer(Timer timer) {
         this.timer = timer;
     }
@@ -94,14 +81,6 @@ public class CronometroPropio extends JLabel implements Serializable {
         this.tiempo = tiempo;
     }
 
-    public List<LLegadaCorredor> getListeners() {
-        return listeners;
-    }
-
-    public void setListeners(List<LLegadaCorredor> listeners) {
-        this.listeners = listeners;
-    }
-
     public void actualizarCronometro() {
         String tiempo = (h <= 9 ? "0" : "") + h + ":" + (m <= 9 ? "0" : "") + m
                 + ":" + (s <= 9 ? "0" : "") + s;
@@ -129,11 +108,7 @@ public class CronometroPropio extends JLabel implements Serializable {
             @Override
             public void run() {
                 if (parar) {
-                    /*for (LLegadaCorredor l : listeners) {
-                    l.ejecutar();
-                    }*/
                     cancel();
-
                 } else {
                     ++s;
                     if (s == 60) {
@@ -152,12 +127,8 @@ public class CronometroPropio extends JLabel implements Serializable {
 
     }
 
-    public boolean addCuentaAtrasFinalizadaListener(LLegadaCorredor listener) {
-        return this.listeners.add(listener);
-    }
-
-    public boolean addPausaListener(LLegadaCorredor listener) {
-        return this.listenerPausar.add(listener);
+    public void addLlegadaParticipante(LLegadaParticipantes llegadaParticipantes) {
+        this.llegadaParticipantes = llegadaParticipantes;
     }
 
     public void ejecutarListeners() {

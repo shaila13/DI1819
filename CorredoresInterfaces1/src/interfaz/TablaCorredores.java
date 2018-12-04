@@ -179,7 +179,14 @@ public class TablaCorredores extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public static void mostrarBotonOculto(boolean parametro) {
+
+    /**
+     * Método estático para ocultar botones dependiendo del frame desde el que
+     * se acceda.
+     *
+     * @param parametro
+     */
+    public static void mostrarBotonOculto(boolean parametro) {
         if (parametro) {
             ocultarBoton = true;
         }

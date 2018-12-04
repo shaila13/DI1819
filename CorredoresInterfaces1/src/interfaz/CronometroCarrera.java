@@ -1,10 +1,11 @@
 package interfaz;
 
+import cronometro.modelo.LLegadaParticipantes;
+import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
-
 
 /**
  *
@@ -14,9 +15,8 @@ public class CronometroCarrera extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
-    private String tiempoParcial, tiempoGlobal;
+    private String tiempoGlobal;
     private int dorsalParticipante = 0;
-    private boolean encontrado = false;
 
     /**
      * Creates new form CronometroCarrera
@@ -26,7 +26,32 @@ public class CronometroCarrera extends javax.swing.JDialog {
         initComponents();
         //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        cronometroPropio.addLlegadaParticipante(new LLegadaParticipantes() {
+            @Override
+            public void ejecutar(int dorsal, String tiempoParcial) {
 
+                tiempoParcial = cronometroPropio.getText();
+                btnStart.setEnabled(true);
+
+                //PONER TRUE PARA QUE SE SEPA QUE HA LLEGADO A LA META Y NO PODER REPETIR EL DORSAL
+                //AQUÍ VOY A TENER QUE METER LA INTERFACE
+                String dorsalPregunta = JOptionPane.showInputDialog("Introduzca el dorsal del "
+                        + "participante que acaba de llegar: ");
+                dorsalParticipante = Integer.parseInt(dorsalPregunta);
+                for (int i = 0; i < LogicaNegocio.getInstance().getListaParticipantes().size(); i++) {
+                    LogicaNegocio.getInstance().getListaParticipantes().get(i);
+                    if (LogicaNegocio.getInstance().getListaParticipantes().get(i).getDorsal()
+                            == dorsalParticipante) {
+                        LogicaNegocio.getInstance().getListaParticipantes().get(i).
+                                setTiempoCarrera(tiempoParcial);
+                        rellenarTablaConParticipantes();
+                        JOptionPane.showMessageDialog(null, "Ha llegado el corredor con dorsal: "
+                                + dorsalParticipante + ", tiempo de carrera: " + tiempoParcial);
+                    }
+                }
+
+            }
+        });
     }
 
     /**
@@ -40,16 +65,17 @@ public class CronometroCarrera extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
-        btnGuardarTiempoCorredor = new javax.swing.JButton();
         btnStop = new javax.swing.JButton();
         cronometroPropio = new cronometro.modelo.CronometroPropio();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableParticipantes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.jLabel1.text")); // NOI18N
 
-        btnStart.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnStart.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnStart.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.btnStart.text")); // NOI18N
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,15 +83,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
             }
         });
 
-        btnGuardarTiempoCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btnGuardarTiempoCorredor.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.btnGuardarTiempoCorredor.text")); // NOI18N
-        btnGuardarTiempoCorredor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarTiempoCorredorActionPerformed(evt);
-            }
-        });
-
-        btnStop.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnStop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnStop.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.btnStop.text")); // NOI18N
         btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,89 +91,79 @@ public class CronometroCarrera extends javax.swing.JDialog {
             }
         });
 
+        cronometroPropio.setBackground(new java.awt.Color(153, 204, 255));
         cronometroPropio.setBorder(new javax.swing.border.MatteBorder(null));
         cronometroPropio.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.cronometroPropio.text")); // NOI18N
+        cronometroPropio.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+
+        jTableParticipantes.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jTableParticipantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableParticipantes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 528, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnStop)
-                            .addComponent(btnGuardarTiempoCorredor)
-                            .addComponent(btnStart)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)))
-                        .addGap(20, 20, 20))))
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addComponent(btnStart)
+                                .addGap(193, 193, 193)
+                                .addComponent(btnStop))
+                            .addComponent(jLabel1))
+                        .addGap(0, 107, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(267, 267, 267))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStart)
-                .addGap(20, 20, 20)
-                .addComponent(btnGuardarTiempoCorredor)
-                .addGap(20, 20, 20)
-                .addComponent(btnStop)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStart)
+                    .addComponent(btnStop))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-
+        rellenarTablaConParticipantes();
         cronometroPropio.start();
         btnStart.setEnabled(false);
-        btnStart.setText("Reanudar");
-        btnGuardarTiempoCorredor.setEnabled(true);
         btnStop.setEnabled(true);
-
-
     }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnGuardarTiempoCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTiempoCorredorActionPerformed
-
-        tiempoParcial = cronometroPropio.getText();
-        btnStart.setEnabled(true);
-        btnGuardarTiempoCorredor.setEnabled(false);
-        //PONER TRUE PARA QUE SE SEPA QUE HA LLEGADO A LA META Y NO PODER REPETIR EL DORSAL
-        //AQUÍ VOY A TENER QUE METER LA INTERFACE
-        String dorsal = JOptionPane.showInputDialog("Introduzca el dorsal del "
-                + "participante que acaba de llegar: ");
-        dorsalParticipante = Integer.parseInt(dorsal);
-        for (int i = 0; i < LogicaNegocio.getInstance().getListaParticipantes().size(); i++) {
-            LogicaNegocio.getInstance().getListaParticipantes().get(i);
-            if (LogicaNegocio.getInstance().getListaParticipantes().get(i).getDorsal()
-                    == dorsalParticipante) {
-                LogicaNegocio.getInstance().getListaParticipantes().get(i).
-                        setTiempoCarrera(tiempoParcial);
-                JOptionPane.showMessageDialog(this, "Ha llegado el corredor con dorsal: "
-                        + dorsalParticipante + ", tiempo de carrera: " + tiempoParcial);
-            }
-        }
-    }//GEN-LAST:event_btnGuardarTiempoCorredorActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         cronometroPropio.setParar(true);
         btnStart.setEnabled(true);
         btnStart.setText("Iniciar");
-        btnGuardarTiempoCorredor.setEnabled(false);
         btnStop.setEnabled(false);
-
         tiempoGlobal = cronometroPropio.getText();
         cronometroPropio.setH(0);
         cronometroPropio.setM(0);
@@ -170,6 +178,10 @@ public class CronometroCarrera extends javax.swing.JDialog {
                 setTiempoTotal(tiempoGlobal);
         dispose();
     }//GEN-LAST:event_btnStopActionPerformed
+    private void rellenarTablaConParticipantes() {
+        jTableParticipantes.setModel(new TableModelParticipantes(
+                LogicaNegocio.getInstance().getListaParticipantes()));
+    }
 
     /**
      * @param args the command line arguments
@@ -214,10 +226,11 @@ public class CronometroCarrera extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarTiempoCorredor;
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btnStop;
     private cronometro.modelo.CronometroPropio cronometroPropio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableParticipantes;
     // End of variables declaration//GEN-END:variables
 }

@@ -272,12 +272,12 @@ public class GestionarCarrera extends javax.swing.JDialog {
                     + "con participantes.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-
             CronometroCarrera iniciarCarrera = new CronometroCarrera(new javax.swing.JFrame(), true);
             iniciarCarrera.setLocationRelativeTo(null);
             iniciarCarrera.setVisible(true);
             rellenarTablaCarrerasConParticipantes();
             rellenarTablaConParticipantes();
+            
         }
     }//GEN-LAST:event_jButtoncRONOMETROActionPerformed
 
@@ -330,6 +330,9 @@ public class GestionarCarrera extends javax.swing.JDialog {
         TablaCarreras confirmacionValidar
                 = new TablaCarreras(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
+
+
+
     }//GEN-LAST:event_jButtonSeleccionarCarreraActionPerformed
 
     //Utilizando un AbstractTableModel
