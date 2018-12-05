@@ -23,6 +23,7 @@ import org.openide.util.Exceptions;
 public class GestionarCarrera extends javax.swing.JDialog {
 
     private Carrera carreraIniciar;
+    private CarreraFinalizada carreraFinalizada;
     private Participantes participante;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -397,7 +398,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
                     .get(0).getNumeroMaxCorredores();
             String tiempoTotal = LogicaNegocio.getInstance().getListaCarrerasIniciar()
                     .get(0).getTiempoTotal();
-            CarreraFinalizada carreraFinalizada = new CarreraFinalizada(true,
+            carreraFinalizada = new CarreraFinalizada(true,
                     LogicaNegocio.getInstance().getListaParticipantes(), fechaCarrera,
                     lugarCarrera, numeroMaxCorredores, tiempoTotal);
             LogicaNegocio.getInstance().anadirCarreraAlistaFinalizadas(carreraFinalizada);
@@ -410,7 +411,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
 
     private void jButtonExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarCSVActionPerformed
 
-        LogicaNegocio.getInstance().grabarCarrera();
+        LogicaNegocio.getInstance().grabarCarrera(carreraFinalizada);
     }//GEN-LAST:event_jButtonExportarCSVActionPerformed
 
     //Utilizando un AbstractTableModel
