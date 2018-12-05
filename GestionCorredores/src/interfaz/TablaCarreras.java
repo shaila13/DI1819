@@ -20,19 +20,17 @@ public class TablaCarreras extends javax.swing.JDialog {
      * Creates new form TablaCorredores
      */
     LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
+
     public TablaCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("TABLA CARRERAS.");
 
-
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCarreras();
     }
-
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -210,21 +208,16 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (logicaNegocio.
-                    getListaCarrerasIniciar().size() == 0) {
 
-                Carrera carreraIniciarCarrera = logicaNegocio.
-                        getListaCarreras().get(seleccionado);
-                carreraIniciarCarrera.setTiempoTotal("00:00:00");
-                GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
-                        true, carreraIniciarCarrera);
-                logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
-                dialogoIniciarCarrera.setLocationRelativeTo(null);
-                dialogoIniciarCarrera.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "No puede iniciar más de una carrera a la vez.",
-                        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
-            }
+            Carrera carreraIniciarCarrera = logicaNegocio.
+                    getListaCarreras().get(seleccionado);
+            carreraIniciarCarrera.setTiempoTotal("00:00:00");
+            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
+                    true, carreraIniciarCarrera);
+            logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
+            dialogoIniciarCarrera.setLocationRelativeTo(null);
+            dialogoIniciarCarrera.setVisible(true);
+
             super.dispose();
         }
 

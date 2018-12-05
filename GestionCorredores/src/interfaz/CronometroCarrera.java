@@ -126,8 +126,8 @@ public class CronometroCarrera extends javax.swing.JDialog {
                                 .addGap(193, 193, 193)
                                 .addComponent(btnStop))
                             .addComponent(jLabel1))
-                        .addGap(0, 107, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 99, Short.MAX_VALUE)))
+                .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cronometroPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,6 +160,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
+
         cronometroPropio.setParar(true);
         btnStart.setEnabled(true);
         btnStart.setText("Iniciar");
@@ -172,10 +173,10 @@ public class CronometroCarrera extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Carrera finalizada, tiempo de carrera: "
                 + tiempoGlobal);
 
-        //NUMERO SELECCIONADO DE LA CARRERA EN VEZ DE CERO
-        //CAMBIÉ EL TIEMPO AQUÍ
         LogicaNegocio.getInstance().getListaCarrerasIniciar().get(0).
                 setTiempoTotal(tiempoGlobal);
+        
+        
         dispose();
     }//GEN-LAST:event_btnStopActionPerformed
     private void rellenarTablaConParticipantes() {
