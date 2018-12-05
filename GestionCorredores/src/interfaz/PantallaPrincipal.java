@@ -64,7 +64,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
                 //if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
-                //LogicaNegocio.getInstance().grabarResultadoCarrera();
+                //LogicaNegocio.getInstance().grabarCarrera();
                 GestionGuardado.salvarCambios();
                 //}
 
@@ -92,7 +92,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItemConfiguracion = new javax.swing.JMenuItem();
         jCheckBoxMenuItemGrabadoAutomatico = new javax.swing.JCheckBoxMenuItem();
         jMenuHistorialCarreras = new javax.swing.JMenu();
-        jMenuItemVerCarrerasAntiguas = new javax.swing.JMenuItem();
+        jMenuItemVerCarrerasFinalizadas = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
         jMenuItemAyuda = new javax.swing.JMenuItem();
@@ -168,13 +168,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuHistorialCarreras.setText("Historial Carreras");
 
-        jMenuItemVerCarrerasAntiguas.setText("Carreras Antiguas");
-        jMenuItemVerCarrerasAntiguas.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemVerCarrerasFinalizadas.setText("Carreras Finalizadas");
+        jMenuItemVerCarrerasFinalizadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemVerCarrerasAntiguasActionPerformed(evt);
+                jMenuItemVerCarrerasFinalizadasActionPerformed(evt);
             }
         });
-        jMenuHistorialCarreras.add(jMenuItemVerCarrerasAntiguas);
+        jMenuHistorialCarreras.add(jMenuItemVerCarrerasFinalizadas);
 
         jMenuBar1.add(jMenuHistorialCarreras);
 
@@ -283,13 +283,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
-    private void jMenuItemVerCarrerasAntiguasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerCarrerasAntiguasActionPerformed
+    private void jMenuItemVerCarrerasFinalizadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerCarrerasFinalizadasActionPerformed
 
         DialogHistorialCarreras gestionarCarreraFinalizada = new DialogHistorialCarreras(this, true);
         gestionarCarreraFinalizada.setLocationRelativeTo(null);
         gestionarCarreraFinalizada.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItemVerCarrerasAntiguasActionPerformed
+    }//GEN-LAST:event_jMenuItemVerCarrerasFinalizadasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,7 +388,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenuItem jMenuItemVerCarrerasAntiguas;
+    private javax.swing.JMenuItem jMenuItemVerCarrerasFinalizadas;
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelPantallaPrincipal;
     // End of variables declaration//GEN-END:variables

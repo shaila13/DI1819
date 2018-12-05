@@ -20,6 +20,7 @@ import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 import modelo.Carrera;
+import modelo.CarreraFinalizada;
 import modelo.Corredor;
 import modelo.Participantes;
 import org.openide.util.Exceptions;
@@ -46,6 +47,7 @@ public class LogicaNegocio implements Serializable {
     private List<Carrera> listaCarreras;
     private List<Participantes> listaParticipantes;
     private List<Carrera> listaCarrerasIniciar;
+    private List<CarreraFinalizada> listaCarrerasFinalizadas;
     private boolean resultado = false;
     private int dorsalCorredorBorrado;
     private boolean borrarCorredor = false;
@@ -58,8 +60,15 @@ public class LogicaNegocio implements Serializable {
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();
         listaCarrerasIniciar = new ArrayList<>();
+        listaCarrerasFinalizadas = new ArrayList<>();
     }
-     public static LogicaNegocio getInstance() {
+
+    /**
+     * Método para crear una sola instancia de la lógica del negocio.
+     *
+     * @return INSTANCE
+     */
+    public static LogicaNegocio getInstance() {
         if (INSTANCE != null) {
             return INSTANCE;
         }
@@ -118,13 +127,6 @@ public class LogicaNegocio implements Serializable {
     }
 
     /**
-     * Método para crear una sola instancia de la lógica del negocio.
-     *
-     * @return INSTANCE
-     */
-   
-
-    /**
      * Método para borrar un participante de la lista de participantes de la
      * carrera.
      *
@@ -167,6 +169,36 @@ public class LogicaNegocio implements Serializable {
         if (listaCarrerasIniciar.contains(carrera)) {
             listaCarrerasIniciar.remove(carrera);
         }
+    }
+
+    /**
+     * Método para borrar la carrera finalizada.
+     *
+     * @param carrera
+     */
+    public void borrarCarreraFinalizada(CarreraFinalizada carrera) {
+        if (listaCarrerasFinalizadas.contains(carrera)) {
+            listaCarrerasFinalizadas.remove(carrera);
+        }
+    }
+
+    /**
+     * Método para añadir una carrera finalizada a la lista.
+     *
+     * @param carrera
+     * @return
+     * @throws ParseException
+     */
+    public boolean anadirCarreraAlistaFinalizadas(CarreraFinalizada carrera)
+            throws ParseException {
+
+        if (!listaCarrerasFinalizadas.contains(carrera)) {
+            listaCarrerasFinalizadas.add(carrera);
+            resultado = true;
+        } else {
+            resultado = false;
+        }
+        return resultado;
     }
 
     /**
@@ -339,30 +371,42 @@ public class LogicaNegocio implements Serializable {
      *
      * @return boolean con el resultado de la operación.
      */
-    public boolean grabarResultadoCarrera() {
-        String fichero;
+    public boolean grabarCarrera(CarreraFinalizada carrera) {
+
+        FileWriter fw = null;
+        String linea;
+        File fichero = new File("CarreraFinalizada.csv");
+        //Poner si ya existe que me lo sobrescriba
         try {
-            //CAMBIAR ÍNDICE CARRERA PARA QUE SEA EL SELECCIONADO
-            fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
-                    getFechaCarrera().getYear() + ".csv";
-            ObjectOutputStream oos = null;
-            oos = new ObjectOutputStream(new FileOutputStream(fichero));
-            oos.writeObject("\n-------CARRERA-------");
-            Iterator<Carrera> carreraIterator = listaCarrerasIniciar.iterator();
-            while (carreraIterator.hasNext()) {
-                Carrera carrera = carreraIterator.next();
-                oos.writeObject(carrera.toString());
-            }
-            oos.writeObject("\n-------CORREDORES-------");
-            Iterator<Participantes> participantesIterator = listaParticipantes.iterator();
-            while (participantesIterator.hasNext()) {
-                Participantes participante = participantesIterator.next();
-                oos.writeObject(participante.toString());
-                oos.writeObject("\n");
+            if (fichero.exists()) {
+                fichero.delete();
+                //si no pongo true cuando grabe solo graba el primero
+                fw = new FileWriter(fichero, true);
+                BufferedWriter fsalida = new BufferedWriter(fw);
+                //leemos el primer registro
+
+                for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
+                    String fechaCarrera=fecha.format(elemento.getFechaCarrera());
+                    fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
+                            + "," + fechaCarrera + "," + elemento.getNumeroMaxCorredores()
+                            + "," + elemento.getTiempoTotal() + "\n");
+                }
+                fsalida.flush();
+                fsalida.close();
+            } else {
+                //si no pongo true cuando grabe solo graba el primero
+                fw = new FileWriter(fichero, true);
+                BufferedWriter fsalida = new BufferedWriter(fw);
+                //leemos el primer registro
+
+                fsalida.flush();
+                fsalida.close();
             }
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace();
+
         }
+
         return true;
     }
 
@@ -384,7 +428,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarResultadoCarrera();
+                    //grabarCarrera(carrera);
                 }
             }, tiempoActualizacionAutomatica);
         } else if (time != null) {
@@ -393,7 +437,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarResultadoCarrera();
+                    //grabarCarrera(carrera);
                 }
             }, tiempoActualizacionAutomatica);
 
