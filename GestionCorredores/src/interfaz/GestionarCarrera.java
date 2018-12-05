@@ -5,10 +5,13 @@ import interfaz.tablas.TableModelParticipantes;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Carrera;
+import modelo.CarreraFinalizada;
 import modelo.Participantes;
 
 /**
@@ -383,6 +386,19 @@ public class GestionarCarrera extends javax.swing.JDialog {
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
 
         ocultarBotones();
+        Date fechaCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
+                .get(0).getFechaCarrera();
+        String lugarCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
+                .get(0).getLugarCarrera();
+        int numeroMaxCorredores = LogicaNegocio.getInstance().getListaCarrerasIniciar()
+                .get(0).getNumeroMaxCorredores();
+        String tiempoTotal = LogicaNegocio.getInstance().getListaCarrerasIniciar()
+                .get(0).getTiempoTotal();
+
+        CarreraFinalizada carreraFinalizada = new CarreraFinalizada(true,
+                LogicaNegocio.getInstance().getListaParticipantes(), fechaCarrera,
+                lugarCarrera, numeroMaxCorredores, tiempoTotal);
+        
         jButtonExportarCSV.setVisible(true);
 
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
@@ -392,7 +408,6 @@ public class GestionarCarrera extends javax.swing.JDialog {
         LogicaNegocio.getInstance().grabarResultadoCarrera();
     }//GEN-LAST:event_jButtonExportarCSVActionPerformed
 
-    
     //Utilizando un AbstractTableModel
     private void rellenarTablaCarrerasConParticipantes() {
         jTableCarreraInciada.setModel(new TableModelCarrerasConParticipantes(

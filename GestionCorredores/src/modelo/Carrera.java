@@ -37,6 +37,14 @@ public class Carrera implements Serializable, Comparable<Carrera> {
 
     }
 
+    public Carrera(Date fechaCarrera, String lugarCarrera, int numeroMaxCorredores, 
+            String tiempoTotal) {
+        this.fechaCarrera = fechaCarrera;
+        this.lugarCarrera = lugarCarrera;
+        this.numeroMaxCorredores = numeroMaxCorredores;
+        this.tiempoTotal = tiempoTotal;
+    }
+
     public String getNombreCarrera() {
         return nombreCarrera;
     }

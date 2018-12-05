@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.io.Serializable;
@@ -9,16 +8,18 @@ import java.util.List;
  *
  * @author Shaila
  */
-public class CarreraFinalizada extends Carrera implements Serializable{
-    
+public class CarreraFinalizada extends Carrera implements Serializable {
+
     private boolean finalizada;
     private List<Participantes> listaParticipantes;
 
     public CarreraFinalizada() {
     }
 
-    public CarreraFinalizada(boolean finalizada, List<Participantes> listaParticipantes, String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroMaxCorredores) {
-        super(nombreCarrera, fechaCarrera, lugarCarrera, numeroMaxCorredores);
+    public CarreraFinalizada(boolean finalizada, List<Participantes> listaParticipantes,
+            Date fechaCarrera, String lugarCarrera, int numeroMaxCorredores,
+            String tiempoTotal) {
+        super(fechaCarrera, lugarCarrera, numeroMaxCorredores, tiempoTotal);
         this.finalizada = finalizada;
         this.listaParticipantes = listaParticipantes;
     }
@@ -38,7 +39,5 @@ public class CarreraFinalizada extends Carrera implements Serializable{
     public void setListaParticipantes(List<Participantes> listaParticipantes) {
         this.listaParticipantes = listaParticipantes;
     }
-    
-    
-    
+
 }
