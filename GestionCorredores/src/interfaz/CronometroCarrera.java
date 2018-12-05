@@ -26,6 +26,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         initComponents();
         //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        cronometroPropio.setEnabled(false);
         cronometroPropio.addLlegadaParticipante(new LLegadaParticipantes() {
             @Override
             public void ejecutar(int dorsal, String tiempoParcial) {
@@ -156,6 +157,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         rellenarTablaConParticipantes();
         cronometroPropio.start();
         btnStart.setEnabled(false);
+         cronometroPropio.setEnabled(true);
         btnStop.setEnabled(true);
     }//GEN-LAST:event_btnStartActionPerformed
 

@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
@@ -46,6 +45,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarCSV.setVisible(false);
         jButtonSeleccionarCarrera.setVisible(false);
+        jButtonFinalizarCarrera.setVisible(false);
         //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCarrerasConParticipantes();
@@ -55,9 +55,20 @@ public class GestionarCarrera extends javax.swing.JDialog {
         super(aThis, modal);
         participante = p;
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                super.windowClosing(we);
+                LogicaNegocio.getInstance().getListaParticipantes().
+                        removeAll(LogicaNegocio.getInstance().getListaParticipantes());
+                LogicaNegocio.getInstance().getListaCarrerasIniciar().removeAll(
+                        LogicaNegocio.getInstance().getListaCarrerasIniciar());
+            }
+        });
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarCSV.setVisible(false);
         jButtonSeleccionarCarrera.setVisible(false);
+        jButtonFinalizarCarrera.setVisible(false);
         //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaCarrerasConParticipantes();
@@ -219,17 +230,23 @@ public class GestionarCarrera extends javax.swing.JDialog {
                             .addComponent(jLabeTituloParticipantes)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                            .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonLimpiarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
+                            .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtonSeleccionarCorredor))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonSeleccionarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonExportarCSV, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))))
@@ -245,21 +262,24 @@ public class GestionarCarrera extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(jLabeTituloParticipantes)
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSeleccionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonExportarCSV, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSeleccionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonExportarCSV, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,7 +350,8 @@ public class GestionarCarrera extends javax.swing.JDialog {
             iniciarCarrera.setVisible(true);
             rellenarTablaCarrerasConParticipantes();
             rellenarTablaConParticipantes();
-
+            jButtonFinalizarCarrera.setVisible(true);
+            ocultarBotones();
         }
     }//GEN-LAST:event_jButtoncRONOMETROActionPerformed
 
@@ -389,7 +410,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
 
         try {
-            ocultarBotones();
+
             Date fechaCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
                     .get(0).getFechaCarrera();
             String lugarCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
@@ -402,6 +423,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
                     LogicaNegocio.getInstance().getListaParticipantes(), fechaCarrera,
                     lugarCarrera, numeroMaxCorredores, tiempoTotal);
             LogicaNegocio.getInstance().anadirCarreraAlistaFinalizadas(carreraFinalizada);
+            System.out.println("carreraFinalizada " + carreraFinalizada.toString());
             jButtonExportarCSV.setVisible(true);
         } catch (ParseException ex) {
             Exceptions.printStackTrace(ex);
@@ -412,6 +434,8 @@ public class GestionarCarrera extends javax.swing.JDialog {
     private void jButtonExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarCSVActionPerformed
 
         LogicaNegocio.getInstance().grabarCarrera(carreraFinalizada);
+        this.dispose();
+
     }//GEN-LAST:event_jButtonExportarCSVActionPerformed
 
     //Utilizando un AbstractTableModel

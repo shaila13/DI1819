@@ -208,7 +208,6 @@ public class TablaCarreras extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-
             Carrera carreraIniciarCarrera = logicaNegocio.
                     getListaCarreras().get(seleccionado);
             carreraIniciarCarrera.setTiempoTotal("00:00:00");
@@ -218,7 +217,7 @@ public class TablaCarreras extends javax.swing.JDialog {
             dialogoIniciarCarrera.setLocationRelativeTo(null);
             dialogoIniciarCarrera.setVisible(true);
 
-            super.dispose();
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed

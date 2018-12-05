@@ -40,4 +40,10 @@ public class CarreraFinalizada extends Carrera implements Serializable {
         this.listaParticipantes = listaParticipantes;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "listaParticipantes=" + listaParticipantes;
+    }
+
+
 }
