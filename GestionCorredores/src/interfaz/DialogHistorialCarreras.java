@@ -1,6 +1,9 @@
-
 package interfaz;
 
+import interfaz.tablas.TableModelCarreras;
+import interfaz.tablas.TableModelCarrerasConParticipantes;
+import interfaz.tablas.TableModelCarrerasFinalizada;
+import logica.LogicaNegocio;
 
 /**
  *
@@ -14,8 +17,15 @@ public class DialogHistorialCarreras extends javax.swing.JDialog {
     public DialogHistorialCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setTitle("CARRERAS FINALIZADAS.");
+        setTitle("CARRERAS FINALIZADAS.");
+        rellenarTablaCarreras();
 
+    }
+
+//Utilizando un AbstractTableModel
+    private void rellenarTablaCarreras() {
+        jTableCarreraFinalizada.setModel(new TableModelCarrerasFinalizada(
+                LogicaNegocio.getInstance().getListaCarrerasFinalizadas()));
     }
 
     /**
@@ -27,14 +37,15 @@ public class DialogHistorialCarreras extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelTituloCarreras = new javax.swing.JLabel();
+        jLabelTituloCarrerasFinalizadas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCarreraFinalizada = new javax.swing.JTable();
+        jButtonResultado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelTituloCarreras.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabelTituloCarreras.setText(org.openide.util.NbBundle.getMessage(DialogHistorialCarreras.class, "DialogHistorialCarreras.jLabelTituloCarreras.text")); // NOI18N
+        jLabelTituloCarrerasFinalizadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabelTituloCarrerasFinalizadas.setText(org.openide.util.NbBundle.getMessage(DialogHistorialCarreras.class, "DialogHistorialCarreras.jLabelTituloCarrerasFinalizadas.text")); // NOI18N
 
         jTableCarreraFinalizada.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jTableCarreraFinalizada.setModel(new javax.swing.table.DefaultTableModel(
@@ -50,33 +61,64 @@ public class DialogHistorialCarreras extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableCarreraFinalizada);
 
+        jButtonResultado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonResultado.setText(org.openide.util.NbBundle.getMessage(DialogHistorialCarreras.class, "DialogHistorialCarreras.jButtonResultado.text")); // NOI18N
+        jButtonResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResultadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTituloCarreras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTituloCarrerasFinalizadas)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(jButtonResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTituloCarreras)
+                .addComponent(jLabelTituloCarrerasFinalizadas)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
+                .addGap(219, 219, 219)
+                .addComponent(jButtonResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoActionPerformed
+        /* int selectedRow = jTableCarrera.getSelectedRow();
+        if (selectedRow != -1) {
+        if (gdCarreras.getListaCarreras().get(selectedRow).isFinalizada()) {
+        ResultadoCarrera resultadoCarrera = new ResultadoCarrera(this, true, gdCarreras, selectedRow);
+        resultadoCarrera.setVisible(true);
+        rellenarTablaCarreras();
+        } else {
+        JOptionPane.showMessageDialog(this, "Inicie la carrera para conocer los resultados");
+        }
+        } else {
+        JOptionPane.showMessageDialog(this, "Seleccione una carrera");
+        }*/
+    }//GEN-LAST:event_jButtonResultadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelTituloCarreras;
+    private javax.swing.JButton jButtonResultado;
+    private javax.swing.JLabel jLabelTituloCarrerasFinalizadas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCarreraFinalizada;
     // End of variables declaration//GEN-END:variables

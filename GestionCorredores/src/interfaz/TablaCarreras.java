@@ -216,10 +216,9 @@ public class TablaCarreras extends javax.swing.JDialog {
             logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
             dialogoIniciarCarrera.setLocationRelativeTo(null);
             dialogoIniciarCarrera.setVisible(true);
-
-            this.dispose();
+            dispose();
         }
-
+        dispose();
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
 
 //Utilizando un AbstractTableModel

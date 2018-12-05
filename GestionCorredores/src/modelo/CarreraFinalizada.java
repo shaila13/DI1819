@@ -42,7 +42,7 @@ public class CarreraFinalizada extends Carrera implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString() + "listaParticipantes=" + listaParticipantes;
+        return super.toString() + "Participantes: " + listaParticipantes;
     }
 
 

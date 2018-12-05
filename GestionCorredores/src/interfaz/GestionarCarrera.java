@@ -335,7 +335,8 @@ public class GestionarCarrera extends javax.swing.JDialog {
         TablaCorredores confirmacionValidar
                 = new TablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
-        //this.dispose();
+
+        this.dispose();
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtoncRONOMETROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncRONOMETROActionPerformed
@@ -423,7 +424,7 @@ public class GestionarCarrera extends javax.swing.JDialog {
                     LogicaNegocio.getInstance().getListaParticipantes(), fechaCarrera,
                     lugarCarrera, numeroMaxCorredores, tiempoTotal);
             LogicaNegocio.getInstance().anadirCarreraAlistaFinalizadas(carreraFinalizada);
-            System.out.println("carreraFinalizada " + carreraFinalizada.toString());
+
             jButtonExportarCSV.setVisible(true);
         } catch (ParseException ex) {
             Exceptions.printStackTrace(ex);
@@ -433,7 +434,9 @@ public class GestionarCarrera extends javax.swing.JDialog {
 
     private void jButtonExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarCSVActionPerformed
 
-        LogicaNegocio.getInstance().grabarCarrera(carreraFinalizada);
+        LogicaNegocio.getInstance().grabarCarrera();
+        JOptionPane.showMessageDialog(this, "Se ha exportado satisfactoriamente.",
+                "EXPORTAR.", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
 
     }//GEN-LAST:event_jButtonExportarCSVActionPerformed

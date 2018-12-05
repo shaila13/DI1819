@@ -235,9 +235,9 @@ public class TablaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonGrabarCSVCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGrabarCSVCorredoresActionPerformed
-        
-        
+
         LogicaNegocio.getInstance().grabarCSVCorredores();
+        JOptionPane.showMessageDialog(this, "CSV Corredores grabado satisfactoriamente.");
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 
     private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
@@ -299,14 +299,14 @@ public class TablaCorredores extends javax.swing.JDialog {
                     } else {
                         JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
                                 "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
-                        this.dispose();
+                        dispose();
                     }
                 } catch (ParseException ex) {
                     Exceptions.printStackTrace(ex);
                 }
             }
         }
-
+        dispose();
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
 //Utilizando un AbstractTableModel

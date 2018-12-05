@@ -4,11 +4,9 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +21,6 @@ import modelo.Carrera;
 import modelo.CarreraFinalizada;
 import modelo.Corredor;
 import modelo.Participantes;
-import org.openide.util.Exceptions;
 
 /**
  * private transient palabra señalada para que no grabe Serializable
@@ -115,6 +112,14 @@ public class LogicaNegocio implements Serializable {
 
     public void setListaCarreras(List<Carrera> listaCarreras) {
         this.listaCarreras = listaCarreras;
+    }
+
+    public List<CarreraFinalizada> getListaCarrerasFinalizadas() {
+        return listaCarrerasFinalizadas;
+    }
+
+    public void setListaCarrerasFinalizadas(List<CarreraFinalizada> listaCarrerasFinalizadas) {
+        this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
     }
 
     //hay que meter el objeto
@@ -371,8 +376,9 @@ public class LogicaNegocio implements Serializable {
      *
      * @return boolean con el resultado de la operación.
      */
-    public boolean grabarCarrera(CarreraFinalizada carrera) {
-
+    public boolean grabarCarrera() {
+        //ojo
+        CarreraFinalizada c;
         FileWriter fw = null;
         String linea;
         File fichero = new File("CarreraFinalizada.csv");
@@ -384,13 +390,13 @@ public class LogicaNegocio implements Serializable {
                 fw = new FileWriter(fichero, true);
                 BufferedWriter fsalida = new BufferedWriter(fw);
                 //leemos el primer registro
-
                 for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
-                    String fechaCarrera=fecha.format(elemento.getFechaCarrera());
                     fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
-                            + "," + fechaCarrera + "," + elemento.getNumeroMaxCorredores()
-                            + "," + elemento.getTiempoTotal() + "\n");
+                            + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
+                            + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
+
                 }
+
                 fsalida.flush();
                 fsalida.close();
             } else {
@@ -399,6 +405,12 @@ public class LogicaNegocio implements Serializable {
                 BufferedWriter fsalida = new BufferedWriter(fw);
                 //leemos el primer registro
 
+                for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
+                    fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
+                            + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
+                            + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
+
+                }
                 fsalida.flush();
                 fsalida.close();
             }
@@ -428,7 +440,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    //grabarCarrera(carrera);
+                    grabarCarrera();
                 }
             }, tiempoActualizacionAutomatica);
         } else if (time != null) {
@@ -437,7 +449,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    //grabarCarrera(carrera);
+                    grabarCarrera();
                 }
             }, tiempoActualizacionAutomatica);
 
