@@ -19,7 +19,7 @@ import org.netbeans.validation.api.ui.ValidationGroup;
 /*
 Copiar javax.swing.JDialog y reemplazar java.awt.Frame
  */
-public class FormularioCarreras extends javax.swing.JDialog {
+public class DialogFormularioCarreras extends javax.swing.JDialog {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
     private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
@@ -34,7 +34,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
      * Creates new form FormularioCarreras
      */
     //Constructor para el alta
-    public FormularioCarreras(TablaCarreras aThis, boolean modal, LogicaNegocio logicaNegocio) {
+    public DialogFormularioCarreras(DialogTablaCarreras aThis, boolean modal, LogicaNegocio logicaNegocio) {
         super(aThis, modal);
         this.logicaNegocio = LogicaNegocio.getInstance();
         initComponents();
@@ -62,7 +62,7 @@ public class FormularioCarreras extends javax.swing.JDialog {
     //Constructor para modificar. Sabemos diferenciar si es un alta o una modificación
     //gracias al valor de personaModificar. Si es null será un alta, si tiene un valor
     //será una modificación.
-    public FormularioCarreras(TablaCarreras aThis, boolean modal, Carrera carreraModificar) {
+    public DialogFormularioCarreras(DialogTablaCarreras aThis, boolean modal, Carrera carreraModificar) {
         super(aThis, modal);
         this.carreraModificar = carreraModificar;
         initComponents();

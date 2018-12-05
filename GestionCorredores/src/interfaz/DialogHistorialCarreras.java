@@ -1,8 +1,7 @@
 package interfaz;
 
-import interfaz.tablas.TableModelCarreras;
-import interfaz.tablas.TableModelCarrerasConParticipantes;
 import interfaz.tablas.TableModelCarrerasFinalizada;
+import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 
 /**
@@ -101,18 +100,16 @@ public class DialogHistorialCarreras extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoActionPerformed
-        /* int selectedRow = jTableCarrera.getSelectedRow();
+        int selectedRow = jTableCarreraFinalizada.getSelectedRow();
         if (selectedRow != -1) {
-        if (gdCarreras.getListaCarreras().get(selectedRow).isFinalizada()) {
-        ResultadoCarrera resultadoCarrera = new ResultadoCarrera(this, true, gdCarreras, selectedRow);
-        resultadoCarrera.setVisible(true);
-        rellenarTablaCarreras();
+
+            ResultadoCarreraFinalizada resultadoCarrera = new ResultadoCarreraFinalizada(this, true, selectedRow);
+            resultadoCarrera.setVisible(true);
+            rellenarTablaCarreras();
+
         } else {
-        JOptionPane.showMessageDialog(this, "Inicie la carrera para conocer los resultados");
+            JOptionPane.showMessageDialog(this, "Seleccione una carrera para ver los resultados.");
         }
-        } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una carrera");
-        }*/
     }//GEN-LAST:event_jButtonResultadoActionPerformed
 
 

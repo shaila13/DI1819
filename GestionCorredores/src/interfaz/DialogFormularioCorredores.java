@@ -20,7 +20,7 @@ import org.netbeans.validation.api.ui.ValidationGroup;
  */
 
 /*Copiar javax.swing.JDialog y reemplazar java.awt.Frame*/
-public class FormularioCorredores extends javax.swing.JDialog {
+public class DialogFormularioCorredores extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
     private LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
@@ -35,7 +35,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
      * reemplazar java.awt.Frame
      */
     //Constructor para el alta
-    public FormularioCorredores(TablaCorredores aThis, boolean modal,
+    public DialogFormularioCorredores(DialogTablaCorredores aThis, boolean modal,
             LogicaNegocio logicaNegocio) {
         super(aThis, modal);
         this.logicaNegocio = LogicaNegocio.getInstance();
@@ -75,7 +75,7 @@ public class FormularioCorredores extends javax.swing.JDialog {
     //Constructor para modificar. Sabemos diferenciar si es un alta o una modificación
     //gracias al valor de personaModificar. Si es null será un alta, si tiene un valor
     //será una modificación.
-    public FormularioCorredores(TablaCorredores aThis, boolean modal,
+    public DialogFormularioCorredores(DialogTablaCorredores aThis, boolean modal,
             Corredor corredorModificar) {
         super(aThis, modal);
         this.corredorModificar = corredorModificar;

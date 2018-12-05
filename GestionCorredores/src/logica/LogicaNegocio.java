@@ -284,6 +284,21 @@ public class LogicaNegocio implements Serializable {
         }
     }
 
+    /*    public String resultadoCarrera(int idCarrera) {
+    String resultadoCarrera = null;
+    resultadoCarrera = "Nombre de la carrera" + "\t" + listaCarreras.get(idCarrera).getNombre() + "\n"
+    + "Lugar de la carrera" + "\t" + listaCarreras.get(idCarrera).getLugarCarrera() + "\n"
+    + "Fecha de la carrera" + "\t" + Fecha.fechaFormat(listaCarreras.get(idCarrera).getFecha()) + "\n"
+    + "Corredores" + "\n" + "Dorsal" + "\t" + "Tiempo" + "\t" + "\t" + "Nombre" + "\t" + "DNI" + "\n";
+    for (int i = 0; i < listaCarreras.get(idCarrera).getListaCorredores().size(); i++) {
+    resultadoCarrera += listaCarreras.get(idCarrera).getListaCorredores().get(i).getDorsal() + "\t"
+    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getTiempoCarrera() + "\t"
+    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getNombre() + "\t"
+    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getDni() + "\n";
+    }
+    return resultadoCarrera;
+    }*/
+
     /**
      * Método para grabar los corredores en un CSV.
      */
@@ -391,6 +406,7 @@ public class LogicaNegocio implements Serializable {
                 BufferedWriter fsalida = new BufferedWriter(fw);
                 //leemos el primer registro
                 for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
+                    System.out.println("carrera " + elemento.getNombreCarrera());
                     fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
                             + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
                             + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");

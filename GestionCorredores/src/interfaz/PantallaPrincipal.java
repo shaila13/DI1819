@@ -3,8 +3,8 @@ package interfaz;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import interfaz.TablaCarreras;
-import interfaz.TablaCorredores;
+import interfaz.DialogTablaCarreras;
+import interfaz.DialogTablaCorredores;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -226,15 +226,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonModificarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCorredoresActionPerformed
-        TablaCorredores confirmacionValidar
-                = new TablaCorredores(this, true);
+        DialogTablaCorredores confirmacionValidar
+                = new DialogTablaCorredores(this, true);
         confirmacionValidar.setVisible(true);
         paginaPrincipal = true;
     }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
 
     private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
-        TablaCarreras confirmacionValidar
-                = new TablaCarreras(this, true);
+        DialogTablaCarreras confirmacionValidar
+                = new DialogTablaCarreras(this, true);
         confirmacionValidar.setVisible(true);
     }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
 

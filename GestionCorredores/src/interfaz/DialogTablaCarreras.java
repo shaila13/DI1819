@@ -11,7 +11,7 @@ import modelo.Carrera;
  *
  * @author Shaila
  */
-public class TablaCarreras extends javax.swing.JDialog {
+public class DialogTablaCarreras extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -21,7 +21,7 @@ public class TablaCarreras extends javax.swing.JDialog {
      */
     LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
 
-    public TablaCarreras(java.awt.Frame parent, boolean modal) {
+    public DialogTablaCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -162,7 +162,7 @@ public class TablaCarreras extends javax.swing.JDialog {
                     "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             Carrera carreraModificar = logicaNegocio.getListaCarreras().get(seleccionado);
-            FormularioCarreras dialogoModificar = new FormularioCarreras(this,
+            DialogFormularioCarreras dialogoModificar = new DialogFormularioCarreras(this,
                     true, carreraModificar);
             dialogoModificar.setLocationRelativeTo(null);
             dialogoModificar.setVisible(true);
@@ -171,7 +171,7 @@ public class TablaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-        FormularioCarreras dialogoAlta = new FormularioCarreras(this, true, logicaNegocio);
+        DialogFormularioCarreras dialogoAlta = new DialogFormularioCarreras(this, true, logicaNegocio);
         dialogoAlta.setLocationRelativeTo(null);
         dialogoAlta.setVisible(true);
         rellenarTablaCarreras();
@@ -211,7 +211,7 @@ public class TablaCarreras extends javax.swing.JDialog {
             Carrera carreraIniciarCarrera = logicaNegocio.
                     getListaCarreras().get(seleccionado);
             carreraIniciarCarrera.setTiempoTotal("00:00:00");
-            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
+            DialogGestionarCarrera dialogoIniciarCarrera = new DialogGestionarCarrera(this,
                     true, carreraIniciarCarrera);
             logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
             dialogoIniciarCarrera.setLocationRelativeTo(null);

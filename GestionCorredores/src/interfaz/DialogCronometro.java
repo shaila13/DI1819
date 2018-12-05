@@ -11,7 +11,7 @@ import logica.LogicaNegocio;
  *
  * @author Shaila
  */
-public class CronometroCarrera extends javax.swing.JDialog {
+public class DialogCronometro extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -22,7 +22,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
     /**
      * Creates new form CronometroCarrera
      */
-    public CronometroCarrera(java.awt.Frame parent, boolean modal) {
+    public DialogCronometro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         //Establecer el logo de la aplicación
@@ -50,19 +50,14 @@ public class CronometroCarrera extends javax.swing.JDialog {
                             rellenarTablaConParticipantes();
                             JOptionPane.showMessageDialog(null, "Ha llegado el corredor con dorsal: "
                                     + dorsalParticipante + ", tiempo de carrera: " + tiempoParcial);
-
                             contadorParticipantes++;
                             if (contadorParticipantes == LogicaNegocio.getInstance().
                                     getListaParticipantes().size()) {
                                 JOptionPane.showMessageDialog(null, "Ya han llegado "
                                         + "todos los participantes.");
-                                
-                                tiempoGlobal = LogicaNegocio.getInstance().
-                                        getListaParticipantes().get(dorsalParticipante-1).getTiempoCarrera();
-                                
+                                tiempoGlobal = tiempoParcial;
                                 finalizarCarrera(tiempoGlobal);
                             }
-
                         } else {
                             JOptionPane.showMessageDialog(null, "El participante ya ha llegado a la meta.");
                         }
@@ -93,10 +88,10 @@ public class CronometroCarrera extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.jLabel1.text")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.jLabel1.text")); // NOI18N
 
         btnStart.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnStart.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.btnStart.text")); // NOI18N
+        btnStart.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.btnStart.text")); // NOI18N
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartActionPerformed(evt);
@@ -104,7 +99,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
         });
 
         btnStop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnStop.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.btnStop.text")); // NOI18N
+        btnStop.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.btnStop.text")); // NOI18N
         btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStopActionPerformed(evt);
@@ -113,7 +108,7 @@ public class CronometroCarrera extends javax.swing.JDialog {
 
         cronometroPropio.setBackground(new java.awt.Color(153, 204, 255));
         cronometroPropio.setBorder(new javax.swing.border.MatteBorder(null));
-        cronometroPropio.setText(org.openide.util.NbBundle.getMessage(CronometroCarrera.class, "CronometroCarrera.cronometroPropio.text")); // NOI18N
+        cronometroPropio.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.cronometroPropio.text")); // NOI18N
         cronometroPropio.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         jTableParticipantes.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
@@ -223,20 +218,21 @@ public class CronometroCarrera extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CronometroCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogCronometro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CronometroCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogCronometro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CronometroCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogCronometro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CronometroCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogCronometro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CronometroCarrera dialog = new CronometroCarrera(new javax.swing.JFrame(), true);
+                DialogCronometro dialog = new DialogCronometro(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

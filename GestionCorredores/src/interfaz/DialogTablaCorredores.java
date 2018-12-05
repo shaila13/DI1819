@@ -14,7 +14,7 @@ import org.openide.util.Exceptions;
  *
  * @author Shaila
  */
-public class TablaCorredores extends javax.swing.JDialog {
+public class DialogTablaCorredores extends javax.swing.JDialog {
 
     private int dorsal = 0;
     private String tiempoCorredora = "00:00:00";
@@ -26,7 +26,7 @@ public class TablaCorredores extends javax.swing.JDialog {
     /**
      * Creates new form TablaCorredores
      */
-    public TablaCorredores(java.awt.Frame parent, boolean modal) {
+    public DialogTablaCorredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         if (!ocultarBoton) {
@@ -193,7 +193,7 @@ public class TablaCorredores extends javax.swing.JDialog {
 
     }
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-        FormularioCorredores dialogoAlta = new FormularioCorredores(this, true, logicaNegocio);
+        DialogFormularioCorredores dialogoAlta = new DialogFormularioCorredores(this, true, logicaNegocio);
         dialogoAlta.setLocationRelativeTo(null);
         dialogoAlta.setVisible(true);
         rellenarTablaCorredores();
@@ -208,7 +208,7 @@ public class TablaCorredores extends javax.swing.JDialog {
         } else {
             Corredor corredorModificar = LogicaNegocio.getInstance().getListaCorredores().
                     get(seleccionado);
-            FormularioCorredores dialogoModificar = new FormularioCorredores(this,
+            DialogFormularioCorredores dialogoModificar = new DialogFormularioCorredores(this,
                     true, corredorModificar);
             dialogoModificar.setLocationRelativeTo(null);
             dialogoModificar.setVisible(true);
@@ -285,7 +285,7 @@ public class TablaCorredores extends javax.swing.JDialog {
                                 corredor.getDireccion(), corredor.getTelefono());
 
                         if (LogicaNegocio.getInstance().anadirCorredorListaCarreraIniciada(participante)) {
-                            GestionarCarrera dialogoIniciarCarrera = new GestionarCarrera(this,
+                            DialogGestionarCarrera dialogoIniciarCarrera = new DialogGestionarCarrera(this,
                                     true, participante);
                             dialogoIniciarCarrera.setLocationRelativeTo(null);
                             dialogoIniciarCarrera.setVisible(true);

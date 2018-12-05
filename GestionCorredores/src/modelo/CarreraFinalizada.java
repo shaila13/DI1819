@@ -16,10 +16,10 @@ public class CarreraFinalizada extends Carrera implements Serializable {
     public CarreraFinalizada() {
     }
 
-    public CarreraFinalizada(boolean finalizada, List<Participantes> listaParticipantes,
-            Date fechaCarrera, String lugarCarrera, int numeroMaxCorredores,
-            String tiempoTotal) {
-        super(fechaCarrera, lugarCarrera, numeroMaxCorredores, tiempoTotal);
+    public CarreraFinalizada(boolean finalizada, List<Participantes> listaParticipantes, 
+            String nombreCarrera, Date fechaCarrera, String lugarCarrera, int 
+                    numeroMaxCorredores, String tiempoTotal) {
+        super(nombreCarrera, fechaCarrera, lugarCarrera, numeroMaxCorredores, tiempoTotal);
         this.finalizada = finalizada;
         this.listaParticipantes = listaParticipantes;
     }
@@ -42,7 +42,7 @@ public class CarreraFinalizada extends Carrera implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString() + "Participantes: " + listaParticipantes;
+        return super.toString() + "Participantes: " + listaParticipantes.toString();
     }
 
 

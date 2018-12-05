@@ -2,7 +2,6 @@ package interfaz.tablas;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import modelo.Carrera;
 import modelo.CarreraFinalizada;
 
 /**
