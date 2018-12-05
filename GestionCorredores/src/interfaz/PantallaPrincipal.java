@@ -64,7 +64,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 super.windowClosing(we);
                 //Meter aquí la logica grabar datos
                 //if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() != 0) {
-                //LogicaNegocio.getInstance().grabarCarreraConParticipantes();
+                //LogicaNegocio.getInstance().grabarResultadoCarrera();
                 GestionGuardado.salvarCambios();
                 //}
 

@@ -339,12 +339,12 @@ public class LogicaNegocio implements Serializable {
      *
      * @return boolean con el resultado de la operación.
      */
-    public boolean grabarCarreraConParticipantes() {
+    public boolean grabarResultadoCarrera() {
         String fichero;
         try {
             //CAMBIAR ÍNDICE CARRERA PARA QUE SEA EL SELECCIONADO
             fichero = listaCarrerasIniciar.get(0).getNombreCarrera() + listaCarrerasIniciar.get(0).
-                    getFechaCarrera().getYear() + ".dat";
+                    getFechaCarrera().getYear() + ".csv";
             ObjectOutputStream oos = null;
             oos = new ObjectOutputStream(new FileOutputStream(fichero));
             oos.writeObject("\n-------CARRERA-------");
@@ -384,7 +384,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarCarreraConParticipantes();
+                    grabarResultadoCarrera();
                 }
             }, tiempoActualizacionAutomatica);
         } else if (time != null) {
@@ -393,7 +393,7 @@ public class LogicaNegocio implements Serializable {
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    grabarCarreraConParticipantes();
+                    grabarResultadoCarrera();
                 }
             }, tiempoActualizacionAutomatica);
 
