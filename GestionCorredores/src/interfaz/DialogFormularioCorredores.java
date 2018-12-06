@@ -353,7 +353,7 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
                 System.out.println(ex.getMessage());
             }
         }
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonValidarCorredoresActionPerformed
 
     private void jTextFieldNombreApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreApellidosActionPerformed

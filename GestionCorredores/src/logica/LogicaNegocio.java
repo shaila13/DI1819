@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 import modelo.Carrera;
-import modelo.CarreraFinalizada;
+
 import modelo.Corredor;
 import modelo.Participantes;
 
@@ -34,6 +36,7 @@ public class LogicaNegocio implements Serializable {
     private static LogicaNegocio INSTANCE = GestionGuardado.cargarInstancia();
     private transient Timer time;
     private long tiempoActualizacionAutomatica = 0;
+    private int idCarrera;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
     va a haber varias listas de corredores.*/
     //segunda manera
@@ -43,8 +46,7 @@ public class LogicaNegocio implements Serializable {
     private List<Corredor> listaCorredores;
     private List<Carrera> listaCarreras;
     private List<Participantes> listaParticipantes;
-    private List<Carrera> listaCarrerasIniciar;
-    private List<CarreraFinalizada> listaCarrerasFinalizadas;
+
     private boolean resultado = false;
     private int dorsalCorredorBorrado;
     private boolean borrarCorredor = false;
@@ -56,8 +58,7 @@ public class LogicaNegocio implements Serializable {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaParticipantes = new ArrayList<>();
-        listaCarrerasIniciar = new ArrayList<>();
-        listaCarrerasFinalizadas = new ArrayList<>();
+
     }
 
     /**
@@ -90,14 +91,6 @@ public class LogicaNegocio implements Serializable {
         return dorsalCorredorBorrado;
     }
 
-    public List<Carrera> getListaCarrerasIniciar() {
-        return listaCarrerasIniciar;
-    }
-
-    public void setListaCarrerasIniciar(List<Carrera> listaCarrerasIniciar) {
-        this.listaCarrerasIniciar = listaCarrerasIniciar;
-    }
-
     public List<Participantes> getListaParticipantes() {
         return listaParticipantes;
     }
@@ -114,14 +107,6 @@ public class LogicaNegocio implements Serializable {
         this.listaCarreras = listaCarreras;
     }
 
-    public List<CarreraFinalizada> getListaCarrerasFinalizadas() {
-        return listaCarrerasFinalizadas;
-    }
-
-    public void setListaCarrerasFinalizadas(List<CarreraFinalizada> listaCarrerasFinalizadas) {
-        this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
-    }
-
     //hay que meter el objeto
     public List<Corredor> getListaCorredores() {
         return listaCorredores;
@@ -129,6 +114,18 @@ public class LogicaNegocio implements Serializable {
 
     public void setListaCorredores(List listaCorredores) {
         this.listaCorredores = listaCorredores;
+    }
+
+    public int getIdCarrera() {
+        return idCarrera;
+    }
+
+    public void setIdCarrera(int idCarrera) {
+        this.idCarrera = idCarrera;
+    }
+
+    public void ordenarPosicion() {
+        Collections.sort(listaParticipantes, (Participantes p1, Participantes p2) -> new Integer(p1.getPosicion()).compareTo(new Integer(p2.getPosicion())));
     }
 
     /**
@@ -166,44 +163,15 @@ public class LogicaNegocio implements Serializable {
     }
 
     /**
-     * Método para borrar la carrera actual.
+     * Método para añadir una carrera a la lista de carreras.
      *
      * @param carrera
      */
-    public void borrarCarreraIniciar(Carrera carrera) {
-        if (listaCarrerasIniciar.contains(carrera)) {
-            listaCarrerasIniciar.remove(carrera);
+    public void anadirCarreraLista(Carrera carrera) {
+        if (!listaCarreras.contains(carrera)) {
+            listaCarreras.add(carrera);
         }
-    }
 
-    /**
-     * Método para borrar la carrera finalizada.
-     *
-     * @param carrera
-     */
-    public void borrarCarreraFinalizada(CarreraFinalizada carrera) {
-        if (listaCarrerasFinalizadas.contains(carrera)) {
-            listaCarrerasFinalizadas.remove(carrera);
-        }
-    }
-
-    /**
-     * Método para añadir una carrera finalizada a la lista.
-     *
-     * @param carrera
-     * @return
-     * @throws ParseException
-     */
-    public boolean anadirCarreraAlistaFinalizadas(CarreraFinalizada carrera)
-            throws ParseException {
-
-        if (!listaCarrerasFinalizadas.contains(carrera)) {
-            listaCarrerasFinalizadas.add(carrera);
-            resultado = true;
-        } else {
-            resultado = false;
-        }
-        return resultado;
     }
 
     /**
@@ -212,7 +180,7 @@ public class LogicaNegocio implements Serializable {
      * @param participante
      * @throws ParseException
      */
-    public boolean anadirCorredorListaCarreraIniciada(Participantes participante)
+    public boolean anadirParticipanteListaCarrera(Participantes participante)
             throws ParseException {
 
         if (!listaParticipantes.contains(participante)) {
@@ -234,30 +202,6 @@ public class LogicaNegocio implements Serializable {
         if (!listaCorredores.contains(corredor)) {
             listaCorredores.add(corredor);
         }
-    }
-
-    /**
-     * Método para añadir una carrera a la lista de carreras.
-     *
-     * @param carrera
-     */
-    public void anadirCarreraLista(Carrera carrera) {
-        if (!listaCarreras.contains(carrera)) {
-            listaCarreras.add(carrera);
-        }
-
-    }
-
-    /**
-     * Método para añadir una carrera a la lista de carreras inciadas.
-     *
-     * @param carrera
-     */
-    public void anadirCarreraListaCarreraIniciada(Carrera carrera) {
-        if (!listaCarrerasIniciar.contains(carrera)) {
-            listaCarrerasIniciar.add(carrera);
-        }
-
     }
 
     /**
@@ -283,21 +227,6 @@ public class LogicaNegocio implements Serializable {
             System.out.print(elemento + "\n");
         }
     }
-
-    /*    public String resultadoCarrera(int idCarrera) {
-    String resultadoCarrera = null;
-    resultadoCarrera = "Nombre de la carrera" + "\t" + listaCarreras.get(idCarrera).getNombre() + "\n"
-    + "Lugar de la carrera" + "\t" + listaCarreras.get(idCarrera).getLugarCarrera() + "\n"
-    + "Fecha de la carrera" + "\t" + Fecha.fechaFormat(listaCarreras.get(idCarrera).getFecha()) + "\n"
-    + "Corredores" + "\n" + "Dorsal" + "\t" + "Tiempo" + "\t" + "\t" + "Nombre" + "\t" + "DNI" + "\n";
-    for (int i = 0; i < listaCarreras.get(idCarrera).getListaCorredores().size(); i++) {
-    resultadoCarrera += listaCarreras.get(idCarrera).getListaCorredores().get(i).getDorsal() + "\t"
-    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getTiempoCarrera() + "\t"
-    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getNombre() + "\t"
-    + listaCarreras.get(idCarrera).getListaCorredores().get(i).getDni() + "\n";
-    }
-    return resultadoCarrera;
-    }*/
 
     /**
      * Método para grabar los corredores en un CSV.
@@ -392,8 +321,7 @@ public class LogicaNegocio implements Serializable {
      * @return boolean con el resultado de la operación.
      */
     public boolean grabarCarrera() {
-        //ojo
-        CarreraFinalizada c;
+        //ojo CarreraFinalizada c;
         FileWriter fw = null;
         String linea;
         File fichero = new File("CarreraFinalizada.csv");
@@ -405,13 +333,13 @@ public class LogicaNegocio implements Serializable {
                 fw = new FileWriter(fichero, true);
                 BufferedWriter fsalida = new BufferedWriter(fw);
                 //leemos el primer registro
-                for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
-                    System.out.println("carrera " + elemento.getNombreCarrera());
-                    fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
-                            + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
-                            + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
-
-                }
+                /*for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
+                System.out.println("carrera " + elemento.getNombreCarrera());
+                fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
+                + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
+                + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
+                
+                }*/
 
                 fsalida.flush();
                 fsalida.close();
@@ -421,12 +349,12 @@ public class LogicaNegocio implements Serializable {
                 BufferedWriter fsalida = new BufferedWriter(fw);
                 //leemos el primer registro
 
-                for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
-                    fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
-                            + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
-                            + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
-
-                }
+                /*                for (CarreraFinalizada elemento : listaCarrerasFinalizadas) {
+                fsalida.write(elemento.getNombreCarrera() + "," + elemento.getLugarCarrera()
+                + "," + fecha.format(elemento.getFechaCarrera()) + "," + elemento.getNumeroMaxCorredores()
+                + "," + elemento.getTiempoTotal() + "," + elemento.getListaParticipantes().toString() + "\n");
+                
+                }*/
                 fsalida.flush();
                 fsalida.close();
             }

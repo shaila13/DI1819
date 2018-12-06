@@ -5,15 +5,11 @@ import interfaz.tablas.TableModelParticipantes;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.text.ParseException;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Carrera;
-import modelo.CarreraFinalizada;
 import modelo.Participantes;
-import org.openide.util.Exceptions;
 
 /**
  *
@@ -22,7 +18,6 @@ import org.openide.util.Exceptions;
 public class DialogGestionarCarrera extends javax.swing.JDialog {
 
     private Carrera carreraIniciar;
-    private CarreraFinalizada carreraFinalizada;
     private Participantes participante;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -32,13 +27,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         carreraIniciar = c;
         initComponents();
 
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                super.windowClosing(we);
-                limpiar();
-            }
-        });
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarCSV.setVisible(false);
         jButtonSeleccionarCarrera.setVisible(false);
@@ -52,13 +40,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         super(aThis, modal);
         participante = p;
         initComponents();
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                super.windowClosing(we);
-                limpiar();
-            }
-        });
+
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarCSV.setVisible(false);
         jButtonSeleccionarCarrera.setVisible(false);
@@ -73,7 +55,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
         jButtonEliminarCorredor.setVisible(false);
         jButtonEliminarTodosParticipantes.setVisible(false);
-        jButtonLimpiarCampos.setVisible(false);
         jButtonSeleccionarCarrera.setVisible(false);
         jButtonSeleccionarCorredor.setVisible(false);
         jButtoncRONOMETRO.setVisible(false);
@@ -100,7 +81,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         jButtonSeleccionarCorredor = new javax.swing.JButton();
         jButtoncRONOMETRO = new javax.swing.JButton();
         jButtonEliminarTodosParticipantes = new javax.swing.JButton();
-        jButtonLimpiarCampos = new javax.swing.JButton();
         jButtonSeleccionarCarrera = new javax.swing.JButton();
         jButtonFinalizarCarrera = new javax.swing.JButton();
         jButtonExportarCSV = new javax.swing.JButton();
@@ -173,14 +153,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
             }
         });
 
-        jButtonLimpiarCampos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonLimpiarCampos.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jButtonLimpiarCampos.text")); // NOI18N
-        jButtonLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarCamposActionPerformed(evt);
-            }
-        });
-
         jButtonSeleccionarCarrera.setBackground(new java.awt.Color(204, 204, 255));
         jButtonSeleccionarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonSeleccionarCarrera.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jButtonSeleccionarCarrera.text")); // NOI18N
@@ -223,9 +195,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                                     .addComponent(jLabelTituloCarreras)
                                     .addComponent(jLabeTituloParticipantes)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonLimpiarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(20, 20, 20)
@@ -268,7 +238,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -332,11 +301,11 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                 = new DialogTablaCorredores(new javax.swing.JFrame(), true);
         confirmacionValidar.setVisible(true);
 
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
 
     private void jButtoncRONOMETROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncRONOMETROActionPerformed
-        if (LogicaNegocio.getInstance().getListaCarrerasIniciar().size() == 0
+        if (LogicaNegocio.getInstance().getListaCarreras().size() == 0
                 || LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
             JOptionPane.showMessageDialog(this, "No hay ninguna carrera iniciada "
                     + "con participantes.",
@@ -370,24 +339,16 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButtonEliminarTodosParticipantesActionPerformed
+    private void limpiar() {
+        LogicaNegocio.getInstance().getListaParticipantes().
+                removeAll(LogicaNegocio.getInstance().getListaParticipantes());
 
-    private void jButtonLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCamposActionPerformed
+        LogicaNegocio.getInstance().getListaCarreras().removeAll(
+                LogicaNegocio.getInstance().getListaCarreras());
 
-        int confirmación = JOptionPane.showConfirmDialog(this,
-                "¿Quiere limpiar todo el registro?",
-                "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
-        if (confirmación == JOptionPane.YES_OPTION) {
-            limpiar();
-            JOptionPane.showMessageDialog(this, "Se han borrado participantes y carrera.",
-                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
-            jButtonSeleccionarCarrera.setVisible(true);
-        } else if (confirmación == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, "No se han borrado participantes y carrera.",
-                    "Borrar.", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButtonLimpiarCamposActionPerformed
-
+        rellenarTablaCarrerasConParticipantes();
+        rellenarTablaConParticipantes();
+    }
     private void jButtonSeleccionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCarreraActionPerformed
         DialogTablaCarreras confirmacionValidar
                 = new DialogTablaCarreras(new javax.swing.JFrame(), true);
@@ -398,53 +359,22 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
 
-        try {
-            String nombreCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
-                    .get(0).getNombreCarrera();
-            Date fechaCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
-                    .get(0).getFechaCarrera();
-            String lugarCarrera = LogicaNegocio.getInstance().getListaCarrerasIniciar()
-                    .get(0).getLugarCarrera();
-            int numeroMaxCorredores = LogicaNegocio.getInstance().getListaCarrerasIniciar()
-                    .get(0).getNumeroMaxCorredores();
-            String tiempoTotal = LogicaNegocio.getInstance().getListaCarrerasIniciar()
-                    .get(0).getTiempoTotal();
-
-            carreraFinalizada = new CarreraFinalizada(true,
-                    LogicaNegocio.getInstance().getListaParticipantes(), nombreCarrera, fechaCarrera,
-                    lugarCarrera, numeroMaxCorredores, tiempoTotal);
-            LogicaNegocio.getInstance().anadirCarreraAlistaFinalizadas(carreraFinalizada);
-
-            jButtonExportarCSV.setVisible(true);
-        } catch (ParseException ex) {
-            Exceptions.printStackTrace(ex);
-        }
 
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
-    private void limpiar() {
-        LogicaNegocio.getInstance().getListaParticipantes().
-                removeAll(LogicaNegocio.getInstance().getListaParticipantes());
 
-        LogicaNegocio.getInstance().getListaCarrerasIniciar().removeAll(
-                LogicaNegocio.getInstance().getListaCarrerasIniciar());
-
-        rellenarTablaCarrerasConParticipantes();
-        rellenarTablaConParticipantes();
-    }
     private void jButtonExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarCSVActionPerformed
 
         LogicaNegocio.getInstance().grabarCarrera();
         JOptionPane.showMessageDialog(this, "Se ha exportado satisfactoriamente.",
                 "EXPORTAR.", JOptionPane.INFORMATION_MESSAGE);
-        limpiar();
-        this.dispose();
+
 
     }//GEN-LAST:event_jButtonExportarCSVActionPerformed
 
     //Utilizando un AbstractTableModel
     private void rellenarTablaCarrerasConParticipantes() {
         jTableCarreraInciada.setModel(new TableModelCarrerasConParticipantes(
-                LogicaNegocio.getInstance().getListaCarrerasIniciar()));
+                LogicaNegocio.getInstance().getListaCarreras()));
     }
 
     private void rellenarTablaConParticipantes() {
@@ -457,7 +387,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
     private javax.swing.JButton jButtonEliminarTodosParticipantes;
     private javax.swing.JButton jButtonExportarCSV;
     private javax.swing.JButton jButtonFinalizarCarrera;
-    private javax.swing.JButton jButtonLimpiarCampos;
     private javax.swing.JButton jButtonSeleccionarCarrera;
     private javax.swing.JButton jButtonSeleccionarCorredor;
     private javax.swing.JButton jButtoncRONOMETRO;

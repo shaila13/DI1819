@@ -12,7 +12,7 @@ public class TableModelCarreras extends AbstractTableModel {
 
     private final List<Carrera> listaCarreras;
 
-    private final String[] columnas = {"Nombre", "Fecha" , "Lugar", "Núm. Máx. Corredores"};
+    private final String[] columnas = {"Nombre", "Fecha", "Lugar", "Núm. Máx. Corredores", "Estado"};
 
     public TableModelCarreras(List<Carrera> listaCarreras) {
         this.listaCarreras = listaCarreras;
@@ -51,7 +51,8 @@ public class TableModelCarreras extends AbstractTableModel {
                 return listaCarreras.get(rowIndex).getLugarCarrera();
             case 3:
                 return listaCarreras.get(rowIndex).getNumeroMaxCorredores();
-
+            case 4:
+                return listaCarreras.get(rowIndex).getEstado();
         }
         return null;
     }

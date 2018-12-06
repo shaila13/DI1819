@@ -47,6 +47,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         jButtonModificar = new javax.swing.JButton();
         jButtonAlta = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
+        jButtonResultadoCarreras = new javax.swing.JButton();
         jButtonIniciarCarrera = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -91,6 +92,14 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
             }
         });
 
+        jButtonResultadoCarreras.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonResultadoCarreras.setText("Resultado Carreras");
+        jButtonResultadoCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResultadoCarrerasActionPerformed(evt);
+            }
+        });
+
         jButtonIniciarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonIniciarCarrera.setText("Gestión Carrera");
         jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -108,13 +117,16 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jButtonModificar)
+                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
+                                .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jButtonModificar))
+                            .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanelTablaCarrerasLayout.setVerticalGroup(
@@ -128,9 +140,11 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setJMenuBar(jMenuBar1);
@@ -204,22 +218,38 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
     private void jButtonIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarCarreraActionPerformed
 
         int seleccionado = jTableCarreras.getSelectedRow();
+        System.out.println("seleccionado "+seleccionado);
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
-            Carrera carreraIniciarCarrera = logicaNegocio.
-                    getListaCarreras().get(seleccionado);
-            carreraIniciarCarrera.setTiempoTotal("00:00:00");
-            DialogGestionarCarrera dialogoIniciarCarrera = new DialogGestionarCarrera(this,
-                    true, carreraIniciarCarrera);
-            logicaNegocio.anadirCarreraListaCarreraIniciada(carreraIniciarCarrera);
-            dialogoIniciarCarrera.setLocationRelativeTo(null);
-            dialogoIniciarCarrera.setVisible(true);
-            dispose();
+            if (!logicaNegocio.
+                    getListaCarreras().get(seleccionado).isFinalizada()) {
+                logicaNegocio.
+                        getListaCarreras().get(seleccionado).setTiempoTotal("00:00:00");
+                /*                logicaNegocio.
+                getListaCarreras().get(seleccionado).setFinalizada(true);
+                logicaNegocio.
+                getListaCarreras().get(seleccionado).setEstado("Finalizada");
+                rellenarTablaCarreras();*/
+                Carrera carrera = logicaNegocio.getListaCarreras().get(seleccionado);
+                DialogGestionarCarrera dialogoIniciarCarrera = new DialogGestionarCarrera(this,
+                        true, carrera);
+                dialogoIniciarCarrera.setLocationRelativeTo(null);
+                dialogoIniciarCarrera.setVisible(true);
+                logicaNegocio.setIdCarrera(seleccionado);
+            } else {
+                JOptionPane.showMessageDialog(this, "Carrera ya finalizada.",
+                        "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        dispose();
+
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
+
+    private void jButtonResultadoCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoCarrerasActionPerformed
+
+
+    }//GEN-LAST:event_jButtonResultadoCarrerasActionPerformed
 
 //Utilizando un AbstractTableModel
     private void rellenarTablaCarreras() {
@@ -232,6 +262,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonIniciarCarrera;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonResultadoCarreras;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelTablaCarreras;
     private javax.swing.JScrollPane jScrollPane1;

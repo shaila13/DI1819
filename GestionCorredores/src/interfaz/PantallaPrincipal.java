@@ -91,8 +91,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuConfiguracion = new javax.swing.JMenu();
         jMenuItemConfiguracion = new javax.swing.JMenuItem();
         jCheckBoxMenuItemGrabadoAutomatico = new javax.swing.JCheckBoxMenuItem();
-        jMenuHistorialCarreras = new javax.swing.JMenu();
-        jMenuItemVerCarrerasFinalizadas = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
         jMenuItemAyuda = new javax.swing.JMenuItem();
@@ -165,18 +163,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuConfiguracion.add(jCheckBoxMenuItemGrabadoAutomatico);
 
         jMenuBar1.add(jMenuConfiguracion);
-
-        jMenuHistorialCarreras.setText("Historial Carreras");
-
-        jMenuItemVerCarrerasFinalizadas.setText("Carreras Finalizadas");
-        jMenuItemVerCarrerasFinalizadas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemVerCarrerasFinalizadasActionPerformed(evt);
-            }
-        });
-        jMenuHistorialCarreras.add(jMenuItemVerCarrerasFinalizadas);
-
-        jMenuBar1.add(jMenuHistorialCarreras);
 
         jMenuSalir.setText("Ayuda");
         jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -283,14 +269,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
-    private void jMenuItemVerCarrerasFinalizadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerCarrerasFinalizadasActionPerformed
-
-        DialogHistorialCarreras gestionarCarreraFinalizada = new DialogHistorialCarreras(this, true);
-        gestionarCarreraFinalizada.setLocationRelativeTo(null);
-        gestionarCarreraFinalizada.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItemVerCarrerasFinalizadasActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -383,12 +361,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
-    private javax.swing.JMenu jMenuHistorialCarreras;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalirAplicacion;
-    private javax.swing.JMenuItem jMenuItemVerCarrerasFinalizadas;
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelPantallaPrincipal;
     // End of variables declaration//GEN-END:variables

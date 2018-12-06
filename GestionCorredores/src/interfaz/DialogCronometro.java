@@ -3,9 +3,12 @@ package interfaz;
 import cronometro.modelo.LLegadaParticipantes;
 import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
+import modelo.Participantes;
 
 /**
  *
@@ -47,6 +50,8 @@ public class DialogCronometro extends javax.swing.JDialog {
                                 getTiempoCarrera().equalsIgnoreCase("00:00:00")) {
                             LogicaNegocio.getInstance().getListaParticipantes().get(i).
                                     setTiempoCarrera(tiempoParcial);
+                            LogicaNegocio.getInstance().getListaParticipantes().get(i).
+                                    setPosicion(contadorParticipantes);
                             rellenarTablaConParticipantes();
                             JOptionPane.showMessageDialog(null, "Ha llegado el corredor con dorsal: "
                                     + dorsalParticipante + ", tiempo de carrera: " + tiempoParcial);
@@ -57,6 +62,19 @@ public class DialogCronometro extends javax.swing.JDialog {
                                         + "todos los participantes.");
                                 tiempoGlobal = tiempoParcial;
                                 finalizarCarrera(tiempoGlobal);
+//Ordeno a los participantes por orden de llegada y se los meto a la carrera
+                                LogicaNegocio.getInstance().ordenarPosicion();
+
+                                rellenarTablaConParticipantes();
+                                LogicaNegocio.getInstance().getListaCarreras().
+                                        get(LogicaNegocio.getInstance().getIdCarrera()).
+                                        setListaParticipantes(LogicaNegocio.getInstance().
+                                                getListaParticipantes());
+                                LogicaNegocio.getInstance().getListaCarreras().get(LogicaNegocio.
+                                        getInstance().getIdCarrera()).setFinalizada(true);
+                                LogicaNegocio.getInstance().getListaCarreras().get(LogicaNegocio.
+                                        getInstance().getIdCarrera()).setEstado("Finalizada");
+                                
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "El participante ya ha llegado a la meta.");
@@ -168,7 +186,7 @@ public class DialogCronometro extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
+
         cronometroPropio.start();
         cronometroPropio.setVisible(true);
         btnStart.setEnabled(false);
@@ -179,7 +197,7 @@ public class DialogCronometro extends javax.swing.JDialog {
         btnStart.setEnabled(true);
         btnStart.setText("Iniciar");
         btnStop.setEnabled(false);
-        
+
         cronometroPropio.setH(0);
         cronometroPropio.setM(0);
         cronometroPropio.setS(0);
@@ -187,7 +205,7 @@ public class DialogCronometro extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Carrera finalizada, tiempo de carrera: "
                 + tiempoGlobal);
 
-        LogicaNegocio.getInstance().getListaCarrerasIniciar().get(0).
+        LogicaNegocio.getInstance().getListaCarreras().get(0).
                 setTiempoTotal(tiempoGlobal);
         dispose();
     }

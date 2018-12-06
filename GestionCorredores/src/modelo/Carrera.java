@@ -2,7 +2,9 @@ package modelo;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -11,31 +13,51 @@ import java.util.Date;
 public class Carrera implements Serializable, Comparable<Carrera> {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
+    private boolean finalizada;
+    private List<Participantes> listaParticipantes;
     private String nombreCarrera = "";
     private Date fechaCarrera;
-    private String lugarCarrera;
+    private String lugarCarrera = "";
     private int numeroMaxCorredores;
-    private String tiempoTotal;
+    private String tiempoTotal = "";
+    private String estado = "";
 
     public Carrera() {
     }
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera,
-            int numeroMaxCorredores) {
+            int numeroMaxCorredores, boolean finalizada) {
         this.nombreCarrera = nombreCarrera;
-        this.fechaCarrera = fechaCarrera;
-        this.lugarCarrera = lugarCarrera;
-        this.numeroMaxCorredores = numeroMaxCorredores;
-    }
-
-    public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera,
-            int numeroMaxCorredores, String tiempoTotal) {
-        this.nombreCarrera = nombreCarrera;
+        this.listaParticipantes = new ArrayList<>();
         this.fechaCarrera = fechaCarrera;
         this.lugarCarrera = lugarCarrera;
         this.numeroMaxCorredores = numeroMaxCorredores;
         this.tiempoTotal = tiempoTotal;
+        this.estado = (finalizada == true ? "Finalizada" : "Pendiente");
+    }
 
+    public boolean isFinalizada() {
+        return finalizada;
+    }
+
+    public void setFinalizada(boolean finalizada) {
+        this.finalizada = finalizada;
+    }
+
+    public List<Participantes> getListaParticipantes() {
+        return listaParticipantes;
+    }
+
+    public void setListaParticipantes(List<Participantes> listaParticipantes) {
+        this.listaParticipantes = listaParticipantes;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getTiempoTotal() {
@@ -88,7 +110,7 @@ public class Carrera implements Serializable, Comparable<Carrera> {
         return "Carrera: " + nombreCarrera + ", fecha: "
                 + fecha.format(fechaCarrera)
                 + ", lugar: " + lugarCarrera + ", número Max Corredores:"
-                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal;
+                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal + "listaParticipantes=" + listaParticipantes;
     }
 
 }

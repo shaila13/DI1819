@@ -67,7 +67,6 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
         this.carreraModificar = carreraModificar;
         initComponents();
         setTitle("FORMULARIO MODIFICACIÓN CARRERAS.");
-
 //Establecer el logo del a aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         jButtonValidarCarrera.setEnabled(false);
@@ -285,7 +284,7 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
 
         //Checkeamos si es un alta o una modificación
         if (carreraModificar == null) {
-            m = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroMaxCorredores);
+            m = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroMaxCorredores,false);
             LogicaNegocio.getInstance().anadirCarreraLista(m);
             //método para mostrar simplemente un mensaje
             JOptionPane.showMessageDialog(this, "Carrera creada con éxito.",

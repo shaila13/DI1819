@@ -11,6 +11,7 @@ public class Participantes extends Corredor implements Serializable,Comparable<C
 
     private int dorsal;
     private String tiempoParticipante;
+    private int posicion;
 
     public Participantes(int dorsal, String tiempoCarrera) {
         this.dorsal = dorsal;
@@ -22,6 +23,14 @@ public class Participantes extends Corredor implements Serializable,Comparable<C
         super(nombre, dni, fechaNacimiento, direccion, telefono);
         this.dorsal = dorsal;
         this.tiempoParticipante = tiempoCarrera;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 
     public int getDorsal() {
