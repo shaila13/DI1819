@@ -32,3 +32,6 @@ CorredoresInterfaces1/Aburrida me tiene esto118.dat
 *.dat
 /GestionCorredores/dist/
 /GestionCarrerasCross/nbproject/private/
+/OtraAplicacionInterfaces/nbproject/private/
+/OtraAplicacionInterfaces/build/
+/OtraAplicacionInterfacesNoVale/nbproject/private/
