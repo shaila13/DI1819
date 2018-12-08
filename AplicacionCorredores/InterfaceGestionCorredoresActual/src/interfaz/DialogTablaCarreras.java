@@ -2,10 +2,22 @@ package interfaz;
 
 import interfaz.tablas.TableModelCarreras;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
+import javax.swing.table.TableRowSorter;
 import logica.LogicaNegocio;
 import modelo.Carrera;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -24,6 +36,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
     public DialogTablaCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ponLaAyuda();
         setLocationRelativeTo(null);
         setTitle("TABLA CARRERAS.");
 
@@ -49,7 +62,9 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         jButtonBorrar = new javax.swing.JButton();
         jButtonResultadoCarreras = new javax.swing.JButton();
         jButtonGestionarCarrera = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuSalir1 = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -113,28 +128,29 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         jPanelTablaCarrerasLayout.setHorizontalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                                .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jButtonModificar))
-                            .addComponent(jButtonGestionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(jButtonModificar))
+                    .addComponent(jButtonGestionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTablaCarrerasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelTablaCarrerasLayout.setVerticalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,10 +160,30 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGestionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        setJMenuBar(jMenuBar1);
+        jMenuBar2.setBackground(new java.awt.Color(102, 153, 255));
+
+        jMenuSalir1.setText(org.openide.util.NbBundle.getMessage(DialogTablaCarreras.class, "DialogGestionarCarrera.jMenuSalir1.text")); // NOI18N
+        jMenuSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalir1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItemAyuda.setText(org.openide.util.NbBundle.getMessage(DialogTablaCarreras.class, "DialogGestionarCarrera.jMenuItemAyuda.text")); // NOI18N
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
+        jMenuSalir1.add(jMenuItemAyuda);
+
+        jMenuBar2.add(jMenuSalir1);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,7 +262,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
 
     private void jButtonGestionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionarCarreraActionPerformed
 
-        int seleccionado = jTableCarreras.getSelectedRow();
+        int seleccionado = jTableCarreras.convertRowIndexToModel(jTableCarreras.getSelectedRow());
 
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
@@ -260,19 +296,78 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonResultadoCarrerasActionPerformed
 
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalir1ActionPerformed
+
+    }//GEN-LAST:event_jMenuSalir1ActionPerformed
+
 //Utilizando un AbstractTableModel
     private void rellenarTablaCarreras() {
-        jTableCarreras.setModel(new TableModelCarreras(
-                logicaNegocio.getListaCarreras()));
+
+        //La lista que tenemos en logica negocio no la tocamos, va a ser el jtable quién lo haga
+        TableModelCarreras tableModelCarreras = new TableModelCarreras(logicaNegocio.getListaCarreras());
+        jTableCarreras.setModel(tableModelCarreras);
+        TableRowSorter<TableModelCarreras> sorter = new TableRowSorter<>(tableModelCarreras);
+        jTableCarreras.setRowSorter(sorter);
+
+        List<SortKey> sortKeys = new ArrayList<>();
+        //Creamos uno nuevo y le pasamos dos valores, 
+        //el primero la columna por la que queremos ordenar y el orden
+        sortKeys.add(new SortKey(1,SortOrder.ASCENDING));
+        //indicar claves ordenación
+        sorter.setSortKeys(sortKeys);
+        
     }
 
+        /**
+     * Método que incorpora la ayuda en nuestro proyecto.
+     */
+    private void ponLaAyuda() {
+        try {
+            //Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            //Si metemos la carpeta help en src tenemos que quitar lo anterior y poner
+            /**
+             * URL ayuda = getClass().getResource("ruta"); File
+             * ficheroAyudaEnJar = new File(ayuda.toURI());
+             */
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            /**
+             * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+             * secundaria.
+             */
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGestionarCarrera;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonResultadoCarreras;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItemAyuda;
+    private javax.swing.JMenu jMenuSalir1;
     private javax.swing.JPanel jPanelTablaCarreras;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCarreras;

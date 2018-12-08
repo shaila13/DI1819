@@ -3,12 +3,18 @@ package interfaz;
 import cronometro.modelo.LLegadaParticipantes;
 import interfaz.tablas.TableModelParticipantes;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Participantes;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -29,6 +35,7 @@ public class DialogCronometro extends javax.swing.JDialog {
     public DialogCronometro(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ponLaAyuda();
         //Establecer el logo de la aplicación
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         rellenarTablaConParticipantes();
@@ -116,6 +123,9 @@ public class DialogCronometro extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableParticipantes = new javax.swing.JTable();
         cronometroPropio = new cronometro.modelo.CronometroPropio();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuSalir = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -155,6 +165,28 @@ public class DialogCronometro extends javax.swing.JDialog {
         cronometroPropio.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.cronometroPropio.text")); // NOI18N
         cronometroPropio.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
+        jMenuBar1.setBackground(new java.awt.Color(102, 153, 255));
+
+        jMenuSalir.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.jMenuSalir.text")); // NOI18N
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+
+        jMenuItemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItemAyuda.setText(org.openide.util.NbBundle.getMessage(DialogCronometro.class, "DialogCronometro.jMenuItemAyuda.text")); // NOI18N
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
+        jMenuSalir.add(jMenuItemAyuda);
+
+        jMenuBar1.add(jMenuSalir);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +223,7 @@ public class DialogCronometro extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStart)
                     .addComponent(btnStop))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -223,17 +255,63 @@ public class DialogCronometro extends javax.swing.JDialog {
         finalizarCarrera(tiempoGlobal);
         dispose();
     }//GEN-LAST:event_btnStopActionPerformed
+
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+
+    }//GEN-LAST:event_jMenuSalirActionPerformed
     private void rellenarTablaConParticipantes() {
         jTableParticipantes.setModel(new TableModelParticipantes(
                 LogicaNegocio.getInstance().getListaParticipantes()));
     }
 
+    /**
+     * Método que incorpora la ayuda en nuestro proyecto.
+     */
+    private void ponLaAyuda() {
+        try {
+            //Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
 
+            //Si metemos la carpeta help en src tenemos que quitar lo anterior y poner
+            /**
+             * URL ayuda = getClass().getResource("ruta"); File
+             * ficheroAyudaEnJar = new File(ayuda.toURI());
+             */
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            /**
+             * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+             * secundaria.
+             */
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btnStop;
     private cronometro.modelo.CronometroPropio cronometroPropio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
+    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableParticipantes;
     // End of variables declaration//GEN-END:variables

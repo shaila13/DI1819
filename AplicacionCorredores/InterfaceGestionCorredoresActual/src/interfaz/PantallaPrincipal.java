@@ -342,9 +342,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
              * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
              * secundaria.
              */
-            hb.enableHelpOnButton(jMenuItemAyuda, "ventana_principal", helpset);
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
             //Al pulsar F1 salta la ayuda
-            hb.enableHelpKey(getRootPane(), "ventana_principal", helpset);
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
             /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
             hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
             hb.enableHelpKey(jButton1, "ventana_principal", helpset);

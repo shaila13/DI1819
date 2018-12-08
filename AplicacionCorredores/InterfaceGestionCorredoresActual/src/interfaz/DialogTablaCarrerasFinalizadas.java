@@ -1,6 +1,6 @@
 package interfaz;
 
-import interfaz.tablas.TableModelCarreras;
+
 import interfaz.tablas.TableModelCarrerasConParticipantes;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -25,6 +25,7 @@ public class DialogTablaCarrerasFinalizadas extends javax.swing.JDialog {
     public DialogTablaCarrerasFinalizadas(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
         setLocationRelativeTo(null);
         setTitle("TABLA CARRERAS FINALIZADAS.");
 
@@ -46,7 +47,6 @@ public class DialogTablaCarrerasFinalizadas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCarreras = new javax.swing.JTable();
         jButtonResultadoCarreras = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,25 +78,23 @@ public class DialogTablaCarrerasFinalizadas extends javax.swing.JDialog {
         jPanelTablaCarrerasLayout.setHorizontalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
+                        .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelTablaCarrerasLayout.setVerticalGroup(
             jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTablaCarrerasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,7 +141,6 @@ public class DialogTablaCarrerasFinalizadas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResultadoCarreras;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelTablaCarreras;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCarreras;

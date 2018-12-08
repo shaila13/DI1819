@@ -1,5 +1,5 @@
 <helpset version="1.0">
-   <title>Ejemplo ayuda JavaHelp</title>
+   <title>Ayuda aplicacion</title>
    <maps>
       <!-- Pagina por defecto al mostrar la ayuda -->
       <homeID>aplicacion</homeID>

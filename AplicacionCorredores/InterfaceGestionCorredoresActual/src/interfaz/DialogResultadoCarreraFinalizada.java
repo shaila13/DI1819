@@ -6,7 +6,14 @@
 package interfaz;
 
 import interfaz.tablas.TableModelParticipantes;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import logica.LogicaNegocio;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -23,12 +30,13 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
             int idCarrera) {
         super(parent, modal);
         initComponents();
+        ponLaAyuda();
         this.setLocationRelativeTo(null);
         this.idCarrera = idCarrera;
-        setTitle("LISTA PARTICIPANTES DE "+LogicaNegocio.getInstance().
+        setTitle("Lista de participantes de "+LogicaNegocio.getInstance().
                 getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera()+".");
         jLabelNombreCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera());
-        jLabelTiempoCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getTiempoTotal());
+        jLabelTiempoCarrera.setText("Tiempo carrera "+LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getTiempoTotal());
 
         rellenarTablaParticipantes();
 
@@ -48,6 +56,9 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableResultadoCarrera = new javax.swing.JTable();
         jLabelTiempoCarrera = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuSalir1 = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,14 +105,36 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addComponent(jLabelNombreCarrera)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelTiempoCarrera)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
         );
+
+        jMenuBar2.setBackground(new java.awt.Color(102, 153, 255));
+
+        jMenuSalir1.setText(org.openide.util.NbBundle.getMessage(DialogResultadoCarreraFinalizada.class, "DialogGestionarCarrera.jMenuSalir1.text")); // NOI18N
+        jMenuSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalir1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItemAyuda.setText(org.openide.util.NbBundle.getMessage(DialogResultadoCarreraFinalizada.class, "DialogGestionarCarrera.jMenuItemAyuda.text")); // NOI18N
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
+        jMenuSalir1.add(jMenuItemAyuda);
+
+        jMenuBar2.add(jMenuSalir1);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,21 +144,68 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rellenarTablaParticipantes() {
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
 
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalir1ActionPerformed
+
+    }//GEN-LAST:event_jMenuSalir1ActionPerformed
+
+    private void rellenarTablaParticipantes() {
         jTableResultadoCarrera.setModel(new TableModelParticipantes(
                 LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getListaParticipantes()));
     }
+    /**
+     * Método que incorpora la ayuda en nuestro proyecto.
+     */
+    private void ponLaAyuda() {
+        try {
+            //Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
 
+            //Si metemos la carpeta help en src tenemos que quitar lo anterior y poner
+            /**
+             * URL ayuda = getClass().getResource("ruta"); File
+             * ficheroAyudaEnJar = new File(ayuda.toURI());
+             */
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            /**
+             * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+             * secundaria.
+             */
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelNombreCarrera;
     private javax.swing.JLabel jLabelTiempoCarrera;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItemAyuda;
+    private javax.swing.JMenu jMenuSalir1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableResultadoCarrera;

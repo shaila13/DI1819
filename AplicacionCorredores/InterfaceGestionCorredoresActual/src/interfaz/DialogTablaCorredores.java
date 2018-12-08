@@ -2,7 +2,12 @@ package interfaz;
 
 import interfaz.tablas.TableModelCorredores;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
@@ -30,7 +35,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
     public DialogTablaCorredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        ponLaAyuda();
         jButtonAnadirCorredorAcarrera.setVisible(false);
 
         setLocationRelativeTo(null);
@@ -46,6 +51,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
     public DialogTablaCorredores(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ponLaAyuda();
         jButtonAnadirCorredorAcarrera.setVisible(true);
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
@@ -74,7 +80,9 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
         jButtonBorrar = new javax.swing.JButton();
         jButtonGrabarCSVCorredores = new javax.swing.JButton();
         jButtonAnadirCorredorAcarrera = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuSalir1 = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -171,7 +179,27 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
-        setJMenuBar(jMenuBar1);
+        jMenuBar2.setBackground(new java.awt.Color(102, 153, 255));
+
+        jMenuSalir1.setText(org.openide.util.NbBundle.getMessage(DialogTablaCorredores.class, "DialogGestionarCarrera.jMenuSalir1.text")); // NOI18N
+        jMenuSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalir1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItemAyuda.setText(org.openide.util.NbBundle.getMessage(DialogTablaCorredores.class, "DialogGestionarCarrera.jMenuItemAyuda.text")); // NOI18N
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
+        jMenuSalir1.add(jMenuItemAyuda);
+
+        jMenuBar2.add(jMenuSalir1);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +213,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanelTablaCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -277,17 +305,14 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
                             corredor.getDireccion(), corredor.getTelefono());
 
                     if (LogicaNegocio.getInstance().anadirParticipanteListaCarrera(participante)) {
-
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(this, "El participante ya ha sido añadido en la carrera.",
                                 "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(this, "Se ha superado el número máximo de participantes.",
                             "¡¡ATENCIÓN!!", JOptionPane.ERROR_MESSAGE);
-
                 }
             } catch (ParseException ex) {
                 Exceptions.printStackTrace(ex);
@@ -296,19 +321,65 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonAnadirCorredorAcarreraActionPerformed
 
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalir1ActionPerformed
+
+    }//GEN-LAST:event_jMenuSalir1ActionPerformed
+
 //Utilizando un AbstractTableModel
     private void rellenarTablaCorredores() {
         jTableCorredores.setModel(new TableModelCorredores(
                 LogicaNegocio.getInstance().getListaCorredores()));
     }
 
+    /**
+     * Método que incorpora la ayuda en nuestro proyecto.
+     */
+    private void ponLaAyuda() {
+        try {
+            //Carga el fichero de ayuda
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            //Si metemos la carpeta help en src tenemos que quitar lo anterior y poner
+            /**
+             * URL ayuda = getClass().getResource("ruta"); File
+             * ficheroAyudaEnJar = new File(ayuda.toURI());
+             */
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            /**
+             * Pone ayuda a item de menu al pulsarlo y a F1 en ventana ppal y
+             * secundaria.
+             */
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
+            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
+            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonAnadirCorredorAcarrera;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGrabarCSVCorredores;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItemAyuda;
+    private javax.swing.JMenu jMenuSalir1;
     private javax.swing.JPanel jPanelTablaCorredores;
     private javax.swing.JScrollPane jScrollPaneTabla;
     private javax.swing.JTable jTableCorredores;

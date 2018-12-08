@@ -46,6 +46,7 @@ public class DialogConfiguracion extends javax.swing.JDialog {
             }
         });
 
+        jButtonAceptarTema.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonAceptarTema.setText(org.openide.util.NbBundle.getMessage(DialogConfiguracion.class, "DialogConfiguracion.jButtonAceptarTema.text")); // NOI18N
         jButtonAceptarTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
