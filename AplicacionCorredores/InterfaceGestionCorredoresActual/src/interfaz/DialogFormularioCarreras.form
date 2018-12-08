@@ -155,7 +155,7 @@
               <Font name="Dialog" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="5" type="date"/>
+              <SpinnerModel initial="now" minimum="now" stepSize="5" type="date"/>
             </Property>
           </Properties>
         </Component>
@@ -165,12 +165,85 @@
               <Font name="Dialog" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="S.M.R.A."/>
-                <StringItem index="1" value="LLANGREU"/>
-                <StringItem index="2" value="MIERES"/>
-                <StringItem index="3" value="POLA LLAVIANA"/>
-                <StringItem index="4" value="CASU"/>
+              <StringArray count="78">
+                <StringItem index="0" value="Allande"/>
+                <StringItem index="1" value="Aller"/>
+                <StringItem index="2" value="Amieva"/>
+                <StringItem index="3" value="Avil&#xe9;s"/>
+                <StringItem index="4" value="Belmonte de Miranda"/>
+                <StringItem index="5" value="Bimenes"/>
+                <StringItem index="6" value="Boal"/>
+                <StringItem index="7" value="Cabrales"/>
+                <StringItem index="8" value="Cabranes"/>
+                <StringItem index="9" value="Candamo"/>
+                <StringItem index="10" value="Cangas de On&#xed;s"/>
+                <StringItem index="11" value="Cangas del Narcea"/>
+                <StringItem index="12" value="Caravia"/>
+                <StringItem index="13" value="Carre&#xf1;o"/>
+                <StringItem index="14" value="Caso"/>
+                <StringItem index="15" value="Castrill&#xf3;n"/>
+                <StringItem index="16" value="Castropol"/>
+                <StringItem index="17" value="Coa&#xf1;a"/>
+                <StringItem index="18" value="Colunga"/>
+                <StringItem index="19" value="Corvera de Asturias"/>
+                <StringItem index="20" value="Cudillero"/>
+                <StringItem index="21" value="Dega&#xf1;a"/>
+                <StringItem index="22" value="Franco, El"/>
+                <StringItem index="23" value="Gij&#xf3;n"/>
+                <StringItem index="24" value="Goz&#xf3;n"/>
+                <StringItem index="25" value="Grado"/>
+                <StringItem index="26" value="Grandas de Salime"/>
+                <StringItem index="27" value="Ibias"/>
+                <StringItem index="28" value="Illano"/>
+                <StringItem index="29" value="Illas"/>
+                <StringItem index="30" value="Langreo"/>
+                <StringItem index="31" value="Laviana"/>
+                <StringItem index="32" value="Lena"/>
+                <StringItem index="33" value="Llanera"/>
+                <StringItem index="34" value="Llanes"/>
+                <StringItem index="35" value="Mieres"/>
+                <StringItem index="36" value="Morc&#xed;n"/>
+                <StringItem index="37" value="Muros de Nal&#xf3;n"/>
+                <StringItem index="38" value="Nava"/>
+                <StringItem index="39" value="Navia"/>
+                <StringItem index="40" value="Nore&#xf1;a"/>
+                <StringItem index="41" value="On&#xed;s"/>
+                <StringItem index="42" value="Oviedo"/>
+                <StringItem index="43" value="Parres"/>
+                <StringItem index="44" value="Pesoz"/>
+                <StringItem index="45" value="Pe&#xf1;amellera Alta"/>
+                <StringItem index="46" value="Pe&#xf1;amellera Baja"/>
+                <StringItem index="47" value="Pilo&#xf1;a"/>
+                <StringItem index="48" value="Ponga"/>
+                <StringItem index="49" value="Pravia"/>
+                <StringItem index="50" value="Proaza"/>
+                <StringItem index="51" value="Quir&#xf3;s"/>
+                <StringItem index="52" value="Regueras, Las"/>
+                <StringItem index="53" value="Ribadedeva"/>
+                <StringItem index="54" value="Ribadesella"/>
+                <StringItem index="55" value="Ribera de Arriba"/>
+                <StringItem index="56" value="Riosa"/>
+                <StringItem index="57" value="Salas"/>
+                <StringItem index="58" value="San Mart&#xed;n de Oscos"/>
+                <StringItem index="59" value="San Mart&#xed;n del Rey Aurelio"/>
+                <StringItem index="60" value="San Tirso de Abres"/>
+                <StringItem index="61" value="Santa Eulalia de Oscos"/>
+                <StringItem index="62" value="Santo Adriano"/>
+                <StringItem index="63" value="Sariego"/>
+                <StringItem index="64" value="Siero"/>
+                <StringItem index="65" value="Sobrescobio"/>
+                <StringItem index="66" value="Somiedo"/>
+                <StringItem index="67" value="Soto del Barco"/>
+                <StringItem index="68" value="Tapia de Casariego"/>
+                <StringItem index="69" value="Taramundi"/>
+                <StringItem index="70" value="Teverga"/>
+                <StringItem index="71" value="Tineo"/>
+                <StringItem index="72" value="Vald&#xe9;s"/>
+                <StringItem index="73" value="Vegadeo"/>
+                <StringItem index="74" value="Villanueva de Oscos"/>
+                <StringItem index="75" value="Villaviciosa"/>
+                <StringItem index="76" value="Villay&#xf3;n"/>
+                <StringItem index="77" value="Yernes Y Tameza"/>
               </StringArray>
             </Property>
           </Properties>

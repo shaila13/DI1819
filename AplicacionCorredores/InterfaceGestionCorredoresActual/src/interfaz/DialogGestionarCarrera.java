@@ -1,13 +1,14 @@
 package interfaz;
 
 import interfaz.tablas.TableModelParticipantes;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 import modelo.Carrera;
 import modelo.Participantes;
-
 
 /**
  *
@@ -34,7 +35,17 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
 
         jLabelCarreraAcorrer.setText(LogicaNegocio.getInstance().getListaCarreras().get(idCarrera).getNombreCarrera());
-        //rellenarTablaCarrerasConParticipantes();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                super.windowClosing(we);
+                //Borro los participantes 
+                LogicaNegocio.getInstance().getListaParticipantes().
+                        removeAll(LogicaNegocio.getInstance().getListaParticipantes());
+                //}
+
+            }
+        });
     }
 
     public DialogGestionarCarrera(DialogTablaCorredores parent, boolean modal, Participantes p) {
@@ -51,6 +62,19 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         //rellenarTablaCarrerasConParticipantes();
         rellenarTablaConParticipantes();
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                super.windowClosing(we);
+                //Borro los participantes 
+                LogicaNegocio.getInstance().getListaParticipantes().
+                        removeAll(LogicaNegocio.getInstance().getListaParticipantes());
+                //}
+
+            }
+        });
+
     }
 
     private void ocultarBotones() {
@@ -182,11 +206,11 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                     .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(175, 175, 175)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,9 +225,10 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtoncRONOMETRO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
+                .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,7 +284,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonEliminarCorredorActionPerformed
 
     private void jButtonSeleccionarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCorredorActionPerformed
-        DialogTablaCorredores.mostrarBotonOculto(true);
+      
         DialogTablaCorredores confirmacionValidar
                 = new DialogTablaCorredores(this, true);
         confirmacionValidar.setVisible(true);
@@ -302,32 +327,22 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButtonEliminarTodosParticipantesActionPerformed
-    private void limpiar() {
-        LogicaNegocio.getInstance().getListaParticipantes().
-                removeAll(LogicaNegocio.getInstance().getListaParticipantes());
 
-        LogicaNegocio.getInstance().getListaCarreras().removeAll(
-                LogicaNegocio.getInstance().getListaCarreras());
-
-        //rellenarTablaCarrerasConParticipantes();
-        rellenarTablaConParticipantes();
-    }
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
 
         jButtonExportarResultado.setVisible(true);
+
 
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
 
     private void jButtonExportarResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarResultadoActionPerformed
 
-       
         LogicaNegocio.getInstance().grabarCarreraFinalizada();
         LogicaNegocio.getInstance().grabarCarrera();
-        JOptionPane.showMessageDialog(this, "Se ha exportado satisfactoriamente");
-
-//Borro los participantes 
+        //Borro los participantes 
         LogicaNegocio.getInstance().getListaParticipantes().
                 removeAll(LogicaNegocio.getInstance().getListaParticipantes());
+        JOptionPane.showMessageDialog(this, "Se ha exportado satisfactoriamente");
         dispose();
     }//GEN-LAST:event_jButtonExportarResultadoActionPerformed
 

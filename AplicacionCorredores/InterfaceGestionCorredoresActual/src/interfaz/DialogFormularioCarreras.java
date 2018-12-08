@@ -139,10 +139,10 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
         });
 
         jSpinnerFechaCarrera.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jSpinnerFechaCarrera.setModel(new javax.swing.SpinnerDateModel());
+        jSpinnerFechaCarrera.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
 
         jComboBoxCiudad.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jComboBoxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S.M.R.A.", "LLANGREU", "MIERES", "POLA LLAVIANA", "CASU" }));
+        jComboBoxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Allande", "Aller", "Amieva", "Avilés", "Belmonte de Miranda", "Bimenes", "Boal", "Cabrales", "Cabranes", "Candamo", "Cangas de Onís", "Cangas del Narcea", "Caravia", "Carreño", "Caso", "Castrillón", "Castropol", "Coaña", "Colunga", "Corvera de Asturias", "Cudillero", "Degaña", "Franco, El", "Gijón", "Gozón", "Grado", "Grandas de Salime", "Ibias", "Illano", "Illas", "Langreo", "Laviana", "Lena", "Llanera", "Llanes", "Mieres", "Morcín", "Muros de Nalón", "Nava", "Navia", "Noreña", "Onís", "Oviedo", "Parres", "Pesoz", "Peñamellera Alta", "Peñamellera Baja", "Piloña", "Ponga", "Pravia", "Proaza", "Quirós", "Regueras, Las", "Ribadedeva", "Ribadesella", "Ribera de Arriba", "Riosa", "Salas", "San Martín de Oscos", "San Martín del Rey Aurelio", "San Tirso de Abres", "Santa Eulalia de Oscos", "Santo Adriano", "Sariego", "Siero", "Sobrescobio", "Somiedo", "Soto del Barco", "Tapia de Casariego", "Taramundi", "Teverga", "Tineo", "Valdés", "Vegadeo", "Villanueva de Oscos", "Villaviciosa", "Villayón", "Yernes Y Tameza" }));
         jComboBoxCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCiudadActionPerformed(evt);

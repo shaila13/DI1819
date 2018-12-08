@@ -73,13 +73,14 @@
                                       <Component id="jButtoncRONOMETRO" pref="140" max="32767" attributes="0"/>
                                       <Component id="jButtonExportarResultado" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButtonEliminarTodosParticipantes" min="-2" pref="135" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonEliminarCorredor" min="-2" pref="169" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jButtonEliminarTodosParticipantes" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jButtonEliminarCorredor" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -98,10 +99,11 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonSeleccionarCorredor" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
                       <Component id="jButtoncRONOMETRO" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                      <Component id="jButtonEliminarTodosParticipantes" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonEliminarCorredor" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="jButtonEliminarTodosParticipantes" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonExportarResultado" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
                       <Component id="jButtonFinalizarCarrera" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>

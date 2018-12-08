@@ -5,15 +5,8 @@
  */
 package interfaz;
 
-
-import interfaz.tablas.TableModelCarrerasConParticipantes;
-import java.awt.Component;
-import java.io.File;
-import java.io.IOException;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import interfaz.tablas.TableModelParticipantes;
 import logica.LogicaNegocio;
-import org.openide.util.Exceptions;
 
 /**
  *
@@ -21,21 +14,24 @@ import org.openide.util.Exceptions;
  */
 public class ResultadoCarreraFinalizada extends javax.swing.JDialog {
 
-
     private int idCarrera;
-
 
     /**
      * Creates new form ResultadoCarrera
      */
-    public ResultadoCarreraFinalizada(java.awt.Dialog parent, boolean modal, int idCarrera) {
+    public ResultadoCarreraFinalizada(java.awt.Dialog parent, boolean modal,
+            int idCarrera) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.idCarrera = idCarrera;
+        setTitle("LISTA PARTICIPANTES DE "+LogicaNegocio.getInstance().
+                getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera()+".");
+        jLabelNombreCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera());
+        jLabelTiempoCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getTiempoTotal());
 
-        //jLabelNomCarrera.setText(LogicaNegocio.getListaCarreras().get(idCarrera).getNombreCarrera());
-        rellenarTablaCarreras();
+        rellenarTablaParticipantes();
+
     }
 
     /**
@@ -48,16 +44,16 @@ public class ResultadoCarreraFinalizada extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel = new javax.swing.JPanel();
-        jLabelNomCarrera = new javax.swing.JLabel();
+        jLabelNombreCarrera = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableResultadoCarrera = new javax.swing.JTable();
-        jButtonExportarResultado = new javax.swing.JButton();
+        jLabelTiempoCarrera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelNomCarrera.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabelNomCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelNomCarrera.setText("jLabel1");
+        jLabelNombreCarrera.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabelNombreCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelNombreCarrera.setText("Carrera");
 
         jTableResultadoCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,81 +70,62 @@ public class ResultadoCarreraFinalizada extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableResultadoCarrera);
 
-        jButtonExportarResultado.setText("Exportar resultado");
-        jButtonExportarResultado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExportarResultadoActionPerformed(evt);
-            }
-        });
+        jLabelTiempoCarrera.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabelTiempoCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTiempoCarrera.setText("Tiempo");
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNomCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                    .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jLabelTiempoCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jLabelNombreCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(20, 20, 20))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelNomCarrera)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonExportarResultado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabelNombreCarrera)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelTiempoCarrera)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonExportarResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarResultadoActionPerformed
+    private void rellenarTablaParticipantes() {
 
-    }//GEN-LAST:event_jButtonExportarResultadoActionPerformed
-
-    public String seleccionarDirectorio(Component pantalla) {
-        File file = null;
-        JFileChooser jc = new JFileChooser();
-        this.setLocationRelativeTo(null);
-        jc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int seleccion = jc.showOpenDialog(pantalla);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            file = jc.getSelectedFile();
-        }
-        return file.getAbsolutePath();
-    }
-
-    private void rellenarTablaCarreras() {
-        //jTableResultadoCarrera;
-                
+        jTableResultadoCarrera.setModel(new TableModelParticipantes(
+                LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getListaParticipantes()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonExportarResultado;
-    private javax.swing.JLabel jLabelNomCarrera;
+    private javax.swing.JLabel jLabelNombreCarrera;
+    private javax.swing.JLabel jLabelTiempoCarrera;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableResultadoCarrera;

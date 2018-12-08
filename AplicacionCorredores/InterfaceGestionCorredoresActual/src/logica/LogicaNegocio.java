@@ -348,8 +348,9 @@ public class LogicaNegocio implements Serializable {
         Carrera c;
         FileWriter fw = null;
         String linea;
-        String resultadoCarrera = 
-                LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).
+
+        String resultadoCarrera
+                = LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).
                         getNombreCarrera() + ".dat";
         File fichero = new File(resultadoCarrera);
         try {
@@ -357,12 +358,19 @@ public class LogicaNegocio implements Serializable {
             fw = new FileWriter(fichero, true);
             BufferedWriter fsalida = new BufferedWriter(fw);
             //leemos el primer registro
-            for (Carrera elemento : listaCarrerasFinalizadas) {
 
-                fsalida.write(elemento.getNombreCarrera() + "\n"
-                        + fecha.format(elemento.getFechaCarrera())
-                        + "\n" + elemento.getListaParticipantes().toString() + "\n");
+            fsalida.write("Nombre carrera: " + LogicaNegocio.getInstance().
+                    getListaCarrerasFinalizadas().get(idCarrera).
+                    getNombreCarrera() + "\n");
 
+            fsalida.write("Fecha: " + fecha.format(LogicaNegocio.getInstance().
+                    getListaCarrerasFinalizadas().get(idCarrera).
+                    getFechaCarrera()) + "\n");
+            fsalida.write("--------CORREDORES--------" + "\n");
+            for (int i = 0; i < LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).
+                    getListaParticipantes().size(); i++) {
+                fsalida.write(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).
+                        getListaParticipantes().get(i).toString() + "\n");
             }
 
             fsalida.flush();

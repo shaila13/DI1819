@@ -15,7 +15,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
 
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
-
+    private int posicionCarreraFinalizada;
     /**
      * Creates new form TablaCorredores
      */
@@ -48,7 +48,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         jButtonAlta = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonResultadoCarreras = new javax.swing.JButton();
-        jButtonIniciarCarrera = new javax.swing.JButton();
+        jButtonGestionarCarrera = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -100,11 +100,11 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
             }
         });
 
-        jButtonIniciarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonIniciarCarrera.setText("Gestión Carrera");
-        jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestionarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonGestionarCarrera.setText("Gestión Carrera");
+        jButtonGestionarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIniciarCarreraActionPerformed(evt);
+                jButtonGestionarCarreraActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                                 .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(jButtonModificar))
-                            .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonGestionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -143,7 +143,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelTablaCarrerasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonResultadoCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonGestionarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -174,6 +174,11 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
+
+        } else if (logicaNegocio.getListaCarreras().get(seleccionado).isFinalizada()) {
+            JOptionPane.showMessageDialog(this, "Carrera ya finalizada, no se puede modificar.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+
         } else {
             Carrera carreraModificar = logicaNegocio.getListaCarreras().get(seleccionado);
             DialogFormularioCarreras dialogoModificar = new DialogFormularioCarreras(this,
@@ -197,6 +202,10 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
                     "!!ERROR!!", JOptionPane.ERROR_MESSAGE);
+
+        } else if (logicaNegocio.getListaCarreras().get(seleccionado).isFinalizada()) {
+            JOptionPane.showMessageDialog(this, "Carrera ya finalizada, no se puede borrar.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             Carrera carreraBorrar = logicaNegocio.getListaCarreras()
                     .get(seleccionado);
@@ -215,7 +224,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
-    private void jButtonIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarCarreraActionPerformed
+    private void jButtonGestionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionarCarreraActionPerformed
 
         int seleccionado = jTableCarreras.getSelectedRow();
 
@@ -224,10 +233,12 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
             if (!logicaNegocio.getListaCarreras().get(seleccionado).isFinalizada()) {
-                Carrera carreraAcorrer =logicaNegocio.getListaCarreras().get(seleccionado);
-                logicaNegocio.setIdCarrera(seleccionado);
+                posicionCarreraFinalizada = logicaNegocio.getListaCarrerasFinalizadas().size();
+                Carrera carreraAcorrer = logicaNegocio.getListaCarreras().get(seleccionado);
+                logicaNegocio.setIdCarrera(posicionCarreraFinalizada);
+                carreraAcorrer.setIdCarrera(posicionCarreraFinalizada);
 
-                DialogGestionarCarrera dialogGestionarCarrera = new DialogGestionarCarrera(this, true, 
+                DialogGestionarCarrera dialogGestionarCarrera = new DialogGestionarCarrera(this, true,
                         carreraAcorrer);
                 dialogGestionarCarrera.setLocationRelativeTo(null);
                 dialogGestionarCarrera.setVisible(true);
@@ -237,9 +248,14 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
             }
         }
 
-    }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
+    }//GEN-LAST:event_jButtonGestionarCarreraActionPerformed
 
     private void jButtonResultadoCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoCarrerasActionPerformed
+
+        DialogTablaCarrerasFinalizadas resultadoCarreraFinalizada
+                = new DialogTablaCarrerasFinalizadas(this, true);
+        resultadoCarreraFinalizada.setLocationRelativeTo(null);
+        resultadoCarreraFinalizada.setVisible(true);
 
 
     }//GEN-LAST:event_jButtonResultadoCarrerasActionPerformed
@@ -253,7 +269,7 @@ public class DialogTablaCarreras extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonBorrar;
-    private javax.swing.JButton jButtonIniciarCarrera;
+    private javax.swing.JButton jButtonGestionarCarrera;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonResultadoCarreras;
     private javax.swing.JMenuBar jMenuBar1;

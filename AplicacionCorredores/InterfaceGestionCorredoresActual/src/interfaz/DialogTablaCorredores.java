@@ -16,6 +16,7 @@ import org.openide.util.Exceptions;
  */
 public class DialogTablaCorredores extends javax.swing.JDialog {
 
+    private int idCarrera = LogicaNegocio.getInstance().getIdCarrera();
     private int dorsal = 0;
     private String tiempoCorredora = "00:00:00";
     private LogicaNegocio logicaNegocio;
@@ -29,11 +30,9 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
     public DialogTablaCorredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        if (!ocultarBoton) {
-            jButtonAnadirCorredorAcarrera.setVisible(false);
-        } else {
-            jButtonAnadirCorredorAcarrera.setVisible(true);
-        }
+
+        jButtonAnadirCorredorAcarrera.setVisible(false);
+
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
         jButtonAnadirCorredorAcarrera.setText("<html><p>Añadir </p>"
@@ -47,11 +46,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
     public DialogTablaCorredores(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        if (!ocultarBoton) {
-            jButtonAnadirCorredorAcarrera.setVisible(false);
-        } else {
-            jButtonAnadirCorredorAcarrera.setVisible(true);
-        }
+        jButtonAnadirCorredorAcarrera.setVisible(true);
         setLocationRelativeTo(null);
         setTitle("TABLA CORREDORES.");
         jButtonAnadirCorredorAcarrera.setText("<html><p>Añadir </p>"
@@ -198,18 +193,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Método estático para ocultar botones dependiendo del frame desde el que
-     * se acceda.
-     *
-     * @param parametro
-     */
-    public static void mostrarBotonOculto(boolean parametro) {
-        if (parametro) {
-            ocultarBoton = true;
-        }
 
-    }
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         DialogFormularioCorredores dialogoAlta = new DialogFormularioCorredores(this, true, logicaNegocio);
         dialogoAlta.setLocationRelativeTo(null);
@@ -259,7 +243,7 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGrabarCSVCorredoresActionPerformed
 
     private void jButtonAnadirCorredorAcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirCorredorAcarreraActionPerformed
-//int[] selectedRows = jTableCorredores.getSelectedRows();
+
         int seleccionado = jTableCorredores.getSelectedRow();
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro.",
@@ -269,9 +253,9 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
                 int contador = LogicaNegocio.getInstance().getListaParticipantes().size();
                 Corredor corredor = LogicaNegocio.getInstance().
                         getListaCorredores().get(seleccionado);
-
                 int contadorMaximoParticipantes = LogicaNegocio.getInstance().
-                        getListaCarreras().get(0).getNumeroMaxCorredores();
+                        getListaCarreras().get(idCarrera).getNumeroMaxCorredores();
+
                 if (contador < contadorMaximoParticipantes) {
                     contador++;
                     if (LogicaNegocio.getInstance().isBorrarCorredor()) {
@@ -279,11 +263,9 @@ public class DialogTablaCorredores extends javax.swing.JDialog {
                                 .size() == 0) {
                             dorsal = 1;
                         } else {
-                            int numero = LogicaNegocio.getInstance().getListaParticipantes()
-                                    .size();
-
                             dorsal = LogicaNegocio.getInstance().getListaParticipantes()
-                                    .get(numero - 1).getDorsal() + 1;
+                                    .get((LogicaNegocio.getInstance().getListaParticipantes()
+                                            .size()) - 1).getDorsal() + 1;
                         }
                     } else {
                         dorsal = contador;
