@@ -12,14 +12,14 @@ import logica.LogicaNegocio;
  *
  * @author Mario
  */
-public class ResultadoCarreraFinalizada extends javax.swing.JDialog {
+public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
 
     private int idCarrera;
 
     /**
      * Creates new form ResultadoCarrera
      */
-    public ResultadoCarreraFinalizada(java.awt.Dialog parent, boolean modal,
+    public DialogResultadoCarreraFinalizada(java.awt.Dialog parent, boolean modal,
             int idCarrera) {
         super(parent, modal);
         initComponents();

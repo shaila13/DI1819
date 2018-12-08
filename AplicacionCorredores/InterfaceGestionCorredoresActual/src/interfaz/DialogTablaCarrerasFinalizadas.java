@@ -126,8 +126,8 @@ public class DialogTablaCarrerasFinalizadas extends javax.swing.JDialog {
                     "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
         } else {
 
-            ResultadoCarreraFinalizada resultadoCarreraFinalizada
-                    = new ResultadoCarreraFinalizada(this, true, logicaNegocio.
+            DialogResultadoCarreraFinalizada resultadoCarreraFinalizada
+                    = new DialogResultadoCarreraFinalizada(this, true, logicaNegocio.
                             getListaCarreras().get(seleccionado).getIdCarrera());
             resultadoCarreraFinalizada.setLocationRelativeTo(null);
             resultadoCarreraFinalizada.setVisible(true);
