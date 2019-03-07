@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe33" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="991d17dc-6730-4bcb-ae60-e463cf31ccb7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="60073ccb-d76d-470a-a160-07ba91f9513c">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="dorsal" class="java.lang.Integer">
+			<fieldDescription><![CDATA[dorsal]]></fieldDescription>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[nombre]]></fieldDescription>
+		</field>
+		<field name="tiempoCarrera" class="java.lang.String">
+			<fieldDescription><![CDATA[tiempoCarrera]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreCarrera" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreCarrera]]></fieldDescription>
+	</field>
+	<field name="listaParticipantes" class="java.util.List">
+		<fieldDescription><![CDATA[listaParticipantes]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-17" y="0" width="592" height="79" backcolor="#006699" uuid="a9ad0790-0966-4902-8607-8d9356129737"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="b9663e04-6118-4352-82a4-108048a755a8"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[INFORME 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="43" width="286" height="20" forecolor="#FFFFFF" uuid="87652990-ef62-40a7-9a67-d88cf686b826"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Clasificación de una carrera.]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="88" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="29" width="304" height="20" uuid="5aa2e220-2247-499c-b5f1-13491e54fa20"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nombre carrera: "+$F{nombreCarrera}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="43" forecolor="#B89F7D" backcolor="#70A9C6" uuid="f30b6ac1-8079-4633-b79c-2f3ecfd96134"/>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="c8c37d2d-98f9-4d99-8baf-ae4fa3061b08"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="1" width="161" height="20" uuid="721dbad5-c7c5-4895-90be-1e676db80350"/>
+					<textElement>
+						<font fontName="Arial Black" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PARTICIPANTES:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2" y="21" width="100" height="20" uuid="f78042c6-2424-4a9e-8f44-9aaca9ce44fc"/>
+					<text><![CDATA[NOMBRE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="113" y="21" width="100" height="20" uuid="bfb6c45f-cfd7-4b74-9867-c66453cd1aa9"/>
+					<text><![CDATA[DORSAL:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="213" y="21" width="143" height="20" uuid="250c29f8-bd87-45ef-bb5c-4394c4dcc31f"/>
+					<text><![CDATA[TIEMPO DE CARRERA:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<componentElement>
+				<reportElement x="3" y="0" width="552" height="20" uuid="06a7df9d-040a-4485-aea6-87622987a990"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="7011f5ba-f5eb-4d4f-9ae1-0a2859b860b4">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaParticipantes})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="552">
+						<textField>
+							<reportElement x="110" y="0" width="100" height="20" uuid="c04ee657-95ea-450d-b6db-625a503958bf"/>
+							<textFieldExpression><![CDATA[$F{dorsal}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" uuid="f87c98cf-1a9b-4814-be0b-ab8d0da07b6f"/>
+							<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="210" y="0" width="100" height="20" uuid="faebd91a-0554-4dfc-b3f1-988c9071f206"/>
+							<textFieldExpression><![CDATA[$F{tiempoCarrera}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="17" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="0" width="40" height="13" backcolor="#006699" uuid="2fe960ca-4b95-4c63-ad69-ff89d9426c05"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#006699" uuid="9624740d-5626-47db-be58-ef02a167edf0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="13" uuid="fdc8225f-91d3-4244-a4cd-098decebec3e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="b553220e-d538-4a66-9404-833ddd3003ca"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

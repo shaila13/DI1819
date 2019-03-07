@@ -1,0 +1,75 @@
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe.config
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csprojResolveAssemblyReference.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\App.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos_MarkupCompile.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.g.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.Properties.Resources.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csproj.GenerateResource.Cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\DI1819-master\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe.config
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.exe
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.pdb
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.pdb
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csprojResolveAssemblyReference.cache
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.baml
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\App.g.cs
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos_MarkupCompile.cache
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.g.resources
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.Properties.Resources.resources
+C:\Users\Mario\Desktop\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csproj.GenerateResource.Cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe.config
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\bin\Debug\GestionAvituallamientos.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csprojResolveAssemblyReference.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AddMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaAvituallamiento.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaCarrera.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\AltaMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerAvituallamientos.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\interfaces\VerMaterial.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\MainWindow.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\App.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos_MarkupCompile.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.g.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.Properties.Resources.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\GestionAvituallamientos\GestionAvituallamientos\obj\Debug\GestionAvituallamientos.csproj.GenerateResource.Cache

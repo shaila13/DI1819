@@ -1,0 +1,15 @@
+﻿<Window x:Class="ApplicationVideo6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" ItemsSource="{Binding Path=listaPersonas}" AutoGenerateColumns="False" Margin="10,10,0,0" VerticalAlignment="Top" Height="196" Width="498">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="NOMBRE" Binding="{Binding Path=Nombre}"/>
+                <DataGridTextColumn Header="APELLIDO" Binding="{Binding Path=Apellidos}"/>
+
+            </DataGrid.Columns>
+            </DataGrid>
+        <Button x:Name="BotonModificar" Content="Modificar&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" Width="87" Height="22" Click="BotonModificar_Click"/>
+    </Grid>
+</Window>

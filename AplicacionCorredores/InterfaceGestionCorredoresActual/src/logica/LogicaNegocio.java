@@ -38,6 +38,7 @@ public class LogicaNegocio implements Serializable {
     private transient Timer time;
     private long tiempoActualizacionAutomatica = 0;
     private int idCarrera;
+    private String seleccionUnidadParaGuardarInforme;
     /*Solo deberia haber una sola instacia de la clase, porque si hay varias, 
     va a haber varias listas de corredores.*/
     //segunda manera
@@ -56,7 +57,7 @@ public class LogicaNegocio implements Serializable {
     /**
      * Constructor que inicializa arraysList.
      */
-    LogicaNegocio() {
+    public LogicaNegocio() {
         listaCorredores = new ArrayList<>();
         listaCarreras = new ArrayList<>();
         listaCarrerasFinalizadas = new ArrayList<>();
@@ -78,6 +79,16 @@ public class LogicaNegocio implements Serializable {
     }
 
 //Getters y Setters
+    public String getSeleccionUnidadParaGuardarInforme() {
+        return seleccionUnidadParaGuardarInforme;
+    }
+
+    public void setSeleccionUnidadParaGuardarInforme(String seleccionUnidadParaGuardarInforme) {
+        this.seleccionUnidadParaGuardarInforme = seleccionUnidadParaGuardarInforme;
+    }
+
+
+
     public boolean isBorrarCorredor() {
         return borrarCorredor;
     }
@@ -110,7 +121,7 @@ public class LogicaNegocio implements Serializable {
         this.listaCarreras = listaCarreras;
     }
 
-    //hay que meter el objeto
+    //Hay que meter el objeto
     public List<Corredor> getListaCorredores() {
         return listaCorredores;
     }
@@ -135,8 +146,26 @@ public class LogicaNegocio implements Serializable {
         this.idCarrera = idCarrera;
     }
 
+    /**
+     * Método para ordenar a los Participantes de una carrera ya finalizada por
+     * la posición en la que llegan a meta.
+     */
     public void ordenarPosicion() {
-        Collections.sort(listaParticipantes, (Participantes p1, Participantes p2) -> new Integer(p1.getPosicion()).compareTo(new Integer(p2.getPosicion())));
+
+//Collections.sort(listaParticipantes, (Participantes p1, Participantes p2) -> new Integer(p1.getPosicion()).compareTo(new Integer(p2.getPosicion())));
+        Comparator<Participantes> comparator = new Comparator<Participantes>() {
+            public int compare(Participantes a, Participantes b) {
+
+                int resultado = Integer.compare(a.getPosicion(), b.getPosicion());
+                if (resultado != 0) {
+                    return resultado;
+                }
+                return resultado;
+            }
+        };
+
+        Collections.sort(listaParticipantes, comparator);
+
     }
 
     /**
@@ -208,12 +237,15 @@ public class LogicaNegocio implements Serializable {
 
         if (!listaParticipantes.contains(participante)) {
             listaParticipantes.add(participante);
+
             resultado = true;
         } else {
             resultado = false;
         }
         return resultado;
     }
+
+   
 
     /**
      * Método para añadir un corredor a la lista de corredores.

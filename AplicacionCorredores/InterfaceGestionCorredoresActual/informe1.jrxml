@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e28a473-daed-40fc-9247-acb1176c4f95">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="numeroParticipantes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numeroParticipantes]]></fieldDescription>
+	</field>
+	<field name="nombreCarrera" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreCarrera]]></fieldDescription>
+	</field>
+	<field name="lugarCarrera" class="java.lang.String">
+		<fieldDescription><![CDATA[lugarCarrera]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-16" y="0" width="591" height="92" backcolor="#006699" uuid="fcdd7222-90e8-4f2e-b101-202eaef70438"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="15eb6471-6ddf-4df2-a94f-2b68de231a18"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[INFORME 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="43" width="286" height="20" forecolor="#FFFFFF" uuid="d2b3711a-1cc3-464d-ac68-70f4ac2244d4"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[LISTADO CARRERAS SIN FINALIZAR]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="88"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="1fcf68ae-2e3f-4dd3-a78f-01bf2ef49148"/>
+			</line>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="23" forecolor="#B89F7D" backcolor="#70A9C6" uuid="907d5204-9337-438a-a14a-8bdbbd50fc35"/>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="cb4f2a51-764c-47fc-8d3e-dc1a35cc46ed"/>
+				</line>
+			</frame>
+			<staticText>
+				<reportElement x="0" y="0" width="137" height="20" uuid="7deef8f5-14cd-4a67-8db7-6a2df1126471"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE CARRERA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="0" width="100" height="20" uuid="fb49b061-3dad-4f0f-9559-0bcc49791d5e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POBLACIÓN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="0" width="159" height="20" uuid="ce9d1afe-bfa0-4059-ab68-a1c5ae34e55b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NÚMERO CORREDORES:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="26" forecolor="#70A9C6" backcolor="#CCCCCC" uuid="e268963f-3438-4f56-8c4f-dfdea06cbaad"/>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="7525a742-1869-4c51-b592-1ea742944b63"/>
+				</line>
+				<textField>
+					<reportElement x="296" y="6" width="100" height="20" uuid="370fe6be-e23d-4971-a0dc-2428295c412e"/>
+					<textFieldExpression><![CDATA[$F{numeroParticipantes}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4" y="6" width="100" height="20" uuid="f0397733-c4af-4e27-85d8-ccbb1fb18583"/>
+					<textFieldExpression><![CDATA[$F{nombreCarrera}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="154" y="6" width="100" height="20" uuid="d24ea8a5-ddb1-4dd6-b260-d030adb02f19"/>
+					<textFieldExpression><![CDATA[$F{lugarCarrera}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="0bb2de70-eeaa-4f99-83e7-d4b7879b0cfe"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#006699" uuid="633a1c6e-2fa7-46a2-8f7c-adec4f61a569"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="0" width="40" height="13" backcolor="#006699" uuid="f28a2472-790f-4628-9884-3be8d4c77b0e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="13" uuid="ad01398a-9a17-46ae-8047-6508bde785ce"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="3573847e-531c-45d7-a5cf-489c47747334"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

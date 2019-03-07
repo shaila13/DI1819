@@ -1,0 +1,29 @@
+﻿<Window x:Class="GestionAvituallamientos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Icon="/imagenes/corredor.png">
+    <Grid Margin="0,0,0.4,-0.2">
+        <Grid.Background>
+            <ImageBrush ImageSource="/imagenes/Runners.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button x:Name="btNewCarrera" Content="New Race" HorizontalAlignment="Left" Margin="296,210,0,0" Width="75" Height="19" VerticalAlignment="Top" Click="btNewCarrera_Click" />
+        <Button x:Name="btModifyCarrera"  Content="Modify Race" HorizontalAlignment="Left" Margin="399,210,0,0" Width="75" Height="19" VerticalAlignment="Top" Click="btModifyCarrera_Click"/>
+        <Button x:Name="btDeleteCarrera"  Content="Delete Race" HorizontalAlignment="Left" Margin="399,254,0,0" Width="75" Height="19" VerticalAlignment="Top" Click="btDeleteCarrera_Click"/>
+        <Menu Margin="0,0,0.4,288.8">
+            <MenuItem Header="Materials" Height="22" Width="100">
+                <MenuItem x:Name="addMaterial" Header="New..." Height="20" Width="120" Click="addMaterial_Click" />
+                <MenuItem x:Name="showMaterial" Header="List" Height="20" Width="120" Click="showMaterial_Click"/>
+            </MenuItem>
+
+        </Menu>
+        <DataGrid x:Name="DataGridListaCarreras" ItemsSource="{Binding Path=listaCarreras}" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Left" Margin="20,58,0,0" VerticalAlignment="Top" Height="136" Width="454" IsReadOnly="True">
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreCarrera}"/>
+                <DataGridTextColumn Header="Número avituallamientos" Binding="{Binding ListaAvituallamientos.Count}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="btSeeCarrera" Content="See Race" HorizontalAlignment="Left" Margin="296,254,0,0" Width="75" Height="19" VerticalAlignment="Top" Click="btSeeCarrera_Click"/>
+    </Grid>
+</Window>

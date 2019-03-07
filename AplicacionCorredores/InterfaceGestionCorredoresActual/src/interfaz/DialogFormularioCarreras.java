@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -22,7 +23,7 @@ Copiar javax.swing.JDialog y reemplazar java.awt.Frame
 public class DialogFormularioCarreras extends javax.swing.JDialog {
 
     private SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yy");
-    private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
+    //private static final String RUTA_LOGO = ".."+File.separator+"imgs"+File.separator+"corredor.png";
     private Carrera carreraModificar;
     private LogicaNegocio logicaNegocio;
     private String nombreCarrera = "";
@@ -40,7 +41,7 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
         initComponents();
         setTitle("FORMULARIO ALTA CARRERAS.");
         //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         setLocationRelativeTo(null);
         jButtonValidarCarrera.setEnabled(false);
         ValidationGroup group = validationPanel.getValidationGroup();
@@ -68,7 +69,7 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
         initComponents();
         setTitle("FORMULARIO MODIFICACIÓN CARRERAS.");
 //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         jButtonValidarCarrera.setEnabled(false);
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombreCarrera, StringValidators.REQUIRE_NON_EMPTY_STRING);
@@ -118,6 +119,9 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanelDatosCarrera.setBackground(new java.awt.Color(0, 153, 204));
+        jPanelDatosCarrera.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulario Carreras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
+
         jLabelNombreCarrera.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelNombreCarrera.setText("Nombre Carrera");
 
@@ -157,23 +161,76 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
             }
         });
 
+        jPanelBotonesCarrera.setBackground(new java.awt.Color(102, 153, 255));
+        jPanelBotonesCarrera.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta y Modificación en Base de Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+
+        jButtonValidarCarrera.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonValidarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonValidarCarrera.setText("Aceptar");
+        jButtonValidarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValidarCarreraActionPerformed(evt);
+            }
+        });
+
+        jButtonLimpiarCarrera.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonLimpiarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonLimpiarCarrera.setText("Limpiar");
+        jButtonLimpiarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarCarreraActionPerformed(evt);
+            }
+        });
+
+        validationPanel.setBackground(new java.awt.Color(102, 153, 255));
+
+        javax.swing.GroupLayout jPanelBotonesCarreraLayout = new javax.swing.GroupLayout(jPanelBotonesCarrera);
+        jPanelBotonesCarrera.setLayout(jPanelBotonesCarreraLayout);
+        jPanelBotonesCarreraLayout.setHorizontalGroup(
+            jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesCarreraLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(jButtonLimpiarCarrera)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonValidarCarrera)
+                .addGap(20, 20, 20))
+        );
+        jPanelBotonesCarreraLayout.setVerticalGroup(
+            jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotonesCarreraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBotonesCarreraLayout.createSequentialGroup()
+                        .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonLimpiarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonValidarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(validationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelDatosCarreraLayout = new javax.swing.GroupLayout(jPanelDatosCarrera);
         jPanelDatosCarrera.setLayout(jPanelDatosCarreraLayout);
         jPanelDatosCarreraLayout.setHorizontalGroup(
             jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosCarreraLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNombreCarrera)
-                    .addComponent(jLabelNumeroMaxParticipantes)
-                    .addComponent(jLabelFechaCarrera)
-                    .addComponent(jLabelLugarCarrera))
-                .addGap(54, 54, 54)
-                .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxNumeroMaximoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombreCarrera))
+                .addContainerGap()
+                .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDatosCarreraLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNombreCarrera)
+                            .addComponent(jLabelNumeroMaxParticipantes)
+                            .addComponent(jLabelFechaCarrera)
+                            .addComponent(jLabelLugarCarrera))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanelDatosCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxNumeroMaximoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
         );
         jPanelDatosCarreraLayout.setVerticalGroup(
@@ -196,51 +253,8 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
                             .addComponent(jComboBoxNumeroMaximoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNumeroMaxParticipantes)))
                     .addComponent(jLabelNombreCarrera))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jButtonValidarCarrera.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonValidarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonValidarCarrera.setText("Aceptar");
-        jButtonValidarCarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValidarCarreraActionPerformed(evt);
-            }
-        });
-
-        jButtonLimpiarCarrera.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonLimpiarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonLimpiarCarrera.setText("Limpiar");
-        jButtonLimpiarCarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarCarreraActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelBotonesCarreraLayout = new javax.swing.GroupLayout(jPanelBotonesCarrera);
-        jPanelBotonesCarrera.setLayout(jPanelBotonesCarreraLayout);
-        jPanelBotonesCarreraLayout.setHorizontalGroup(
-            jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesCarreraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLimpiarCarrera)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonValidarCarrera)
-                .addContainerGap())
-        );
-        jPanelBotonesCarreraLayout.setVerticalGroup(
-            jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesCarreraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBotonesCarreraLayout.createSequentialGroup()
-                        .addGroup(jPanelBotonesCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonLimpiarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonValidarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(validationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -251,20 +265,16 @@ public class DialogFormularioCarreras extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10)
+                .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanelDatosCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanelBotonesCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
 
         pack();

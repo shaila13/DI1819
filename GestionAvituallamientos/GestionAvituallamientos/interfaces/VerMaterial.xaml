@@ -1,0 +1,26 @@
+﻿<Window x:Class="GestionAvituallamientos.interfaces.VerMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Materiales" Height="324" Width="468"  Icon="/imagenes/corredor.png">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/imagenes/Runners.png" Stretch="UniformToFill"/>
+
+        </Grid.Background>
+        <Label x:Name="textListaMateriales" Content="LISTA DE MATERIALES"  HorizontalAlignment="Center" Margin="134,11,126.6,0" VerticalAlignment="Top" Width="201" FontSize="16" Foreground="#FFF007DC" FontWeight="Bold"/>
+
+        <DataGrid x:Name="DataGridListaMateriales" ItemsSource="{Binding Path=listaMateriales}" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Height="181" Width="442">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}"/>
+                <DataGridTextColumn Header="Tipo Material" Binding="{Binding Tipo}"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="deleteMaterial" Content="Delete Material" HorizontalAlignment="Left" Margin="256,234,0,0" VerticalAlignment="Top" Width="91" Click="deleteMaterial_Click"/>
+        <Button x:Name="modifyMaterial" Content="Modify Material" HorizontalAlignment="Left" Margin="352,234,0,0" VerticalAlignment="Top" Width="98" Click="modifyMaterial_Click"/>
+        <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="352,265,0,0" VerticalAlignment="Top" Width="98" Click="cancel_Click"/>
+
+    </Grid>
+</Window>

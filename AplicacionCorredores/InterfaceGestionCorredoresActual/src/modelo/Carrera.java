@@ -19,6 +19,7 @@ public class Carrera implements Serializable, Comparable<Carrera> {
     private Date fechaCarrera;
     private String lugarCarrera = "";
     private int numeroMaxCorredores;
+    private int numeroParticipantes;
     private String tiempoTotal = "";
     private String estado = "";
     private int idCarrera;
@@ -35,6 +36,22 @@ public class Carrera implements Serializable, Comparable<Carrera> {
         this.numeroMaxCorredores = numeroMaxCorredores;
         this.tiempoTotal = "00:00:00";
         this.estado = (finalizada == true ? "Finalizada" : "Pendiente");
+    }
+
+    public Carrera(String nombreCarrera, String lugarCarrera,
+            int numeroMaxCorredores) {
+        this.nombreCarrera = nombreCarrera;
+        this.lugarCarrera = lugarCarrera;
+        this.numeroMaxCorredores = numeroMaxCorredores;
+
+    }
+
+    public int getNumeroParticipantes() {
+        return numeroParticipantes;
+    }
+
+    public void setNumeroParticipantes(int numeroParticipantes) {
+        this.numeroParticipantes = numeroParticipantes;
     }
 
     public int getIdCarrera() {
@@ -119,7 +136,7 @@ public class Carrera implements Serializable, Comparable<Carrera> {
         return "Carrera: " + nombreCarrera + ", fecha: "
                 + fecha.format(fechaCarrera)
                 + ", lugar: " + lugarCarrera + ", número Max Corredores:"
-                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal + "listaParticipantes=" + listaParticipantes;
+                + numeroMaxCorredores + ", tiempo carrera:" + tiempoTotal;
     }
 
 }

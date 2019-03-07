@@ -1,0 +1,13 @@
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\bin\Debug\ApplicationVideo5.exe.config
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.csprojResolveAssemblyReference.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\MainWindow.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\MainWindow.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\App.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5_MarkupCompile.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.g.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.Properties.Resources.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.csproj.GenerateResource.Cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\bin\Debug\ApplicationVideo5.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\bin\Debug\ApplicationVideo5.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo5\ApplicationVideo5\obj\Debug\ApplicationVideo5.pdb

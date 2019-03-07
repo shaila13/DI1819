@@ -1,0 +1,24 @@
+﻿<Window x:Class="GestionAvituallamientos.interfaces.VerAvituallamientos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VerAvituallamientos" Height="350" Width="300">
+    <Grid>
+        <Label x:Name="textListaAvituallamientos" Content="LISTA DE AVITUALLAMIENTOS"  HorizontalAlignment="Center" Margin="27,10,25.6,0" VerticalAlignment="Top" Width="241" FontSize="16" Background="Transparent" Foreground="#FFF007DC"/>
+
+        <DataGrid x:Name="DataGridListaAvituallamientos" ItemsSource="{Binding Path=ListaAvituallamientos}" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Height="195" Width="274" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Contacto" Binding="{Binding PersonaContacto.NombrePersonaContacto}"/>
+                <DataGridTextColumn Header="Telefono" Binding="{Binding PersonaContacto.TelefonoPersonaContacto}"/>
+                <DataGridTextColumn Header="Punto Km" Binding="{Binding PuntoKilometrico}"/>
+                <DataGridTextColumn Header="Materiales" Binding="{Binding ListaMateriales.Count}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="deleteAvituallamiento" Content="Delete Avituallamiento" HorizontalAlignment="Left" Margin="10,292,0,0" VerticalAlignment="Top" Width="125" Click="deleteAvituallamiento_Click" />
+        <Button x:Name="modifyAvituallamiento" Content="Modify Avituallamiento" HorizontalAlignment="Left" Margin="151,257,0,0" VerticalAlignment="Top" Width="133" Click="modifyAvituallamiento_Click" />
+        <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="207,292,0,0" VerticalAlignment="Top" Width="77" Click="cancel_Click" />
+        <Button x:Name="createAvituallamiento" Content="Add Avituallamiento" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="125" Click="createAvituallamiento_Click" />
+
+    </Grid>
+</Window>

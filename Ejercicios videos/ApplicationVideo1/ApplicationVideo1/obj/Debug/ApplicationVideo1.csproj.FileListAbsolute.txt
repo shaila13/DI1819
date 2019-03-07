@@ -1,0 +1,13 @@
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\bin\Debug\ApplicationVideo1.exe.config
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\bin\Debug\ApplicationVideo1.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\bin\Debug\ApplicationVideo1.pdb
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.csprojResolveAssemblyReference.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\MainWindow.baml
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\MainWindow.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\App.g.cs
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1_MarkupCompile.cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.g.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.Properties.Resources.resources
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.csproj.GenerateResource.Cache
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.exe
+C:\Users\Shaila\Documents\DAM\2 DAM\DI\DI1819\DI1819\ApplicationVideo1\ApplicationVideo1\obj\Debug\ApplicationVideo1.pdb

@@ -2,7 +2,9 @@ package modelo;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -17,7 +19,7 @@ public class Corredor implements Serializable, Comparable<Corredor> {
     private Date fechaNacimiento;
     private String direccion;
     private int telefono;
-   
+    private List<Carrera> listaCarreras;
 
     public Corredor() {
     }
@@ -44,11 +46,24 @@ public class Corredor implements Serializable, Comparable<Corredor> {
         if (dni == null) {
             throw new IllegalArgumentException("El dni no puede ser null");
         }
+        this.listaCarreras = new ArrayList<>();
         this.dni = dni;
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
         this.telefono = telefono;
- 
+
+    }
+
+    /**
+     * Método para añadir una carrera a la lista de carreras finalizadas.
+     *
+     * @param carrera
+     */
+    public void anadirCarrera(Carrera carrera) {
+        if (!listaCarreras.contains(carrera)) {
+            listaCarreras.add(carrera);
+        }
+
     }
 
     public String getNombre() {
@@ -89,6 +104,14 @@ public class Corredor implements Serializable, Comparable<Corredor> {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public List<Carrera> getListaCarreras() {
+        return listaCarreras;
+    }
+
+    public void setListaCarreras(List<Carrera> listaCarreras) {
+        this.listaCarreras = listaCarreras;
     }
 
     @Override

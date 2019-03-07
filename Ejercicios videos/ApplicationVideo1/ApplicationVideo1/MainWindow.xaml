@@ -1,0 +1,11 @@
+﻿<Window x:Class="ApplicationVideo1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ComboBox x:Name="comBoxPersonas" HorizontalAlignment="Left" Margin="32,37,0,0" VerticalAlignment="Top" Width="448" Height="25" SelectionChanged="comBoxPersonas_SelectionChanged"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="65" Margin="32,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="448"/>
+        <Label x:Name="labelNombre" Content="Nombre" HorizontalAlignment="Left" Margin="57,95,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelApellidos" Content="Apellidos" HorizontalAlignment="Left" Margin="361,95,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

@@ -27,9 +27,11 @@ import org.openide.util.Exceptions;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
-            + File.separator + "corredor.png";
-
+    /*    private static final String RUTA_LOGO = ".." + File.separator + "imgs"
+    + File.separator + "corredor.png";*/
+    private static final String RUTA_IMAGEN = ".." + File.separator + "imgs"
+            + File.separator + "Runners.png";
+    
     private boolean paginaPrincipal = false;
 
     /**
@@ -39,7 +41,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     public PantallaPrincipal() throws ParseException {
         initComponents();
-        ponLaAyuda();
+        //ponLaAyuda();
         //this.setExtendedState(this.MAXIMIZED_BOTH); //MAXIMIZAR FORMULARIO
         setLocationRelativeTo(null);
         //Establecer el título de la aplicación
@@ -50,13 +52,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             logicaNegocio.cargarCSVCorredores();
         }
         //Establecer una imagen en una label
-        jLabelIcono.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
+        //jLabelIcono.setIcon(new ImageIcon(getClass().getResource(RUTA_IMAGEN)));
         jButtonModificarCorredores.setText("<html><p>BBDD </p>"
                 + "<p>CORREDORES</p></html>");
         jButtonModificarCarrera.setText("<html><p>ALTA/MODIFICACIÓN</p>"
                 + "<p>CARRERAS</p></html>");
         //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -84,13 +86,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanelPantallaPrincipal = new javax.swing.JPanel();
-        jButtonModificarCorredores = new javax.swing.JButton();
-        jButtonModificarCarrera = new javax.swing.JButton();
+        JpanelFondo = new javax.swing.JPanel();
+        panel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabelIcono = new javax.swing.JLabel();
+        jButtonModificarCarrera = new javax.swing.JButton();
+        jButtonModificarCorredores = new javax.swing.JButton();
+        jButtonSaliAplicacion = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuConfiguracion = new javax.swing.JMenu();
         jMenuItemConfiguracion = new javax.swing.JMenuItem();
         jCheckBoxMenuItemGrabadoAutomatico = new javax.swing.JCheckBoxMenuItem();
+        jMenuGenerarInformes = new javax.swing.JMenu();
+        jMenuItemGenerarInformes = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
         jMenuItemSalirAplicacion = new javax.swing.JMenuItem();
         jMenuItemAyuda = new javax.swing.JMenuItem();
@@ -101,14 +109,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jPanelPantallaPrincipal.setToolTipText("");
 
-        jButtonModificarCorredores.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonModificarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonModificarCorredores.setText("BBDD CORREDORES");
-        jButtonModificarCorredores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarCorredoresActionPerformed(evt);
-            }
-        });
+        JpanelFondo.setBackground(new java.awt.Color(0, 153, 204));
+        JpanelFondo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión de Carreras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
+        JpanelFondo.setMaximumSize(new java.awt.Dimension(950, 400));
+        JpanelFondo.setMinimumSize(new java.awt.Dimension(950, 400));
+
+        panel2.setBackground(new java.awt.Color(102, 153, 255));
+        panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta y Modificación en Base de Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        panel2.setMaximumSize(new java.awt.Dimension(700, 200));
+        panel2.setMinimumSize(new java.awt.Dimension(700, 200));
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 255));
+        jLabel2.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel2.setText("Seleccione una opción");
+        jLabel2.setToolTipText("Introduzca euros a apostar");
+
+        jLabelIcono.setPreferredSize(new java.awt.Dimension(60, 100));
 
         jButtonModificarCarrera.setBackground(new java.awt.Color(204, 204, 255));
         jButtonModificarCarrera.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -119,31 +136,94 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonModificarCorredores.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonModificarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonModificarCorredores.setText("BBDD CORREDORES");
+        jButtonModificarCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarCorredoresActionPerformed(evt);
+            }
+        });
+
+        jButtonSaliAplicacion.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonSaliAplicacion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonSaliAplicacion.setText("SALIR");
+        jButtonSaliAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaliAplicacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonSaliAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
+        );
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSaliAplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout JpanelFondoLayout = new javax.swing.GroupLayout(JpanelFondo);
+        JpanelFondo.setLayout(JpanelFondoLayout);
+        JpanelFondoLayout.setHorizontalGroup(
+            JpanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelFondoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+        JpanelFondoLayout.setVerticalGroup(
+            JpanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
         javax.swing.GroupLayout jPanelPantallaPrincipalLayout = new javax.swing.GroupLayout(jPanelPantallaPrincipal);
         jPanelPantallaPrincipal.setLayout(jPanelPantallaPrincipalLayout);
         jPanelPantallaPrincipalLayout.setHorizontalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159))
+                .addContainerGap()
+                .addComponent(JpanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         jPanelPantallaPrincipalLayout.setVerticalGroup(
             jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPantallaPrincipalLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelPantallaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonModificarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(JpanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(102, 153, 255));
@@ -169,6 +249,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuConfiguracion.add(jCheckBoxMenuItemGrabadoAutomatico);
 
         jMenuBar1.add(jMenuConfiguracion);
+
+        jMenuGenerarInformes.setText("Informes");
+        jMenuGenerarInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGenerarInformesActionPerformed(evt);
+            }
+        });
+
+        jMenuItemGenerarInformes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemGenerarInformes.setText("Generar Informes");
+        jMenuItemGenerarInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGenerarInformesActionPerformed(evt);
+            }
+        });
+        jMenuGenerarInformes.add(jMenuItemGenerarInformes);
+
+        jMenuBar1.add(jMenuGenerarInformes);
 
         jMenuSalir.setText("Ayuda");
         jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -212,19 +310,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonModificarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCorredoresActionPerformed
-        DialogTablaCorredores confirmacionValidar
-                = new DialogTablaCorredores(this, true);
-        confirmacionValidar.setVisible(true);
-        paginaPrincipal = true;
-    }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
-
-    private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
-        DialogTablaCarreras confirmacionValidar
-                = new DialogTablaCarreras(this, true);
-        confirmacionValidar.setVisible(true);
-    }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
 
     private void jMenuItemConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionActionPerformed
 
@@ -270,6 +355,34 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuItemGenerarInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGenerarInformesActionPerformed
+
+        DialogInformes dialogoInformes = new DialogInformes(this, true);
+        dialogoInformes.setLocationRelativeTo(null);
+        dialogoInformes.setVisible(true);
+    }//GEN-LAST:event_jMenuItemGenerarInformesActionPerformed
+
+    private void jMenuGenerarInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGenerarInformesActionPerformed
+
+    }//GEN-LAST:event_jMenuGenerarInformesActionPerformed
+
+    private void jButtonModificarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCarreraActionPerformed
+        DialogTablaCarreras confirmacionValidar
+                = new DialogTablaCarreras(this, true);
+        confirmacionValidar.setVisible(true);
+    }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
+
+    private void jButtonModificarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarCorredoresActionPerformed
+        DialogTablaCorredores confirmacionValidar
+                = new DialogTablaCorredores(this, true);
+        confirmacionValidar.setVisible(true);
+        paginaPrincipal = true;
+    }//GEN-LAST:event_jButtonModificarCorredoresActionPerformed
+
+    private void jButtonSaliAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaliAplicacionActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSaliAplicacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,7 +447,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
              * URL ayuda = getClass().getResource("ruta"); File
              * ficheroAyudaEnJar = new File(ayuda.toURI());
              */
-            //Crea el HelpSet y el HelpBroker
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
 
@@ -345,10 +457,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
             //Al pulsar F1 salta la ayuda
             hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
-            /*hb.enableHelpKey(jButton1, "ventana_principal", helpset);
-            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);
-            hb.enableHelpKey(jButton1, "ventana_principal", helpset);
-            hb.enableHelpKey(jButton2, "ventana_secundaria", helpset);*/
         } catch (MalformedURLException ex) {
             Exceptions.printStackTrace(ex);
         } catch (HelpSetException ex) {
@@ -357,18 +465,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JpanelFondo;
     private javax.swing.JButton jButtonModificarCarrera;
     private javax.swing.JButton jButtonModificarCorredores;
+    private javax.swing.JButton jButtonSaliAplicacion;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemGrabadoAutomatico;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
+    private javax.swing.JMenu jMenuGenerarInformes;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemConfiguracion;
+    private javax.swing.JMenuItem jMenuItemGenerarInformes;
     private javax.swing.JMenuItem jMenuItemSalirAplicacion;
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanelPantallaPrincipal;
+    private javax.swing.JPanel panel2;
     // End of variables declaration//GEN-END:variables
 
 }

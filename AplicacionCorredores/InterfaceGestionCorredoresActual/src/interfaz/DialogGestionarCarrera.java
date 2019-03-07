@@ -1,11 +1,10 @@
 package interfaz;
 
 import interfaz.tablas.TableModelParticipantes;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
@@ -24,6 +23,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
     private int idCarrera = LogicaNegocio.getInstance().getIdCarrera();
     private Carrera carreraIniciar;
+    private int contador;
     private Participantes participante;
     private static final String RUTA_LOGO = ".." + File.separator + "imgs"
             + File.separator + "corredor.png";
@@ -32,34 +32,40 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         super(parent, modal);
         carreraIniciar = c;
         initComponents();
-        ponLaAyuda();
+        //ponLaAyuda();
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarResultado.setVisible(false);
         jButtonFinalizarCarrera.setVisible(false);
         //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        rellenarTablaConParticipantes();
+
+        if (carreraIniciar.getListaParticipantes().size() != 0) {
+            mostrarBotones();
+        } else {
+            jButtonCronometro.setEnabled(false);
+        }
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         jButtonCronometro.setEnabled(false);
         jLabelCarreraAcorrer.setText(LogicaNegocio.getInstance().getListaCarreras().get(idCarrera).getNombreCarrera());
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                super.windowClosing(we);
-                //Borro los participantes 
-                LogicaNegocio.getInstance().getListaParticipantes().
-                        removeAll(LogicaNegocio.getInstance().getListaParticipantes());
-                //}
-
-            }
-        });
     }
 
+    /**
+     * LogicaNegocio.getInstance().getListaCarreras().
+     * get(LogicaNegocio.getInstance().getIdCarrera()).
+     * setListaParticipantes(listaParticipantesCarreraFinalizada);
+     *
+     * @param parent
+     * @param modal
+     * @param p
+     */
     public DialogGestionarCarrera(DialogTablaCorredores parent, boolean modal, Participantes p) {
         super(parent, modal);
         participante = p;
         initComponents();
         jLabelCarreraAcorrer.setText(LogicaNegocio.getInstance().getListaCarreras().
                 get(idCarrera).getNombreCarrera());
-        jButtonCronometro.setEnabled(false);
+
+        rellenarTablaConParticipantes();
         setTitle("REGISTRO CARRERA CON PARTICIPANTES.");
         jButtonExportarResultado.setVisible(false);
         jButtonFinalizarCarrera.setVisible(false);
@@ -68,20 +74,30 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         //rellenarTablaCarrerasConParticipantes();
         rellenarTablaConParticipantes();
 
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                super.windowClosing(we);
-                //Borro los participantes 
-                LogicaNegocio.getInstance().getListaParticipantes().
-                        removeAll(LogicaNegocio.getInstance().getListaParticipantes());
-                //}
+        if (carreraIniciar.getListaParticipantes().size() != 0) {
+            mostrarBotones();
 
-            }
-        });
+        } else {
+            jButtonCronometro.setEnabled(false);
+        }
 
     }
 
+    /**
+     * Método para gestionar los botones de la pantalla.
+     */
+    private void mostrarBotones() {
+        jButtonEliminarCorredor.setVisible(true);
+        jButtonEliminarTodosParticipantes.setVisible(true);
+        jButtonSeleccionarCorredor.setVisible(true);
+        jButtonCronometro.setVisible(true);
+        jButtonCronometro.setEnabled(true);
+
+    }
+
+    /**
+     * Método para gestionar los botones de la pantalla.
+     */
     private void ocultarBotones() {
         jButtonEliminarCorredor.setVisible(false);
         jButtonEliminarTodosParticipantes.setVisible(false);
@@ -103,20 +119,26 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         jLabeTituloParticipantes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableParticipantes = new javax.swing.JTable();
-        jButtonEliminarCorredor = new javax.swing.JButton();
+        jLabelCarreraAcorrer = new javax.swing.JLabel();
+        panel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jButtonSeleccionarCorredor = new javax.swing.JButton();
         jButtonCronometro = new javax.swing.JButton();
+        jButtonEliminarCorredor = new javax.swing.JButton();
         jButtonEliminarTodosParticipantes = new javax.swing.JButton();
         jButtonFinalizarCarrera = new javax.swing.JButton();
         jButtonExportarResultado = new javax.swing.JButton();
-        jLabelCarreraAcorrer = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuSalir1 = new javax.swing.JMenu();
         jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabeTituloParticipantes.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jPanel1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
+
+        jLabeTituloParticipantes.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        jLabeTituloParticipantes.setForeground(new java.awt.Color(255, 204, 255));
         jLabeTituloParticipantes.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jLabeTituloParticipantes.text")); // NOI18N
 
         jTableParticipantes.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
@@ -133,13 +155,22 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTableParticipantes);
 
-        jButtonEliminarCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonEliminarCorredor.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jButtonEliminarCorredor.text")); // NOI18N
-        jButtonEliminarCorredor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarCorredorActionPerformed(evt);
-            }
-        });
+        jLabelCarreraAcorrer.setBackground(new java.awt.Color(204, 204, 255));
+        jLabelCarreraAcorrer.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        jLabelCarreraAcorrer.setForeground(new java.awt.Color(255, 204, 255));
+        jLabelCarreraAcorrer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCarreraAcorrer.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jLabelCarreraAcorrer.text")); // NOI18N
+
+        panel3.setBackground(new java.awt.Color(102, 153, 255));
+        panel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.panel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        panel3.setMaximumSize(new java.awt.Dimension(700, 200));
+        panel3.setMinimumSize(new java.awt.Dimension(700, 200));
+
+        jLabel3.setBackground(new java.awt.Color(255, 204, 255));
+        jLabel3.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jLabel3.text")); // NOI18N
+        jLabel3.setToolTipText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jLabel3.toolTipText")); // NOI18N
 
         jButtonSeleccionarCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButtonSeleccionarCorredor.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jButtonSeleccionarCorredor.text")); // NOI18N
@@ -154,6 +185,14 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         jButtonCronometro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCronometroActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminarCorredor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonEliminarCorredor.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jButtonEliminarCorredor.text")); // NOI18N
+        jButtonEliminarCorredor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarCorredorActionPerformed(evt);
             }
         });
 
@@ -183,9 +222,43 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
             }
         });
 
-        jLabelCarreraAcorrer.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabelCarreraAcorrer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCarreraAcorrer.setText(org.openide.util.NbBundle.getMessage(DialogGestionarCarrera.class, "DialogGestionarCarrera.jLabelCarreraAcorrer.text")); // NOI18N
+        javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
+        panel3.setLayout(panel3Layout);
+        panel3Layout.setHorizontalGroup(
+            panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSeleccionarCorredor)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEliminarTodosParticipantes))
+                .addGap(15, 15, 15)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCronometro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panel3Layout.setVerticalGroup(
+            panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel3Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEliminarTodosParticipantes)
+                    .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,45 +271,28 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                         .addComponent(jLabeTituloParticipantes)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)
                         .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelCarreraAcorrer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonCronometro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEliminarTodosParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(339, Short.MAX_VALUE))))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabelCarreraAcorrer)
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addComponent(jLabeTituloParticipantes)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSeleccionarCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEliminarTodosParticipantes)
-                    .addComponent(jButtonEliminarCorredor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonExportarResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenuBar2.setBackground(new java.awt.Color(102, 153, 255));
@@ -266,21 +322,76 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addGap(10, 10, 10))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
+
+    private void jMenuSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalir1ActionPerformed
+
+    }//GEN-LAST:event_jMenuSalir1ActionPerformed
+
+    private void jButtonSeleccionarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCorredorActionPerformed
+
+        DialogTablaCorredores confirmacionValidar
+                = new DialogTablaCorredores(this, true);
+        confirmacionValidar.setVisible(true);
+        rellenarTablaConParticipantes();
+        int contadorMaximoParticipantes = LogicaNegocio.getInstance().
+                getListaCarreras().get(idCarrera).getNumeroMaxCorredores();
+
+        LogicaNegocio.getInstance().
+                getListaCarreras().get(idCarrera).setNumeroParticipantes(LogicaNegocio.getInstance().
+                getListaCarreras().get(idCarrera).getListaParticipantes().size());
+
+            if (LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
+                JOptionPane.showMessageDialog(this, "No hay participantes en la carrera.",
+                        "ERROR.", JOptionPane.ERROR_MESSAGE);
+            } else if (LogicaNegocio.getInstance().getListaParticipantes().size() == contadorMaximoParticipantes ||LogicaNegocio.getInstance().getListaParticipantes().size() !=0) {
+                jButtonCronometro.setEnabled(true);
+            }
+        
+    }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
+    private void aniadirParticipantesEnCarrera() {
+
+        carreraIniciar.setListaParticipantes(LogicaNegocio.getInstance().getListaParticipantes());
+        rellenarTablaConParticipantes();
+    }
+    private void jButtonCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronometroActionPerformed
+        if (LogicaNegocio.getInstance().getListaCarreras().size() == 0
+                || LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay ninguna carrera iniciada "
+                    + "con participantes.",
+                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+              for (Iterator<Participantes> iter = LogicaNegocio.getInstance().getListaParticipantes().iterator(); iter.hasNext();) {
+                  participante = iter.next();
+                  participante.anadirCarrera(carreraIniciar);
+              }
+            DialogCronometro iniciarCarrera = new DialogCronometro(this, true);
+            iniciarCarrera.setLocationRelativeTo(null);
+            iniciarCarrera.setVisible(true);
+
+            rellenarTablaConParticipantes();
+            jButtonFinalizarCarrera.setVisible(true);
+            ocultarBotones();
+        }
+    }//GEN-LAST:event_jButtonCronometroActionPerformed
 
     private void jButtonEliminarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCorredorActionPerformed
         int seleccionado = jTableParticipantes.getSelectedRow();
@@ -309,42 +420,6 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonEliminarCorredorActionPerformed
 
-    private void jButtonSeleccionarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarCorredorActionPerformed
-
-        DialogTablaCorredores confirmacionValidar
-                = new DialogTablaCorredores(this, true);
-        confirmacionValidar.setVisible(true);
-        rellenarTablaConParticipantes();
-        int contadorMaximoParticipantes = LogicaNegocio.getInstance().
-                getListaCarreras().get(idCarrera).getNumeroMaxCorredores();
-
-        if (LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
-            JOptionPane.showMessageDialog(this, "No hay participantes en la carrera.",
-                    "ERROR.", JOptionPane.ERROR_MESSAGE);
-        } else if (LogicaNegocio.getInstance().getListaParticipantes().size() == contadorMaximoParticipantes) {
-            jButtonCronometro.setEnabled(true);
-        }
-
-
-    }//GEN-LAST:event_jButtonSeleccionarCorredorActionPerformed
-
-    private void jButtonCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronometroActionPerformed
-        if (LogicaNegocio.getInstance().getListaCarreras().size() == 0
-                || LogicaNegocio.getInstance().getListaParticipantes().size() == 0) {
-            JOptionPane.showMessageDialog(this, "No hay ninguna carrera iniciada "
-                    + "con participantes.",
-                    "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            DialogCronometro iniciarCarrera = new DialogCronometro(this, true);
-            iniciarCarrera.setLocationRelativeTo(null);
-            iniciarCarrera.setVisible(true);
-            //rellenarTablaCarrerasConParticipantes();
-            rellenarTablaConParticipantes();
-            jButtonFinalizarCarrera.setVisible(true);
-            ocultarBotones();
-        }
-    }//GEN-LAST:event_jButtonCronometroActionPerformed
-
     private void jButtonEliminarTodosParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarTodosParticipantesActionPerformed
 
         int confirmación = JOptionPane.showConfirmDialog(this,
@@ -361,13 +436,11 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
                     "Borrar.", JOptionPane.INFORMATION_MESSAGE);
         }
 
-
     }//GEN-LAST:event_jButtonEliminarTodosParticipantesActionPerformed
 
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
 
         jButtonExportarResultado.setVisible(true);
-
 
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
 
@@ -375,20 +448,12 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
 
         LogicaNegocio.getInstance().grabarCarreraFinalizada();
         LogicaNegocio.getInstance().grabarCarrera();
-        //Borro los participantes 
+        //Borro los participantes
         LogicaNegocio.getInstance().getListaParticipantes().
                 removeAll(LogicaNegocio.getInstance().getListaParticipantes());
         JOptionPane.showMessageDialog(this, "Se ha exportado satisfactoriamente");
         dispose();
     }//GEN-LAST:event_jButtonExportarResultadoActionPerformed
-
-    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
-
-    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
-
-    private void jMenuSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalir1ActionPerformed
-
-    }//GEN-LAST:event_jMenuSalir1ActionPerformed
 
     //Utilizando un AbstractTableModel
     /*    private void rellenarTablaCarrerasConParticipantes() {
@@ -399,6 +464,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
         jTableParticipantes.setModel(new TableModelParticipantes(
                 LogicaNegocio.getInstance().getListaParticipantes()));
     }
+
     /**
      * Método que incorpora la ayuda en nuestro proyecto.
      */
@@ -443,6 +509,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
     private javax.swing.JButton jButtonFinalizarCarrera;
     private javax.swing.JButton jButtonSeleccionarCorredor;
     private javax.swing.JLabel jLabeTituloParticipantes;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCarreraAcorrer;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItemAyuda;
@@ -450,6 +517,7 @@ public class DialogGestionarCarrera extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableParticipantes;
+    private javax.swing.JPanel panel3;
     // End of variables declaration//GEN-END:variables
 
 }

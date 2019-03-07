@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaz;
 
 import interfaz.tablas.TableModelParticipantes;
@@ -17,7 +13,7 @@ import org.openide.util.Exceptions;
 
 /**
  *
- * @author Mario
+ * @author Shaila
  */
 public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
 
@@ -30,13 +26,15 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
             int idCarrera) {
         super(parent, modal);
         initComponents();
-        ponLaAyuda();
+        //ponLaAyuda();
         this.setLocationRelativeTo(null);
         this.idCarrera = idCarrera;
         setTitle("Lista de participantes de "+LogicaNegocio.getInstance().
                 getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera()+".");
-        jLabelNombreCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getNombreCarrera());
-        jLabelTiempoCarrera.setText("Tiempo carrera "+LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getTiempoTotal());
+        jLabelNombreCarrera.setText(LogicaNegocio.getInstance().getListaCarrerasFinalizadas()
+                .get(idCarrera).getNombreCarrera());
+        jLabelTiempoCarrera.setText("Tiempo carrera "+LogicaNegocio.getInstance().
+                getListaCarrerasFinalizadas().get(idCarrera).getTiempoTotal());
 
         rellenarTablaParticipantes();
 
@@ -61,6 +59,9 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
         jMenuItemAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado Carrera", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
 
         jLabelNombreCarrera.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelNombreCarrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,7 +112,7 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
                 .addComponent(jLabelTiempoCarrera)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                .addGap(37, 37, 37))
+                .addGap(20, 20, 20))
         );
 
         jMenuBar2.setBackground(new java.awt.Color(102, 153, 255));
@@ -145,7 +146,7 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -162,7 +163,8 @@ public class DialogResultadoCarreraFinalizada extends javax.swing.JDialog {
 
     private void rellenarTablaParticipantes() {
         jTableResultadoCarrera.setModel(new TableModelParticipantes(
-                LogicaNegocio.getInstance().getListaCarrerasFinalizadas().get(idCarrera).getListaParticipantes()));
+                LogicaNegocio.getInstance().getListaCarrerasFinalizadas().
+                        get(idCarrera).getListaParticipantes()));
     }
     /**
      * Método que incorpora la ayuda en nuestro proyecto.

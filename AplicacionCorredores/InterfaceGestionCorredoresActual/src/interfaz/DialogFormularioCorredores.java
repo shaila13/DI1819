@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +23,7 @@ import org.netbeans.validation.api.ui.ValidationGroup;
 /*Copiar javax.swing.JDialog y reemplazar java.awt.Frame*/
 public class DialogFormularioCorredores extends javax.swing.JDialog {
 
-    private static final String RUTA_LOGO = "..\\imgs\\corredor.png";
+    //private static final String RUTA_LOGO = ".."+File.separator+"imgs+File.separator+corredor.png";
     private LogicaNegocio logicaNegocio = LogicaNegocio.getInstance();
     private Corredor corredorModificar = null; 
     private String nombre = "";
@@ -43,7 +44,7 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
         setTitle("FORMULARIO ALTA CORREDORES.");
 
 //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         setLocationRelativeTo(null);
         jButtonValidarCorredores.setEnabled(false);
         ValidationGroup group = validationPanel.getValidationGroup();
@@ -82,7 +83,7 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
         initComponents();
         setTitle("FORMULARIO MODIFICACIÓN CORREDORES.");
         //Establecer el logo del a aplicación
-        setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource(RUTA_LOGO)).getImage());
         jButtonValidarCorredores.setEnabled(false);
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombreApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING);
@@ -130,14 +131,18 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
         jTextFieldDireccion = new javax.swing.JTextField();
         jTextFieldTelefono = new javax.swing.JTextField();
         jSpinnerFechaNacimiento = new javax.swing.JSpinner();
-        jButtonValidarCorredores = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         validationPanel = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        jButtonLimpiar = new javax.swing.JButton();
+        jButtonValidarCorredores = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanelDatos.setBackground(new java.awt.Color(0, 153, 204));
+        jPanelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulario Corredores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
 
         jLabelTelefono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelTelefono.setText("Telefono");
@@ -189,6 +194,54 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
 
         jSpinnerFechaNacimiento.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1285919640000L), new java.util.Date(-31590360000L), new java.util.Date(1285919640000L), java.util.Calendar.DAY_OF_MONTH));
 
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta y Modificación en Base de Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+
+        validationPanel.setBackground(new java.awt.Color(102, 153, 255));
+
+        jButtonLimpiar.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonLimpiar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+
+        jButtonValidarCorredores.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonValidarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButtonValidarCorredores.setText("Aceptar");
+        jButtonValidarCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValidarCorredoresActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(validationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonValidarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonValidarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validationPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
         jPanelDatos.setLayout(jPanelDatosLayout);
         jPanelDatosLayout.setHorizontalGroup(
@@ -196,21 +249,24 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
             .addGroup(jPanelDatosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDni)
-                    .addComponent(jLabelFecha)
-                    .addComponent(jLabelTelefono)
-                    .addComponent(jLabelDireccion)
-                    .addComponent(jLabelNombreApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldNombreApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelDatosLayout.createSequentialGroup()
-                        .addComponent(jSpinnerFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 246, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDni)
+                            .addComponent(jLabelFecha)
+                            .addComponent(jLabelTelefono)
+                            .addComponent(jLabelDireccion)
+                            .addComponent(jLabelNombreApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombreApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldDni, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                                .addComponent(jSpinnerFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 248, Short.MAX_VALUE)))))
+                .addGap(10, 10, 10))
         );
         jPanelDatosLayout.setVerticalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,57 +294,28 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
                         .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelTelefono))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
-        jButtonValidarCorredores.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonValidarCorredores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonValidarCorredores.setText("Aceptar");
-        jButtonValidarCorredores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValidarCorredoresActionPerformed(evt);
-            }
-        });
-
-        jButtonLimpiar.setBackground(new java.awt.Color(204, 204, 255));
-        jButtonLimpiar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(validationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonValidarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
-                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonValidarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(validationPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -382,6 +409,7 @@ public class DialogFormularioCorredores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JSpinner jSpinnerFechaNacimiento;
     private javax.swing.JTextField jTextFieldDireccion;
